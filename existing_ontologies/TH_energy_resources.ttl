@@ -1,0 +1,1484 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ns0: <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl>
+  a owl:Ontology ;
+  owl:versionInfo "1.03 EnergyResource Ontology"^^xsd:string ;
+  rdfs:comment "Home automation conceptualization is based on DogOnt 1.0.5 Home Automation Ontology."@en ;
+  owl:imports <http://www.w3.org/2006/time> ;
+  owl:versionIRI <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/energy/EnergyResourceOntology_1.03.owl> .
+
+<http://www.semanticweb.org/owlapi#nodeID> a owl:AnnotationProperty .
+rdfs:comment a owl:AnnotationProperty .
+rdfs:label a owl:AnnotationProperty .
+owl:versionInfo a owl:AnnotationProperty .
+xsd:gDay a rdfs:Datatype .
+xsd:gMonth a rdfs:Datatype .
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#areaUnitEnum>
+  a rdfs:Datatype ;
+  owl:equivalentClass [
+    a rdfs:Datatype ;
+    owl:oneOf (
+     "SquareCentimeters"^^xsd:string
+     "SquareFeet"^^xsd:string
+     "SquareInches"^^xsd:string
+     "SquareKilometers"^^xsd:string
+     "SquareMeters"^^xsd:string
+     "SquareMiles"^^xsd:string
+     "SquareMillimeters"^^xsd:string
+     "SquareYards"^^xsd:string
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#capacityUnitEnum>
+  a rdfs:Datatype ;
+  owl:equivalentClass [
+    a rdfs:Datatype ;
+    owl:oneOf (
+     "Barrels"^^xsd:string
+     "CubicMetres"^^xsd:string
+     "Litres"^^xsd:string
+     "LooseCubicMetres"^^xsd:string
+     "Lumen"^^xsd:string
+     "Steres"^^xsd:string
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#currencyTypeEnum>
+  a rdfs:Datatype ;
+  owl:equivalentClass [
+    a rdfs:Datatype ;
+    owl:oneOf (
+     "AustralianDollar"^^xsd:string
+     "CanadianDollars"^^xsd:string
+     "EnglishPound"^^xsd:string
+     "Euros"^^xsd:string
+     "Franc"^^xsd:string
+     "IndianRupee"^^xsd:string
+     "Mark"^^xsd:string
+     "NewZealandDollar"^^xsd:string
+     "Pesos"^^xsd:string
+     "Real"^^xsd:string
+     "Ruble"^^xsd:string
+     "TaiwanDollar"^^xsd:string
+     "USDollars"^^xsd:string
+     "Yen"^^xsd:string
+     "Yuan"^^xsd:string
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#energyUnitEnum>
+  a rdfs:Datatype ;
+  owl:equivalentClass [
+    a rdfs:Datatype ;
+    owl:oneOf (
+     "KiloWattHours"^^xsd:string
+     "MegaWattHours"^^xsd:string
+     "WattHours"^^xsd:string
+     "WattPeaks"^^xsd:string
+     "WattSeconds"^^xsd:string
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#weightUnitEnum>
+  a rdfs:Datatype ;
+  owl:equivalentClass [
+    a rdfs:Datatype ;
+    owl:oneOf (
+     "Grams"^^xsd:string
+     "KiloGrams"^^xsd:string
+   )
+  ] .
+
+owl:topObjectProperty
+  a owl:ObjectProperty ;
+  rdfs:comment "maximum energy amount that a facility can produce"@en .
+
+time:hasBeginning a owl:ObjectProperty .
+time:hasEnd a owl:ObjectProperty .
+time:inDateTime a owl:ObjectProperty .
+time:unitType a owl:ObjectProperty .
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#actuallyConsumesEnergy>
+  a owl:ObjectProperty ;
+  rdfs:label "actuallyConsumesEnergy"^^xsd:string ;
+  rdfs:comment "how much energy is consumed by an energy facility at a certain point in time"@en, "this property was known as \"currentlyConsumesEnergy\" in prior versions of the ontology"@en ;
+  rdfs:subPropertyOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#consumesEnergy> ;
+  owl:propertyChainAxiom (
+   <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasCurrentStateValue>
+   <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasEnergyDemand>
+ ) .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#actuallyProducesEnergy>
+  a owl:ObjectProperty ;
+  rdfs:label "actuallyProducesEnergy"^^xsd:string ;
+  rdfs:comment "The amount of energy a facility produces at a certain point in time"@en ;
+  rdfs:subPropertyOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#producesEnergy> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#actuatorOf>
+  a owl:ObjectProperty ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasActuator> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ceilingOf> a owl:ObjectProperty .
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#commandOf>
+  a owl:ObjectProperty ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasCommand> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#consumesEnergy>
+  a owl:ObjectProperty ;
+  rdfs:label "consumesEnergy"^^xsd:string ;
+  rdfs:comment "How much energy is consumed by a certain energy facility"@en ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyConsumerFacility> ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyDemand> ;
+  owl:propertyChainAxiom (
+   <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasState>
+   <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasStateValue>
+   <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasEnergyDemand>
+ ) .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#consumesEnergyType>
+  a owl:ObjectProperty ;
+  rdfs:label "consumesEnergyType"^^xsd:string ;
+  rdfs:comment "The energy type that is consumed by a specific energy consuming facility"@en ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyConsumerFacility> ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#FinalEnergy> ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#energyTypeConsumedBy> ;
+  owl:propertyChainAxiom (
+   <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#consumesEnergy>
+   <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ofEnergyType>
+ ) .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#contains>
+  a owl:ObjectProperty ;
+  rdfs:label "contains"^^xsd:string ;
+  rdfs:comment "Indicates which object are contained in a building environment, e.g. the kitchen contains Lamp1,Lamp2..."@en ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingEnvironment> ;
+  rdfs:range [
+    a owl:Class ;
+    owl:unionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Appliance>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingAutomationSystemResource>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingEnvironment>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Equipment>
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#controlledObject>
+  a owl:ObjectProperty ;
+  rdfs:label "controlledObject"^^xsd:string ;
+  rdfs:comment "Association between a controller and the controlled object"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#energyActuallyConsumedBy>
+  a owl:ObjectProperty ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#actuallyConsumesEnergy> ;
+  rdfs:subPropertyOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#energyConsumedBy> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#energyActuallyProducedBy>
+  a owl:ObjectProperty ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#actuallyProducesEnergy> ;
+  rdfs:subPropertyOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#energyProducedBy> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#energyConsumedBy>
+  a owl:ObjectProperty ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#consumesEnergy> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#energyMaxConsumedBy>
+  a owl:ObjectProperty ;
+  rdfs:subPropertyOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#energyConsumedBy> ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#maxConsumesEnergy> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#energyMaxProducedBy>
+  a owl:ObjectProperty ;
+  rdfs:subPropertyOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#energyProducedBy> ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#maxProducesEnergy> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#energyProducedBy>
+  a owl:ObjectProperty ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#producesEnergy> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#energyTypeConsumedBy> a owl:ObjectProperty .
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#energyTypeProducedBy>
+  a owl:ObjectProperty ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#producesEnergyType> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#energyTypeProvidedBy>
+  a owl:ObjectProperty ;
+  rdfs:label "energyProvidedBy"^^xsd:string ;
+  rdfs:subPropertyOf owl:topObjectProperty .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#floorOf> a owl:ObjectProperty .
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#functionalityOf> a owl:ObjectProperty .
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#generateCommand>
+  a owl:ObjectProperty ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Command> ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Notification> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasActuator>
+  a owl:ObjectProperty ;
+  rdfs:label "hasActuator"^^xsd:string ;
+  rdfs:comment "Association between a mobile uncontrollable object and its actuator"@en ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingThing> ;
+  rdfs:domain [
+    a owl:Class ;
+    owl:unionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Awning>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Door>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Gate>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Radiator>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Shade>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Shutter>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Window>
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasAssociatedBuildingPartition>
+  a owl:ObjectProperty ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingEnvironment> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasAssociatedSpace>
+  a owl:ObjectProperty ;
+  rdfs:subPropertyOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasAssociatedBuildingPartition> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasAssociatedSurface>
+  a owl:ObjectProperty ;
+  rdfs:domain [
+    a owl:Class ;
+    owl:unionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Ceiling>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Floor>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Wall>
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasAssociatedZone>
+  a owl:ObjectProperty ;
+  rdfs:subPropertyOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasAssociatedBuildingPartition> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasBuildingAutomationNetworkType>
+  a owl:ObjectProperty ;
+  rdfs:comment "hasBuildingAutomationNetworkType"^^xsd:string, "Connects a domotic facility with the representation of its supported building automation network"@en ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingAutomationNetwork> ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#DomoticNetworkComponent> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasCeiling>
+  a owl:ObjectProperty ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Ceiling> ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ceilingOf> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasCommand>
+  a owl:ObjectProperty ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Command> ;
+  rdfs:domain [
+    a owl:Class ;
+    owl:unionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ControlFunctionality>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#QueryFunctionality>
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasControl>
+  a owl:ObjectProperty ;
+  rdfs:label "hasControl"^^xsd:string ;
+  rdfs:comment "Association between an object and its controller,e.g.switch,button,knob"@en ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingThing> ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#controlledObject> ;
+  rdfs:domain [
+    a owl:Class ;
+    owl:unionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#AcousticSystemResource>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ActuatorSystemResource>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#LightingSystemResource>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#PowerDelivery>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#WhiteGoods>
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasCurrentStateValue>
+  a owl:ObjectProperty ;
+  rdfs:label "hasCurrentStateValue"^^xsd:string ;
+  rdfs:comment "The currently active mode (StateValue) of a facility"@en, "this property was known as \"hasActiveMode\" in prior versions of the ontology"@en ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Controllable> ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#StateValue> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasDefaultProvider> a owl:ObjectProperty .
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasEcologicalImpact>
+  a owl:ObjectProperty ;
+  rdfs:label "hasEcologicalImpact"^^xsd:string ;
+  rdfs:comment "the ecological impact of the associated non-renewable energy source"@en ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#isEcologicalImpactOf> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasEnergyDemand>
+  a owl:ObjectProperty ;
+  rdfs:label "hasEnergyDemand"^^xsd:string ;
+  rdfs:comment "The energy demand of a facility in a specific state"@en ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyDemand> ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#StateValue> ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#isEnergyDemandOf> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasEnergySource>
+  a owl:ObjectProperty ;
+  rdfs:label "hasEnergySource"^^xsd:string ;
+  rdfs:comment "determines the energy sources of an energy provider or a renewable energy producing facility (e.g. solar, biomass, nuclear, hydropower)"@en ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergySource> ;
+  rdfs:domain [
+    a owl:Class ;
+    owl:unionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyProducerFacility>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyProvider>
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasEnergySupply>
+  a owl:ObjectProperty ;
+  rdfs:label "hasEnergySupply"^^xsd:string ;
+  rdfs:comment "The energy supply of a facility in a specific state"@en ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergySupply> ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#StateValue> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasEnergyTariff>
+  a owl:ObjectProperty ;
+  rdfs:label "hasEnergyTariff"^^xsd:string ;
+  rdfs:comment "Connection to the energy tariff for a specific amount of energy provided by a specific energy provider"@en ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyCostTariff> ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyProvider> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasFieldOfApplication>
+  a owl:ObjectProperty ;
+  rdfs:label "hasFieldOfApplication"^^xsd:string ;
+  rdfs:comment "The field of application of a certain facility or zone"@en ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#FieldOfApplication> ;
+  rdfs:domain [
+    a owl:Class ;
+    owl:unionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingEnvironment>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Controllable>
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasFloor>
+  a owl:ObjectProperty ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Floor> ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#floorOf> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasFunctionality>
+  a owl:ObjectProperty ;
+  rdfs:label "hasFunctionality"^^xsd:string ;
+  rdfs:comment "Provide functionalities to controllable things"@en ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Controllable> ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Functionality> ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#functionalityOf> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasGainValue>
+  a owl:ObjectProperty ;
+  rdfs:label "hasGainValue"^^xsd:string ;
+  rdfs:comment "The gain value of an energy recovery tariff"@en ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyTariff> ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#MonetaryGain> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasGateway>
+  a owl:ObjectProperty ;
+  rdfs:comment "Relates a given domotic component with the network level gateway used to control it"@en ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Controllable> ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#isGatewayOf> ;
+  rdfs:range [
+    a owl:Class ;
+    owl:unionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BTicinoGateway>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EliteGateway>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#KonnexGateway>
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasMonetaryEnergyCost>
+  a owl:ObjectProperty ;
+  rdfs:label "hasMonetaryEnergyCost"^^xsd:string ;
+  rdfs:comment "monetary equivalent for a specific energy resource"@en ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyCostTariff> ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#MonetaryEnergyCost> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasNotification>
+  a owl:ObjectProperty ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Notification> ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#NotificationFunctionality> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasSensor>
+  a owl:ObjectProperty ;
+  rdfs:label "hasSensor"^^xsd:string ;
+  rdfs:comment "Association between an object or space and its sensor"@en ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingThing> ;
+  rdfs:domain [
+    a owl:Class ;
+    owl:unionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingEnvironment>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingThing>
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasState>
+  a owl:ObjectProperty ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Controllable> ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#State> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasStateValue>
+  a owl:ObjectProperty ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#State> ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#StateValue> ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#stateValueOf> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasTimeFrame>
+  a owl:ObjectProperty ;
+  rdfs:label "hasTimeFrame"^^xsd:string ;
+  rdfs:comment "Time interval for describing energy tariff schemes."@en ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ElectricEnergySource> ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#PowerTimeFrame> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasWall>
+  a owl:ObjectProperty ;
+  rdfs:label "hasWall"^^xsd:string ;
+  rdfs:comment "Association between a room and its walls"@en ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Room> ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Wall> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasWallOpening>
+  a owl:ObjectProperty ;
+  rdfs:label "hasWallOpening"^^xsd:string ;
+  rdfs:comment "Association between a wall and its opening like door,window"@en ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Wall> ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#WallOpening> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#isDefaultProviderOf>
+  a owl:ObjectProperty, owl:InverseFunctionalProperty ;
+  rdfs:comment "this object property models the connection between an energy type and its default energy provider"@en ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyProvider> ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasDefaultProvider> ;
+  rdfs:range [
+    a owl:Class ;
+    owl:unionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#FinalEnergy>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#UsefulEnergy>
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#isEcologicalImpactOf>
+  a owl:ObjectProperty ;
+  rdfs:label "isEcologicalImpactOf"^^xsd:string ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyCost> ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergySource> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#isEnergyDemandOf>
+  a owl:ObjectProperty ;
+  rdfs:label "isEnergyDemandOf"^^xsd:string .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#isEnergySupplyOf>
+  a owl:ObjectProperty ;
+  rdfs:label "isEnergySupplyOf"^^xsd:string ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasEnergySupply> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#isFieldOfApplicationOf>
+  a owl:ObjectProperty ;
+  rdfs:label "isFieldOfApplicationOf"^^xsd:string ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasFieldOfApplication> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#isGatewayOf>
+  a owl:ObjectProperty ;
+  rdfs:label "isGatewayOf"^^xsd:string .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#isIn>
+  a owl:ObjectProperty ;
+  rdfs:label "isIn"^^xsd:string ;
+  rdfs:comment "Indicates in which building environment is contained an object, e.g. the lamp5 isIn Kitchen"@en ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#contains> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#isInWall>
+  a owl:ObjectProperty ;
+  rdfs:label "isInWall"^^xsd:string ;
+  rdfs:comment "Association between a wallopening(door or window) and the wall opening where it is"@en ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasWallOpening> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#isSensorOf>
+  a owl:ObjectProperty ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasSensor> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#isTariffForConsumableEnergy>
+  a owl:ObjectProperty ;
+  rdfs:label "isTariffForConsumableEnergy"^^xsd:string ;
+  rdfs:comment "the consumable energy for which the tariff is charged. This relates to energy forms being supplied to the smart home "@en ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyTariff> ;
+  rdfs:range [
+    a owl:Class ;
+    owl:unionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#FinalEnergy>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#UsefulEnergy>
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#isTariffForEnergySource>
+  a owl:ObjectProperty ;
+  rdfs:label "isTariffForEnergySource"^^xsd:string ;
+  rdfs:comment "The concrete energy source for which this tariff is charged. In the case of secondary energy it additionally represents the time frames in which this tariff is charged. In the case of primary energy it denotes the concrete energy source individual"@en ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergySource> ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyTariff> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#maxConsumesEnergy>
+  a owl:ObjectProperty ;
+  rdfs:label "maxConsumesEnergy"^^xsd:string ;
+  rdfs:comment "how much energy is maximally consumed by a certain energy facility in a specific state"@en ;
+  rdfs:subPropertyOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#consumesEnergy> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#maxProducesEnergy>
+  a owl:ObjectProperty ;
+  rdfs:label "maxProducesEnergy"^^xsd:string ;
+  rdfs:comment "Energy value of the specified energy resource in full operation"@en ;
+  rdfs:subPropertyOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#producesEnergy> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#notificationOf>
+  a owl:ObjectProperty ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasNotification> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ofEnergyType>
+  a owl:ObjectProperty ;
+  rdfs:label "ofEnergyType"^^xsd:string ;
+  rdfs:comment "The type of energy of a certain energy demand or supply"@en ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  rdfs:domain [
+    a owl:Class ;
+    owl:unionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyDemand>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergySupply>
+   )
+  ] ;
+  rdfs:range [
+    a owl:Class ;
+    owl:unionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#FinalEnergy>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#UsefulEnergy>
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#producesEnergy>
+  a owl:ObjectProperty ;
+  rdfs:label "producesEnergy"^^xsd:string ;
+  rdfs:comment "How much energy is produced by a certain energy producing facility"@en ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyProducerFacility> ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergySupply> ;
+  owl:propertyChainAxiom (
+   <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasState>
+   <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasStateValue>
+   <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasEnergySupply>
+ ) .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#producesEnergyType>
+  a owl:ObjectProperty ;
+  rdfs:label "producesEnergyType"^^xsd:string ;
+  rdfs:comment "An energy facility in the home produces a certain kind of energy type (e.g. SolarPanel produces energy type ElectricEnergy)"@en ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyProducerFacility> ;
+  owl:propertyChainAxiom (
+   <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#producesEnergy>
+   <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ofEnergyType>
+ ) ;
+  rdfs:range [
+    a owl:Class ;
+    owl:unionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#FinalEnergy>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#UsefulEnergy>
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#providesEnergyType>
+  a owl:ObjectProperty ;
+  rdfs:label "providesEnergyType"^^xsd:string ;
+  rdfs:comment "The type of energy that is provided by an energy provider with respect to its usage (e.g. heating,electricity)"@en ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyProvider> ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#energyTypeProvidedBy> ;
+  owl:propertyChainAxiom (
+   <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasEnergyTariff>
+   <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#isTariffForConsumableEnergy>
+ ) ;
+  rdfs:range [
+    a owl:Class ;
+    owl:unionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#FinalEnergy>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#UsefulEnergy>
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#stateOf>
+  a owl:ObjectProperty ;
+  owl:inverseOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasState> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#stateValueOf>
+  a owl:ObjectProperty ;
+  rdfs:comment "A property holding the svg footprint for the given building environment object"@en ;
+  rdfs:subPropertyOf owl:topObjectProperty .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#storesEnergyCapacity>
+  a owl:ObjectProperty ;
+  rdfs:label "storesEnergyCapacity"^^xsd:string ;
+  rdfs:comment "Energy Capacity that is stored per unit of a certain energy carrier"@en ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyCapacity> ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergySource> .
+
+owl:topDataProperty a owl:DatatypeProperty .
+time:day a owl:DatatypeProperty .
+time:hour a owl:DatatypeProperty .
+time:minute a owl:DatatypeProperty .
+time:month a owl:DatatypeProperty .
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#IPAddress>
+  a owl:DatatypeProperty ;
+  rdfs:label "IPAddress"^^xsd:string ;
+  rdfs:comment "The IP address of the gateway"@en ;
+  rdfs:domain [
+    a owl:Class ;
+    owl:unionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BTicinoGateway>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#KonnexGateway>
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#cmdHexValue>
+  a owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#KonnexCommand> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#commandParamName>
+  a owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ParametricCommand> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#commandParamValue>
+  a owl:DatatypeProperty ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ParametricCommand> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#connectionTimeOut>
+  a owl:DatatypeProperty ;
+  rdfs:label "connectionTimeOut"^^xsd:string ;
+  rdfs:comment "The time before the connection expires"@en ;
+  rdfs:range xsd:int ;
+  rdfs:domain [
+    a owl:Class ;
+    owl:unionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BTicinoGateway>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#KonnexGateway>
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#connectionTrials>
+  a owl:DatatypeProperty ;
+  rdfs:label "connectionTrials"^^xsd:string ;
+  rdfs:comment "Number of connection trials before failure"@en ;
+  rdfs:range xsd:int ;
+  rdfs:domain [
+    a owl:Class ;
+    owl:unionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BTicinoGateway>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#KonnexGateway>
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#continuousNotificationParamName>
+  a owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ParametricNotification> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#continuousNotificationParamValue>
+  a owl:DatatypeProperty ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ParametricNotification> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#flashingTime>
+  a owl:DatatypeProperty ;
+  rdfs:label "flashingTime"^^xsd:string ;
+  rdfs:comment "The flashing period duration in seconds"@en ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#OnOffFlashingFunctionality> ;
+  rdfs:range [
+    a rdfs:Datatype ;
+    owl:oneOf (
+     "0.5"^^xsd:float
+     "1.0"^^xsd:float
+     "1.5"^^xsd:float
+     "2.0"^^xsd:float
+     "2.5"^^xsd:float
+     "3.0"^^xsd:float
+     "3.5"^^xsd:float
+     "4.0"^^xsd:float
+     "4.5"^^xsd:float
+     "5.0"^^xsd:float
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#groupAddress>
+  a owl:DatatypeProperty ;
+  rdfs:label "groupAddress"^^xsd:string ;
+  rdfs:comment "The address of the group of the component"@en ;
+  rdfs:range xsd:string ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#KonnexComponent> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasMonetaryUnit>
+  a owl:DatatypeProperty ;
+  rdfs:label "hasMonetaryUnit"^^xsd:string ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+  rdfs:range <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#currencyTypeEnum> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasName>
+  a owl:DatatypeProperty ;
+  rdfs:label "hasName"^^xsd:string ;
+  rdfs:comment "The name of a company or person"@en ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf owl:topDataProperty .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasNativeUnit>
+  a owl:DatatypeProperty, owl:FunctionalProperty ;
+  rdfs:label "hasNativeUnit"^^xsd:string ;
+  rdfs:comment "The native unit of the described energy unit"@en ;
+  rdfs:subPropertyOf owl:topDataProperty .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasNativeValue>
+  a owl:DatatypeProperty ;
+  rdfs:label "hasNativeValue"^^xsd:string ;
+  rdfs:subPropertyOf owl:topDataProperty .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasPostalAddress>
+  a owl:DatatypeProperty ;
+  rdfs:label "hasPostalAddress"^^xsd:string ;
+  rdfs:comment "the postal address of a company or person"@en ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf owl:topDataProperty .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasRelatedUnit>
+  a owl:DatatypeProperty ;
+  rdfs:label "hasRelatedUnit"^^xsd:string ;
+  rdfs:comment "unit to which this value is related to. value of this related unit is always 1 if no related value is given, while the native value for the given energy unit is set in relation to this (e.g. KwH/Liter)"@en ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyParameter> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasRelatedValue>
+  a owl:DatatypeProperty ;
+  rdfs:label "hasRelatedValue"^^xsd:string ;
+  rdfs:subPropertyOf owl:topDataProperty .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#individualAddress>
+  a owl:DatatypeProperty ;
+  rdfs:label "individualAddress"^^xsd:string ;
+  rdfs:comment "The individual address of the component"@en ;
+  rdfs:range xsd:string ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#KonnexComponent> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#maxValue>
+  a owl:DatatypeProperty ;
+  rdfs:label "maxValue"^^xsd:string ;
+  rdfs:comment "The maximum value of a continuous range"@en ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ContinuousControlFunctionality> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#minValue>
+  a owl:DatatypeProperty ;
+  rdfs:label "minValue"^^xsd:string ;
+  rdfs:comment "The minimum value of a continuous range"@en ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ContinuousControlFunctionality> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#multicastIP>
+  a owl:DatatypeProperty ;
+  rdfs:label "multicastIP"^^xsd:string ;
+  rdfs:comment "The multicast address of the gateway"@en ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#KonnexGateway> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#nParams>
+  a owl:DatatypeProperty, owl:FunctionalProperty ;
+  rdfs:domain [
+    a owl:Class ;
+    owl:unionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ParametricCommand>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ParametricNotification>
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#needsPermanentSupply>
+  a owl:DatatypeProperty, owl:FunctionalProperty ;
+  rdfs:label "needsPermanentSupply"^^xsd:string ;
+  rdfs:comment "If a certain facility needs permanent power suppy"@en ;
+  rdfs:range xsd:boolean ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyConsumerFacility> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#notificationName>
+  a owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Notification> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#notificationValue>
+  a owl:DatatypeProperty ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Notification> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#percentageOfEnergyMix>
+  a owl:DatatypeProperty ;
+  rdfs:label "percentageOfEnergyMix"^^xsd:string ;
+  rdfs:comment "describes the percentage of an energy source in the energy mix of an energy provider"@en ;
+  rdfs:range xsd:double ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergySource> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#physicalAddress>
+  a owl:DatatypeProperty ;
+  rdfs:label "physicalAddress"^^xsd:string ;
+  rdfs:comment "The address of the component"@en ;
+  rdfs:range xsd:string ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BTicinoComponent> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#physicalType>
+  a owl:DatatypeProperty ;
+  rdfs:label "physicalType"^^xsd:string ;
+  rdfs:comment "The category of the component"@en ;
+  rdfs:range xsd:string ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BTicinoComponent> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#pollingInterval>
+  a owl:DatatypeProperty ;
+  rdfs:label "pollingInterval"^^xsd:string ;
+  rdfs:comment "The interval between subsequent polls"@en ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#KonnexGateway> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#port>
+  a owl:DatatypeProperty ;
+  rdfs:label "port"^^xsd:string ;
+  rdfs:comment "The port of the gateway"@en ;
+  rdfs:domain [
+    a owl:Class ;
+    owl:unionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BTicinoGateway>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#KonnexGateway>
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#realCommandName>
+  a owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Command> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#realStateValue>
+  a owl:DatatypeProperty ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#StateValue> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#returnType>
+  a owl:DatatypeProperty ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#NonVoidCommand> ;
+  rdfs:range [
+    a rdfs:Datatype ;
+    owl:oneOf (
+     "Boolean"^^xsd:string
+     "Double"^^xsd:string
+     "Float"^^xsd:string
+     "Integer"^^xsd:string
+     "Long"^^xsd:string
+     "Object"^^xsd:string
+     "Set"^^xsd:string
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#sleepTime>
+  a owl:DatatypeProperty ;
+  rdfs:label "sleepTime"^^xsd:string ;
+  rdfs:comment "The time between connection trials"@en ;
+  rdfs:range xsd:int ;
+  rdfs:domain [
+    a owl:Class ;
+    owl:unionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BTicinoGateway>
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#KonnexGateway>
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#svgFootprint>
+  a owl:DatatypeProperty ;
+  rdfs:range rdf:XMLLiteral ;
+  rdfs:subPropertyOf owl:topDataProperty ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingEnvironment> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#timeToOff>
+  a owl:DatatypeProperty ;
+  rdfs:label "timeToOff"^^xsd:string ;
+  rdfs:comment "The time in seconds during which the object is turned on"@en ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#TimedOnFunctionality> ;
+  rdfs:range [
+    a rdfs:Datatype ;
+    owl:oneOf (
+     "0.5"^^xsd:float
+     "120.0"^^xsd:float
+     "180.0"^^xsd:float
+     "240.0"^^xsd:float
+     "30.0"^^xsd:float
+     "300.0"^^xsd:float
+     "60.0"^^xsd:float
+     "900.0"^^xsd:float
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#udpPort>
+  a owl:DatatypeProperty ;
+  rdfs:label "udpPort"^^xsd:string ;
+  rdfs:comment "The port for UDP connections"@en ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#KonnexGateway> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#valueContinuous>
+  a owl:DatatypeProperty, owl:FunctionalProperty ;
+  rdfs:label "valueContinuous"^^xsd:string ;
+  rdfs:comment "The value of the state of an object"@en ;
+  rdfs:range xsd:float ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ContinuousState> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#valueDiscrete>
+  a owl:DatatypeProperty, owl:FunctionalProperty ;
+  rdfs:label "valueDiscrete"^^xsd:string ;
+  rdfs:comment "The discrete state of an object"@en ;
+  rdfs:range xsd:string ;
+  rdfs:domain <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#DiscreteState> .
+
+owl:Thing a owl:Class .
+time:DateTimeDescription a owl:Class .
+time:DurationDescription a owl:Class .
+time:Instant a owl:Class .
+time:ProperInterval a owl:Class .
+<http://www.w3.org/2006/timezone#TimeZone> a owl:Class .
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#AccessControlResource>
+  a owl:Class ;
+  rdfs:label "AccessControlSystem"^^xsd:string ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:intersectionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingAutomationSystemResource>
+     _:genid161
+   )
+  ] ;
+  rdfs:comment "System that provides security about access"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#AccessSecurityFieldOfApplication>
+  a owl:Class ;
+  rdfs:label "AccessSecurityFOA"^^xsd:string ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ControlSecurityFieldOfApplication> ;
+  rdfs:comment "Field Of Application for facilities in the access security sector (e.g. door sensors, window sensors, door openers)"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#AcousticSystemResource>
+  a owl:Class ;
+  rdfs:label "AcousticSystemResource"^^xsd:string ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingAutomationSystemResource>, [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#isIn> ;
+    owl:onClass <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingEnvironment> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasFieldOfApplication> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ElectricalFieldOfApplication>
+  ] ;
+  rdfs:comment "resource that makes some sound"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ActuatorSystemResource>
+  a owl:Class ;
+  rdfs:label "Actuator"^^xsd:string ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:intersectionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingAutomationSystemResource>
+     _:genid167
+     _:genid169
+   )
+  ] ;
+  rdfs:comment "A mechanism that puts something into automatic action"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#AirConditioningSystem>
+  a owl:Class ;
+  rdfs:label "AirConditioningSystem"^^xsd:string ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingAutomationSystemResource>, [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasState> ;
+    owl:onClass <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#State> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasFunctionality> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#OnOffFunctionality>
+  ], [
+    a owl:Class ;
+    owl:unionOf (
+     _:genid174
+     _:genid176
+     _:genid178
+     _:genid180
+   )
+  ], [
+    a owl:Class ;
+    owl:unionOf (
+     _:genid183
+     _:genid185
+     _:genid187
+     _:genid189
+   )
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasFunctionality> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ThermostatControlFunctionality>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#maxProducesEnergy> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergySupply>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasState> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#OnOffState>
+  ] ;
+  rdfs:comment "System that is capable of changing air state (e.g. cooling, heating, etc.)"^^xsd:string .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#AirPressureSensor>
+  a owl:Class ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:intersectionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingAutomationSystemResource>
+     _:genid196
+     _:genid198
+     _:genid200
+     _:genid202
+     _:genid204
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#AirQualityFieldOfApplication>
+  a owl:Class ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#DomoticFacilityFieldOfApplication> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#AiringFieldOfApplication>
+  a owl:Class ;
+  rdfs:label "AiringFOA"^^xsd:string ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#DomoticFacilityFieldOfApplication> ;
+  rdfs:comment "Field Of Application for facility connected to airing with external air (e.g. air condition, airing system, air flow detection)"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#AlarmClock>
+  a owl:Class ;
+  rdfs:label "AlarmClock"^^xsd:string ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BrownGoods> ;
+  rdfs:comment "A clock that wakes sleeper at preset time"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#AnnualPowerTimeFrame>
+  a owl:Class ;
+  rdfs:label "AnnualPowerTimeFrame"^^xsd:string ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:intersectionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#PowerTimeFrame>
+     _:genid208
+   )
+  ] ;
+  rdfs:comment "Power interval on the basis of a year"^^xsd:string .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#AnsweringMachine>
+  a owl:Class ;
+  rdfs:label "AnsweringMachine"^^xsd:string ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Communication>, [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasFieldOfApplication> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#WorkingFieldOfApplication>
+  ] ;
+  rdfs:comment "Electronic device that answers the telephone and records messages"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#AntiIntrusionResource>
+  a owl:Class ;
+  rdfs:label "AntiIntrusionSystem"^^xsd:string ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:intersectionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingAutomationSystemResource>
+     _:genid215
+   )
+  ] ;
+  rdfs:comment "System that provides security about intrusion"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Appliance>
+  a owl:Class ;
+  rdfs:label "Appliance"^^xsd:string ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Controllable>, [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#producesEnergyType> ;
+    owl:allValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#UsefulEnergy>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#consumesEnergy> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyDemand>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#consumesEnergyType> ;
+    owl:someValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#FinalEnergy>
+       <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#UsefulEnergy>
+     )
+    ]
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#producesEnergy> ;
+    owl:allValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergySupply>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasFieldOfApplication> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#DomesticFacilityFieldOfApplication>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#needsPermanentSupply> ;
+    owl:someValuesFrom xsd:boolean
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#isIn> ;
+    owl:onClass <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingEnvironment> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+  ] ;
+  rdfs:comment "Durable goods for home or office use"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Architectural>
+  a owl:Class ;
+  rdfs:label "Architectural"^^xsd:string ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#UnControllable> ;
+  owl:disjointWith <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Equipment> ;
+  rdfs:comment "All the architectural elements that compose the environment"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#AutoRegulationStateValue>
+  a owl:Class ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#DiscreteValue>, [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#realStateValue> ;
+    owl:hasValue "auto"^^xsd:string
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#AuxStateValue>
+  a owl:Class ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#DiscreteValue>, [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#realStateValue> ;
+    owl:hasValue "aux"^^xsd:string
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Awning>
+  a owl:Class ;
+  rdfs:label "Awning"^^xsd:string ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Equipment>, [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasActuator> ;
+    owl:allValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#AwningActuator>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasActuator> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ] ;
+  rdfs:comment "A canopy made of canvas to shelter people or things from rain or sun."@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#AwningActuator>
+  a owl:Class ;
+  rdfs:label "AwningActuator"^^xsd:string ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingAutomationSystemResource>, [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#actuatorOf> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Awning>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasState> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#OpenCloseState>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasFunctionality> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#OpenCloseFunctionality>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#actuatorOf> ;
+    owl:allValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Awning>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasFieldOfApplication> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ElectricalFieldOfApplication>
+  ] ;
+  rdfs:comment "A mechanism that allow automatic control about awning"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BTicinoComponent>
+  a owl:Class ;
+  rdfs:label "BTicinoComponent"^^xsd:string ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:intersectionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#DomoticNetworkComponent>
+     _:genid238
+   )
+  ] ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#physicalAddress> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#physicalType> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ] ;
+  rdfs:comment "Components manufactured by Bticino"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BTicinoGateway>
+  a owl:Class ;
+  rdfs:label "BTicinoGateway"^^xsd:string ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:intersectionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#DomoticNetworkComponent>
+     _:genid244
+     _:genid246
+   )
+  ] ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#DomoticNetworkComponent>, [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#sleepTime> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#IPAddress> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#port> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#connectionTrials> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasBuildingAutomationNetworkType> ;
+    owl:hasValue <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BTicino>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#connectionTimeOut> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ] ;
+  rdfs:comment "A BTIcino Gateway"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Bathroom>
+  a owl:Class ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:intersectionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Room>
+     _:genid256
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Bedroom>
+  a owl:Class ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:intersectionOf (
+     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Room>
+     _:genid260
+   )
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BioGasEnergySource>
+  a owl:Class ;
+  rdfs:label "BioGasEnergySource"^^xsd:string ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Renewable> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BiomassEnergySource>
+  a owl:Class ;
+  rdfs:label "BiomassEnergySource"^^xsd:string ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Renewable> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Boiler>
+  a owl:Class ;
+  rdfs:label "Boiler"^^xsd:string ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#WhiteGoods>, [
+    a owl:Class ;
+    owl:unionOf (
+     _:genid263
+     _:genid265
+   )
+  ] ;
+  rdfs:comment "Sealed vessel where water is warm up"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BoilerController>
+  a owl:Class ;
+  rdfs:label "BoilerController"^^xsd:string ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingAutomationSystemResource>, [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#controlledObject> ;
+    owl:allValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Boiler>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasFieldOfApplication> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ElectricalFieldOfApplication>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#controlledObject> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Boiler>
+  ] ;
+  rdfs:comment "Device for controlling a boiler facility"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BrownGoods>
+  a owl:Class ;
+  rdfs:label "BrownGoods"^^xsd:string ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Appliance> ;
+  owl:disjointWith <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#WhiteGoods> ;
+  rdfs:comment "Small household electrical entertainment appliances"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingAutomationNetwork>
+  a owl:Class ;
+  rdfs:label "BuildingAutomationNetwork"^^xsd:string ;
+  rdfs:comment "Specific networks for building automation devices."@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingAutomationSystemResource>
+  a owl:Class ;
+  rdfs:label "BuildingAutomationSystemResource"^^xsd:string ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Controllable>, [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#producesEnergy> ;
+    owl:allValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergySupply>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#isIn> ;
+    owl:onClass <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingEnvironment> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#consumesEnergy> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyDemand>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasFieldOfApplication> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#FieldOfApplication>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#producesEnergyType> ;
+    owl:allValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#UsefulEnergy>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasFunctionality> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#StateChangeNotificationFunctionality>
+  ] ;
+  rdfs:comment "All plants of the house, e.g. Electrical system, Hydraulic system"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingEnvironment>
+  a owl:Class ;
+  rdfs:label "BuildingEnvironment"^^xsd:string ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasAssociatedZone> ;
+    owl:someValuesFrom owl:Thing
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasAssociatedSpace> ;
+    owl:allValuesFrom owl:Thing
+  ] ;
+  rdfs:comment "A physical environment in which people lives, e.g. kitchen, bathroom"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingThing>
+  a owl:Class ;
+  rdfs:label "BuildingThing"^^xsd:string ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#svgFootprint> ;
+    owl:minCardinality "0"^^xsd:nonNegativeInteger
+  ] ;
+  rdfs:comment "All things that creates a Building, it is intended as root of all building components"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BurnerController>
+  a owl:Class ;
+  rdfs:label "BurnerController"^^xsd:string ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingAutomationSystemResource>, [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasFieldOfApplication> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ElectricalFieldOfApplication>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#controlledObject> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingThing>
+  ] ;
+  rdfs:comment "Device for controlling a burner facility"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Button>
+  a owl:Class ;
+  rdfs:label "Button"^^xsd:string ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingAutomationSystemResource>, [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasFieldOfApplication> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ElectricalFieldOfApplication>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasFunctionality> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#OnOffNotificationFunctionality>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasState> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#OnOffState>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#controlledObject> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingThing>
+  ] ;
+  rdfs:comment "A monostable electrical switch operated by pressing a button"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ButtonNotification>
+  a owl:Class ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Notification>, [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#generateCommand> ;
+    owl:allValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#NonParametricCommand>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#notificationName> ;
+    owl:hasValue "pressed"^^xsd:string
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#nParams> ;
+    owl:maxCardinality "0"^^xsd:nonNegativeInteger
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ButtonNotificationFunctionality>
+  a owl:Class ;
+  rdfs:label "ButtonNotificationFunctionality"^^xsd:string ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#MonoValuedNotificationFunctionality>, [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasNotification> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#ButtonNotification>
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Buzzer>
+  a owl:Class ;
+  rdfs:label "Buzzer"^^xsd:string ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#AcousticSystemResource>, [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasFunctionality> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#OnOffFunctionality>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasState> ;
+    owl:someValuesFrom <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#OnOffState>
+  ] ;
+  rdfs:comment "Electronic signaling device"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#CDStateValue>
+  a owl:Class ;
+  rdfs:subClassOf <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#DiscreteValue>, [
+    a owl:Restriction ;
+    owl:onProperty <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#realStateValue> ;
+    owl:hasValue "cd"^^xsd:string
+  ] .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyRes
