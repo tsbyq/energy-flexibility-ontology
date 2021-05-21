@@ -117,6 +117,10 @@ xsd:gYear rdf:type rdfs:Datatype .
 <http://www.w3.org/2006/time#unitType> rdf:type owl:ObjectProperty .
 
 
+###  https://brickschema.org/schema/Brick#hasTag
+<https://brickschema.org/schema/Brick#hasTag> rdf:type owl:ObjectProperty .
+
+
 #################################################################
 #    Data properties
 #################################################################
@@ -245,6 +249,11 @@ https://docs.oracle.com/en/industries/utilities/behaviorial-load-shaping/#:~:tex
 ###  http://energy_flexibility/ontologies/EF_ontology#Ceiling
 :Ceiling rdf:type owl:Class ;
          rdfs:subClassOf :Structure .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#CharacterizationParameter
+:CharacterizationParameter rdf:type owl:Class ;
+                           rdfs:subClassOf :FlexibilityCharacterization .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#CombustionEngine
@@ -472,6 +481,11 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
                    rdfs:subClassOf :Miscellaneous .
 
 
+###  http://energy_flexibility/ontologies/EF_ontology#PhysicalParameter
+:PhysicalParameter rdf:type owl:Class ;
+                   rdfs:subClassOf :Miscellaneous .
+
+
 ###  http://energy_flexibility/ontologies/EF_ontology#RenewableGeneration
 :RenewableGeneration rdf:type owl:Class ;
                      rdfs:subClassOf :DispatchableGeneration .
@@ -511,11 +525,6 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
 ###  http://energy_flexibility/ontologies/EF_ontology#Structure
 :Structure rdf:type owl:Class ;
            rdfs:subClassOf :BuildingComponent .
-
-
-###  http://energy_flexibility/ontologies/EF_ontology#System
-:System rdf:type owl:Class ;
-        rdfs:subClassOf :BuildingComponent .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#ThermalComfort
@@ -1014,7 +1023,7 @@ In the original OWL-Time the following constraint appeared:
 <http://www.w3.org/2006/time#TimeZone> rdf:type owl:Class ;
                                        rdfs:subClassOf :Time ;
                                        rdfs:comment """A Time Zone specifies the amount by which the local time is offset from UTC. 
-    A time zone is usually denoted geographically (e.g. Australian Eastern Daylight Time), with a constant value in a given region. 
+	A time zone is usually denoted geographically (e.g. Australian Eastern Daylight Time), with a constant value in a given region. 
 The region where it applies and the offset from UTC are specified by a locally recognised governing authority."""@en ,
                                                     """Un huso horario especifica la cantidad en que la hora local está desplazada con respecto a UTC.
         Un huso horario normalmente se denota geográficamente (p.ej. el horario de verano del este de Australia), con un valor constante en una región dada.
@@ -1022,7 +1031,7 @@ The region where it applies and the offset from UTC are specified by a locally r
                                        rdfs:label "Time Zone"@en ,
                                                   "huso horario"@es ;
                                        skos:definition """A Time Zone specifies the amount by which the local time is offset from UTC. 
-    A time zone is usually denoted geographically (e.g. Australian Eastern Daylight Time), with a constant value in a given region. 
+	A time zone is usually denoted geographically (e.g. Australian Eastern Daylight Time), with a constant value in a given region. 
 The region where it applies and the offset from UTC are specified by a locally recognised governing authority."""@en ,
                                                        """Un huso horario especifica la cantidad en que la hora local está desplazada con respecto a UTC.
     Un huso horario normalmente se denota geográficamente (p.ej. el horario de verano del este de Australia), con un valor constante en una región dada.
@@ -1035,7 +1044,7 @@ The region where it applies and the offset from UTC are specified by a locally r
 In the current version a class with same local name is put into the main OWL-Time namespace, removing the dependency on the external namespace. 
 
 An alignment axiom 
-    tzont:TimeZone rdfs:subClassOf time:TimeZone . 
+	tzont:TimeZone rdfs:subClassOf time:TimeZone . 
 allows data encoded according to the previous version to be consistent with the updated ontology. """ ;
                                        skos:note """A designated timezone is associated with a geographic region. However, for a particular region the offset from UTC often varies seasonally, and the dates of the changes may vary from year to year. The timezone designation usually changes for the different seasons (e.g. Australian Eastern Standard Time vs. Australian Eastern Daylight Time). Furthermore, the offset for a timezone may change over longer timescales, though its designation might not.  
 
@@ -1099,6 +1108,460 @@ It is deprecated in this edition of OWL-Time. """ ;
                                                   "年"@zh .
 
 
+###  https://brickschema.org/schema/Brick#Chilled_Water_System
+<https://brickschema.org/schema/Brick#Chilled_Water_System> rdf:type owl:Class ;
+                                                            rdfs:subClassOf <https://brickschema.org/schema/Brick#Water_System> ,
+                                                                            [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                     owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                     owl:hasValue <https://brickschema.org/schema/BrickTag#Chilled>
+                                                                                                   ]
+                                                                                                   [ rdf:type owl:Restriction ;
+                                                                                                     owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                     owl:hasValue <https://brickschema.org/schema/BrickTag#System>
+                                                                                                   ]
+                                                                                                   [ rdf:type owl:Restriction ;
+                                                                                                     owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                     owl:hasValue <https://brickschema.org/schema/BrickTag#Water>
+                                                                                                   ]
+                                                                                                 ) ;
+                                                                              rdf:type owl:Class
+                                                                            ] ;
+                                                            rdfs:label "Chilled Water System" ;
+                                                            skos:definition "The equipment, devices and conduits that handle the production and distribution of chilled water in a building"@en .
+
+
+###  https://brickschema.org/schema/Brick#Condenser_Water_System
+<https://brickschema.org/schema/Brick#Condenser_Water_System> rdf:type owl:Class ;
+                                                              rdfs:subClassOf <https://brickschema.org/schema/Brick#Water_System> ,
+                                                                              [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                       owl:hasValue <https://brickschema.org/schema/BrickTag#Condenser>
+                                                                                                     ]
+                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                       owl:hasValue <https://brickschema.org/schema/BrickTag#System>
+                                                                                                     ]
+                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                       owl:hasValue <https://brickschema.org/schema/BrickTag#Water>
+                                                                                                     ]
+                                                                                                   ) ;
+                                                                                rdf:type owl:Class
+                                                                              ] ;
+                                                              rdfs:label "Condenser Water System" ;
+                                                              rdfs:seeAlso <https://www.linquip.com/blog/condenser-water-system-an-overview/> ;
+                                                              skos:definition "A heat rejection system consisting of (typically) cooling towers, condenser water pumps, chillers and the piping connecting the components"@en .
+
+
+###  https://brickschema.org/schema/Brick#Domestic_Hot_Water_System
+<https://brickschema.org/schema/Brick#Domestic_Hot_Water_System> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <https://brickschema.org/schema/Brick#System> ,
+                                                                                 [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                          owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                          owl:hasValue <https://brickschema.org/schema/BrickTag#Domestic>
+                                                                                                        ]
+                                                                                                        [ rdf:type owl:Restriction ;
+                                                                                                          owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                          owl:hasValue <https://brickschema.org/schema/BrickTag#Hot>
+                                                                                                        ]
+                                                                                                        [ rdf:type owl:Restriction ;
+                                                                                                          owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                          owl:hasValue <https://brickschema.org/schema/BrickTag#System>
+                                                                                                        ]
+                                                                                                        [ rdf:type owl:Restriction ;
+                                                                                                          owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                          owl:hasValue <https://brickschema.org/schema/BrickTag#Water>
+                                                                                                        ]
+                                                                                                      ) ;
+                                                                                   rdf:type owl:Class
+                                                                                 ] ;
+                                                                 rdfs:label "Domestic Hot Water System" ;
+                                                                 skos:definition "The equipment, devices and conduits that handle the production and distribution of domestic hot water in a building"@en .
+
+
+###  https://brickschema.org/schema/Brick#Electrical_System
+<https://brickschema.org/schema/Brick#Electrical_System> rdf:type owl:Class ;
+                                                         rdfs:subClassOf <https://brickschema.org/schema/Brick#System> ,
+                                                                         [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                  owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                  owl:hasValue <https://brickschema.org/schema/BrickTag#Electrical>
+                                                                                                ]
+                                                                                                [ rdf:type owl:Restriction ;
+                                                                                                  owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                  owl:hasValue <https://brickschema.org/schema/BrickTag#System>
+                                                                                                ]
+                                                                                              ) ;
+                                                                           rdf:type owl:Class
+                                                                         ] ;
+                                                         rdfs:label "Electrical System" ;
+                                                         skos:definition "Devices that serve or are part of the electrical subsystem in the building"@en .
+
+
+###  https://brickschema.org/schema/Brick#Emergency_Air_Flow_System
+<https://brickschema.org/schema/Brick#Emergency_Air_Flow_System> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <https://brickschema.org/schema/Brick#Safety_System> ,
+                                                                                 [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                          owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                          owl:hasValue <https://brickschema.org/schema/BrickTag#Air>
+                                                                                                        ]
+                                                                                                        [ rdf:type owl:Restriction ;
+                                                                                                          owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                          owl:hasValue <https://brickschema.org/schema/BrickTag#Emergency>
+                                                                                                        ]
+                                                                                                        [ rdf:type owl:Restriction ;
+                                                                                                          owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                          owl:hasValue <https://brickschema.org/schema/BrickTag#Flow>
+                                                                                                        ]
+                                                                                                        [ rdf:type owl:Restriction ;
+                                                                                                          owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                          owl:hasValue <https://brickschema.org/schema/BrickTag#System>
+                                                                                                        ]
+                                                                                                      ) ;
+                                                                                   rdf:type owl:Class
+                                                                                 ] ;
+                                                                 rdfs:label "Emergency Air Flow System" .
+
+
+###  https://brickschema.org/schema/Brick#Emergency_Power_Off_System
+<https://brickschema.org/schema/Brick#Emergency_Power_Off_System> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <https://brickschema.org/schema/Brick#Safety_System> ,
+                                                                                  [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                           owl:hasValue <https://brickschema.org/schema/BrickTag#Emergency>
+                                                                                                         ]
+                                                                                                         [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                           owl:hasValue <https://brickschema.org/schema/BrickTag#Off>
+                                                                                                         ]
+                                                                                                         [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                           owl:hasValue <https://brickschema.org/schema/BrickTag#Power>
+                                                                                                         ]
+                                                                                                         [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                           owl:hasValue <https://brickschema.org/schema/BrickTag#System>
+                                                                                                         ]
+                                                                                                       ) ;
+                                                                                    rdf:type owl:Class
+                                                                                  ] ;
+                                                                  rdfs:label "Emergency Power Off System" ;
+                                                                  skos:definition "A system that can power down a single piece of equipment or a single system from a single point"@en .
+
+
+###  https://brickschema.org/schema/Brick#Fire_Safety_System
+<https://brickschema.org/schema/Brick#Fire_Safety_System> rdf:type owl:Class ;
+                                                          rdfs:subClassOf <https://brickschema.org/schema/Brick#Safety_System> ,
+                                                                          [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                   owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                   owl:hasValue <https://brickschema.org/schema/BrickTag#Fire>
+                                                                                                 ]
+                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                   owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                   owl:hasValue <https://brickschema.org/schema/BrickTag#Safety>
+                                                                                                 ]
+                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                   owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                   owl:hasValue <https://brickschema.org/schema/BrickTag#System>
+                                                                                                 ]
+                                                                                               ) ;
+                                                                            rdf:type owl:Class
+                                                                          ] ;
+                                                          rdfs:label "Fire Safety System" ;
+                                                          rdfs:seeAlso <https://assetinsights.net/Glossary/G_Fire_Safety_System.html> ;
+                                                          skos:definition "A system containing devices and equipment that monitor, detect and suppress fire hazards"@en .
+
+
+###  https://brickschema.org/schema/Brick#Gas_System
+<https://brickschema.org/schema/Brick#Gas_System> rdf:type owl:Class ;
+                                                  rdfs:subClassOf <https://brickschema.org/schema/Brick#System> ,
+                                                                  [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                           owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                           owl:hasValue <https://brickschema.org/schema/BrickTag#Gas>
+                                                                                         ]
+                                                                                         [ rdf:type owl:Restriction ;
+                                                                                           owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                           owl:hasValue <https://brickschema.org/schema/BrickTag#System>
+                                                                                         ]
+                                                                                       ) ;
+                                                                    rdf:type owl:Class
+                                                                  ] ;
+                                                  rdfs:label "Gas System" .
+
+
+###  https://brickschema.org/schema/Brick#HVAC_System
+<https://brickschema.org/schema/Brick#HVAC_System> rdf:type owl:Class ;
+                                                   owl:equivalentClass <https://brickschema.org/schema/Brick#Heating_Ventilation_Air_Conditioning_System> ;
+                                                   rdfs:subClassOf <https://brickschema.org/schema/Brick#System> ,
+                                                                   [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                            owl:hasValue <https://brickschema.org/schema/BrickTag#HVAC>
+                                                                                          ]
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                            owl:hasValue <https://brickschema.org/schema/BrickTag#System>
+                                                                                          ]
+                                                                                        ) ;
+                                                                     rdf:type owl:Class
+                                                                   ] ;
+                                                   rdfs:label "HVAC System" .
+
+
+###  https://brickschema.org/schema/Brick#Heat_Recovery_Hot_Water_System
+<https://brickschema.org/schema/Brick#Heat_Recovery_Hot_Water_System> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <https://brickschema.org/schema/Brick#Hot_Water_System> ,
+                                                                                      [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                               owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                               owl:hasValue <https://brickschema.org/schema/BrickTag#Heat>
+                                                                                                             ]
+                                                                                                             [ rdf:type owl:Restriction ;
+                                                                                                               owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                               owl:hasValue <https://brickschema.org/schema/BrickTag#Hot>
+                                                                                                             ]
+                                                                                                             [ rdf:type owl:Restriction ;
+                                                                                                               owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                               owl:hasValue <https://brickschema.org/schema/BrickTag#Recovery>
+                                                                                                             ]
+                                                                                                             [ rdf:type owl:Restriction ;
+                                                                                                               owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                               owl:hasValue <https://brickschema.org/schema/BrickTag#System>
+                                                                                                             ]
+                                                                                                             [ rdf:type owl:Restriction ;
+                                                                                                               owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                               owl:hasValue <https://brickschema.org/schema/BrickTag#Water>
+                                                                                                             ]
+                                                                                                           ) ;
+                                                                                        rdf:type owl:Class
+                                                                                      ] ;
+                                                                      rdfs:label "Heat Recovery Hot Water System" .
+
+
+###  https://brickschema.org/schema/Brick#Heating_Ventilation_Air_Conditioning_System
+<https://brickschema.org/schema/Brick#Heating_Ventilation_Air_Conditioning_System> rdf:type owl:Class ;
+                                                                                   rdfs:subClassOf <https://brickschema.org/schema/Brick#System> ,
+                                                                                                   [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                                            owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                                            owl:hasValue <https://brickschema.org/schema/BrickTag#Air>
+                                                                                                                          ]
+                                                                                                                          [ rdf:type owl:Restriction ;
+                                                                                                                            owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                                            owl:hasValue <https://brickschema.org/schema/BrickTag#Conditioning>
+                                                                                                                          ]
+                                                                                                                          [ rdf:type owl:Restriction ;
+                                                                                                                            owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                                            owl:hasValue <https://brickschema.org/schema/BrickTag#Heat>
+                                                                                                                          ]
+                                                                                                                          [ rdf:type owl:Restriction ;
+                                                                                                                            owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                                            owl:hasValue <https://brickschema.org/schema/BrickTag#System>
+                                                                                                                          ]
+                                                                                                                          [ rdf:type owl:Restriction ;
+                                                                                                                            owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                                            owl:hasValue <https://brickschema.org/schema/BrickTag#Ventilation>
+                                                                                                                          ]
+                                                                                                                        ) ;
+                                                                                                     rdf:type owl:Class
+                                                                                                   ] ;
+                                                                                   rdfs:label "Heating Ventilation Air Conditioning System" ;
+                                                                                   skos:definition "The equipment, distribution systems and terminals that provide, either collectively or individually, the processes of heating, ventilating or air conditioning to a building or portion of a building"@en .
+
+
+###  https://brickschema.org/schema/Brick#Hot_Water_System
+<https://brickschema.org/schema/Brick#Hot_Water_System> rdf:type owl:Class ;
+                                                        rdfs:subClassOf <https://brickschema.org/schema/Brick#Water_System> ,
+                                                                        [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                 owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                 owl:hasValue <https://brickschema.org/schema/BrickTag#Hot>
+                                                                                               ]
+                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                 owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                 owl:hasValue <https://brickschema.org/schema/BrickTag#System>
+                                                                                               ]
+                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                 owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                 owl:hasValue <https://brickschema.org/schema/BrickTag#Water>
+                                                                                               ]
+                                                                                             ) ;
+                                                                          rdf:type owl:Class
+                                                                        ] ;
+                                                        rdfs:label "Hot Water System" ;
+                                                        skos:definition "The equipment, devices and conduits that handle the production and distribution of hot water in a building"@en .
+
+
+###  https://brickschema.org/schema/Brick#Lighting_System
+<https://brickschema.org/schema/Brick#Lighting_System> rdf:type owl:Class ;
+                                                       rdfs:subClassOf <https://brickschema.org/schema/Brick#System> ,
+                                                                       [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                owl:hasValue <https://brickschema.org/schema/BrickTag#Lighting>
+                                                                                              ]
+                                                                                              [ rdf:type owl:Restriction ;
+                                                                                                owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                owl:hasValue <https://brickschema.org/schema/BrickTag#System>
+                                                                                              ]
+                                                                                            ) ;
+                                                                         rdf:type owl:Class
+                                                                       ] ;
+                                                       rdfs:label "Lighting System" ;
+                                                       skos:definition "The equipment, devices and interfaces that serve or are a part of the lighting subsystem in a building"@en .
+
+
+###  https://brickschema.org/schema/Brick#Preheat_Hot_Water_System
+<https://brickschema.org/schema/Brick#Preheat_Hot_Water_System> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <https://brickschema.org/schema/Brick#Hot_Water_System> ,
+                                                                                [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                         owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                         owl:hasValue <https://brickschema.org/schema/BrickTag#Hot>
+                                                                                                       ]
+                                                                                                       [ rdf:type owl:Restriction ;
+                                                                                                         owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                         owl:hasValue <https://brickschema.org/schema/BrickTag#Preheat>
+                                                                                                       ]
+                                                                                                       [ rdf:type owl:Restriction ;
+                                                                                                         owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                         owl:hasValue <https://brickschema.org/schema/BrickTag#System>
+                                                                                                       ]
+                                                                                                       [ rdf:type owl:Restriction ;
+                                                                                                         owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                         owl:hasValue <https://brickschema.org/schema/BrickTag#Water>
+                                                                                                       ]
+                                                                                                     ) ;
+                                                                                  rdf:type owl:Class
+                                                                                ] ;
+                                                                rdfs:label "Preheat Hot Water System" .
+
+
+###  https://brickschema.org/schema/Brick#Radiation_Hot_Water_System
+<https://brickschema.org/schema/Brick#Radiation_Hot_Water_System> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <https://brickschema.org/schema/Brick#Hot_Water_System> ,
+                                                                                  [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                           owl:hasValue <https://brickschema.org/schema/BrickTag#Hot>
+                                                                                                         ]
+                                                                                                         [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                           owl:hasValue <https://brickschema.org/schema/BrickTag#Radiation>
+                                                                                                         ]
+                                                                                                         [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                           owl:hasValue <https://brickschema.org/schema/BrickTag#System>
+                                                                                                         ]
+                                                                                                         [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                           owl:hasValue <https://brickschema.org/schema/BrickTag#Water>
+                                                                                                         ]
+                                                                                                       ) ;
+                                                                                    rdf:type owl:Class
+                                                                                  ] ;
+                                                                  rdfs:label "Radiation Hot Water System" .
+
+
+###  https://brickschema.org/schema/Brick#Reheat_Hot_Water_System
+<https://brickschema.org/schema/Brick#Reheat_Hot_Water_System> rdf:type owl:Class ;
+                                                               rdfs:subClassOf <https://brickschema.org/schema/Brick#Hot_Water_System> ,
+                                                                               [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                        owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                        owl:hasValue <https://brickschema.org/schema/BrickTag#Hot>
+                                                                                                      ]
+                                                                                                      [ rdf:type owl:Restriction ;
+                                                                                                        owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                        owl:hasValue <https://brickschema.org/schema/BrickTag#Reheat>
+                                                                                                      ]
+                                                                                                      [ rdf:type owl:Restriction ;
+                                                                                                        owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                        owl:hasValue <https://brickschema.org/schema/BrickTag#System>
+                                                                                                      ]
+                                                                                                      [ rdf:type owl:Restriction ;
+                                                                                                        owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                                        owl:hasValue <https://brickschema.org/schema/BrickTag#Water>
+                                                                                                      ]
+                                                                                                    ) ;
+                                                                                 rdf:type owl:Class
+                                                                               ] ;
+                                                               rdfs:label "Reheat Hot Water System" .
+
+
+###  https://brickschema.org/schema/Brick#Safety_System
+<https://brickschema.org/schema/Brick#Safety_System> rdf:type owl:Class ;
+                                                     rdfs:subClassOf <https://brickschema.org/schema/Brick#System> ,
+                                                                     [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                              owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                              owl:hasValue <https://brickschema.org/schema/BrickTag#Safety>
+                                                                                            ]
+                                                                                            [ rdf:type owl:Restriction ;
+                                                                                              owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                              owl:hasValue <https://brickschema.org/schema/BrickTag#System>
+                                                                                            ]
+                                                                                          ) ;
+                                                                       rdf:type owl:Class
+                                                                     ] ;
+                                                     rdfs:label "Safety System" .
+
+
+###  https://brickschema.org/schema/Brick#Shading_System
+<https://brickschema.org/schema/Brick#Shading_System> rdf:type owl:Class ;
+                                                      rdfs:subClassOf <https://brickschema.org/schema/Brick#System> ,
+                                                                      [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                               owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                               owl:hasValue <https://brickschema.org/schema/BrickTag#Shade>
+                                                                                             ]
+                                                                                             [ rdf:type owl:Restriction ;
+                                                                                               owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                               owl:hasValue <https://brickschema.org/schema/BrickTag#System>
+                                                                                             ]
+                                                                                           ) ;
+                                                                        rdf:type owl:Class
+                                                                      ] ;
+                                                      rdfs:label "Shading System" ;
+                                                      skos:definition "Devices that can control daylighting through various means"@en .
+
+
+###  https://brickschema.org/schema/Brick#Steam_System
+<https://brickschema.org/schema/Brick#Steam_System> rdf:type owl:Class ;
+                                                    rdfs:subClassOf <https://brickschema.org/schema/Brick#Heating_Ventilation_Air_Conditioning_System> ,
+                                                                    [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                             owl:hasValue <https://brickschema.org/schema/BrickTag#Steam>
+                                                                                           ]
+                                                                                           [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                             owl:hasValue <https://brickschema.org/schema/BrickTag#System>
+                                                                                           ]
+                                                                                         ) ;
+                                                                      rdf:type owl:Class
+                                                                    ] ;
+                                                    rdfs:label "Steam System" ;
+                                                    skos:definition "The equipment, devices and conduits that handle the production and distribution of steam in a building"@en .
+
+
+###  https://brickschema.org/schema/Brick#System
+<https://brickschema.org/schema/Brick#System> rdf:type owl:Class ;
+                                              rdfs:subClassOf :BuildingComponent ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                owl:hasValue <https://brickschema.org/schema/BrickTag#System>
+                                                              ] ;
+                                              rdfs:label "System" ;
+                                              skos:definition "A System is a combination of equipment and auxiliary devices (e.g., controls, accessories, interconnecting means, and termi­nal elements) by which energy is transformed so it performs a specific function such as HVAC, service water heating, or lighting. (ASHRAE Dictionary)." .
+
+
+###  https://brickschema.org/schema/Brick#Water_System
+<https://brickschema.org/schema/Brick#Water_System> rdf:type owl:Class ;
+                                                    rdfs:subClassOf <https://brickschema.org/schema/Brick#Heating_Ventilation_Air_Conditioning_System> ,
+                                                                    [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                             owl:hasValue <https://brickschema.org/schema/BrickTag#System>
+                                                                                           ]
+                                                                                           [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <https://brickschema.org/schema/Brick#hasTag> ;
+                                                                                             owl:hasValue <https://brickschema.org/schema/BrickTag#Water>
+                                                                                           ]
+                                                                                         ) ;
+                                                                      rdf:type owl:Class
+                                                                    ] ;
+                                                    rdfs:label "Water System" ;
+                                                    skos:definition "The equipment, devices and conduits that handle the production and distribution of water in a building"@en .
+
+
 ###  https://w3id.org/saref#UnitOfMeasure
 <https://w3id.org/saref#UnitOfMeasure> rdf:type owl:Class ;
                                        rdfs:subClassOf :Time .
@@ -1147,6 +1610,110 @@ It is deprecated in this edition of OWL-Time. """ ;
 
 ###  http://www.w3.org/2006/time#unitMonth
 <http://www.w3.org/2006/time#unitMonth> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Air
+<https://brickschema.org/schema/BrickTag#Air> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Chilled
+<https://brickschema.org/schema/BrickTag#Chilled> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Condenser
+<https://brickschema.org/schema/BrickTag#Condenser> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Conditioning
+<https://brickschema.org/schema/BrickTag#Conditioning> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Domestic
+<https://brickschema.org/schema/BrickTag#Domestic> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Electrical
+<https://brickschema.org/schema/BrickTag#Electrical> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Emergency
+<https://brickschema.org/schema/BrickTag#Emergency> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Fire
+<https://brickschema.org/schema/BrickTag#Fire> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Flow
+<https://brickschema.org/schema/BrickTag#Flow> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Gas
+<https://brickschema.org/schema/BrickTag#Gas> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#HVAC
+<https://brickschema.org/schema/BrickTag#HVAC> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Heat
+<https://brickschema.org/schema/BrickTag#Heat> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Hot
+<https://brickschema.org/schema/BrickTag#Hot> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Lighting
+<https://brickschema.org/schema/BrickTag#Lighting> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Off
+<https://brickschema.org/schema/BrickTag#Off> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Power
+<https://brickschema.org/schema/BrickTag#Power> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Preheat
+<https://brickschema.org/schema/BrickTag#Preheat> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Radiation
+<https://brickschema.org/schema/BrickTag#Radiation> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Recovery
+<https://brickschema.org/schema/BrickTag#Recovery> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Reheat
+<https://brickschema.org/schema/BrickTag#Reheat> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Safety
+<https://brickschema.org/schema/BrickTag#Safety> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Shade
+<https://brickschema.org/schema/BrickTag#Shade> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Steam
+<https://brickschema.org/schema/BrickTag#Steam> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#System
+<https://brickschema.org/schema/BrickTag#System> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Ventilation
+<https://brickschema.org/schema/BrickTag#Ventilation> rdf:type owl:NamedIndividual .
+
+
+###  https://brickschema.org/schema/BrickTag#Water
+<https://brickschema.org/schema/BrickTag#Water> rdf:type owl:NamedIndividual .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
