@@ -1,0 +1,101 @@
+@prefix :        <http://www.purl.org/dabgeo/conceptual/ders#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix terms:   <http://purl.org/dc/elements/1.1/terms:> .
+@prefix ns:      <http://creativecommons.org/ns#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix terms1:  <http://purl.org/dc/terms/> .
+@prefix dc:      <http://purl.org/dc/elements/1.1/> .
+
+<https://w3id.org/saref#MicroRenewable>
+      a       owl:Class ;
+      rdfs:comment "A device that generates renewable energy from natural resources such as teh sun, wind and water"@en ;
+      rdfs:label "Microrenewable"@en ;
+      rdfs:subClassOf <http://www.purl.org/oema/enaeq/EnergyGenerator> .
+
+<http://www.purl.org/oema/enaeq/HydroPowerGenerator>
+      a       owl:Class ;
+      rdfs:comment "This class represents devices that generate hidraulic energy"@en ;
+      rdfs:label "HydroPower Generator"@en ;
+      rdfs:subClassOf <http://www.purl.org/oema/enaeq/EnergyGenerator> .
+
+<http://www.purl.org/dabgeo/common-domain/ders>
+      a       owl:Ontology ;
+      rdfs:comment """The 'Distributed Energy Sources' ontology module represents the knowledge about Distributed Energy Sources (DERs) reused in most of energy management application contexts: energy generation systems and power plants.
+This ontology module reuses the knowledge of the 'Device' ontology module.
+
+Information about changes compared to version 1.1
+*********************************************************
+We have changed the names of ontology layers and documented missing classes."""@en ;
+      ns:license "https://creativecommons.org/licenses/by-nc/4.0/" ;
+      dc:creator "Javier Cuenca <mailto:jcuenca@mondragon.edu>"@en ;
+      dc:title "Distributed Energy Sources ontology"@en ;
+      terms1:issued "2018-02-19"@en ;
+      terms1:modified "2019-02-22" ;
+      owl:imports <http://www.purl.org/dabgeo/common-domain/device> ;
+      owl:versionInfo "2.0"@en .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#GeoThermalHeatPump>
+      a       owl:Class ;
+      rdfs:comment "Central heating or cooling system that pumps heat to or from the ground."@en , "GeoThermalHeatPump"@en ;
+      rdfs:subClassOf <http://www.purl.org/oema/enaeq/EnergyGenerator> .
+
+<http://www.purl.org/oema/enaeq/MiniHydroPowerGenerator>
+      a       owl:Class ;
+      rdfs:comment "Type of hydroelectric power that typically produces from 5 kW to 100 kW of electricity using the natural flow of water." ;
+      rdfs:label "MiniHydroPowerGenerator" ;
+      rdfs:subClassOf <http://www.purl.org/oema/enaeq/HydroPowerGenerator> .
+
+<http://www.purl.org/oema/enaeq/ThermalSolarPlant>
+      a       owl:Class ;
+      rdfs:comment "This class represetns plants that generate thermal energy"@en ;
+      rdfs:label "Thermal Solar Plant"@en ;
+      rdfs:subClassOf <http://www.purl.org/oema/enaeq/EnergyGenerator> .
+
+<http://www.purl.org/oema/enaeq/ElectricVehicle>
+      a       owl:Class ;
+      rdfs:comment "This class represents electric vehicles. An electric vehicle, also called an EV, uses one or more electric motors or traction motors for propulsion."@en ;
+      rdfs:label "Eletric Vehicle"@en ;
+      rdfs:subClassOf <http://www.purl.org/oema/enaeq/EnergyGenerator> .
+
+ns:license
+      a       owl:AnnotationProperty .
+
+terms1:modified
+      a       owl:AnnotationProperty .
+
+<http://www.purl.org/oema/enaeq/EnergyGenerator>
+      a       owl:Class ;
+      rdfs:comment "This class represents any device that produces energy" ;
+      rdfs:label "EnergyGenerator" ;
+      rdfs:subClassOf <http://www.purl.org/oema/enaeq/Device> .
+
+<http://www.purl.org/oema/enaeq/CombinedHeatAndPowerGenerator>
+      a       owl:Class ;
+      rdfs:label "This class represets combined heat and power generators. Thes systems use of a heat engine or power station to generate electricity and useful heat at the same time."@en , "CombinedHeatAndPowerGenerator" ;
+      rdfs:subClassOf <http://www.purl.org/oema/enaeq/EnergyGenerator> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#HydroElectricPlant>
+      a       owl:Class ;
+      rdfs:comment "This class represents hydroelectric or hydropower plants. Hydropower plants capture the energy of falling water to generate electricity."@en ;
+      rdfs:label "HydroElectricPlant"@en ;
+      rdfs:subClassOf <http://www.purl.org/oema/enaeq/EnergyGenerator> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#SolarPanel>
+      a       owl:Class ;
+      rdfs:comment "System that generates heat or electricity through solar power"@en ;
+      rdfs:label "SolarPanel"@en ;
+      rdfs:subClassOf <http://www.purl.org/oema/enaeq/EnergyGenerator> .
+
+<https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#WindTurbine>
+      a       owl:Class ;
+      rdfs:comment "Facility that generates electricity through wind power"@en ;
+      rdfs:label "WindTurbine"@en ;
+      rdfs:subClassOf <http://www.purl.org/oema/enaeq/EnergyGenerator> .
+
+<http://semanco02.hs-albsig.de/repository/ontology-releases/eu/semanco/ontology/SEMANCO/SEMANCO.owl#PVSystem>
+      a       owl:Class ;
+      rdfs:comment "This class represents phtovoltaic systems. A photovoltaic system, also PV system or solar power system, is a power system designed to supply usable solar power by means of photovoltaics."@en ;
+      rdfs:label "PVSystem"@en ;
+      rdfs:subClassOf <http://www.purl.org/oema/enaeq/EnergyGenerator> .

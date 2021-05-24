@@ -222,7 +222,8 @@ xsd:gYear rdf:type rdfs:Datatype .
                        rdfs:comment """BLS displays live load data with the ability to target messages to consumers based on energy demand, connected distributed energy resources (DERs) and more, empowering utilities and consumers to quickly understand demand reduction results and gain further savings from social norming and behavioral science.
 https://www.copperlabs.com/behavioral-load-shaping-and-flexible-energy/""" ;
                        skos:definition """Behavioral Load Shaping offers utilities a comprehensive, cloud-based solution for engaging with modern utility customers. This service enables utilities to deliver superior service and engagement with customers on time of use rate plans by providing features that facilitate peak demand reduction.
-https://docs.oracle.com/en/industries/utilities/behaviorial-load-shaping/#:~:text=Behavioral%20Load%20Shaping%20offers%20utilities,that%20facilitate%20peak%20demand%20reduction.""" .
+https://docs.oracle.com/en/industries/utilities/behaviorial-load-shaping/#:~:text=Behavioral%20Load%20Shaping%20offers%20utilities,that%20facilitate%20peak%20demand%20reduction.""" ;
+                       skos:note "Typical comfort limits can be (temporarily) relaxed or bypassed in some ways without compromising the thermal comfort of occupants."^^xsd:string .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#BuildingComponent
@@ -232,7 +233,6 @@ https://docs.oracle.com/en/industries/utilities/behaviorial-load-shaping/#:~:tex
 
 ###  http://energy_flexibility/ontologies/EF_ontology#BuildingService
 :BuildingService rdf:type owl:Class ;
-                 rdfs:subClassOf :Miscellaneous ;
                  rdfs:comment "The building service that a system or equipment is to provide."^^xsd:string .
 
 
@@ -251,9 +251,13 @@ https://docs.oracle.com/en/industries/utilities/behaviorial-load-shaping/#:~:tex
          rdfs:subClassOf :Structure .
 
 
-###  http://energy_flexibility/ontologies/EF_ontology#CharacterizationParameter
-:CharacterizationParameter rdf:type owl:Class ;
-                           rdfs:subClassOf :FlexibilityCharacterization .
+###  http://energy_flexibility/ontologies/EF_ontology#CharacterizationVariable
+:CharacterizationVariable rdf:type owl:Class ;
+                          rdfs:subClassOf :FlexibilityCharacterization ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty :hasTag ;
+                                            owl:someValuesFrom :Parameter
+                                          ] .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#CombustionEngine
@@ -368,8 +372,12 @@ https://www.nrel.gov/docs/fy02osti/31570.pdf""" .
 
 ###  http://energy_flexibility/ontologies/EF_ontology#FlexibilityMetric
 :FlexibilityMetric rdf:type owl:Class ;
-                   rdfs:subClassOf :FlexibilityQuantification ;
-                   rdfs:comment "Metric to quantify the energy flexibility."^^xsd:string .
+                   rdfs:subClassOf :FlexibilityQuantification ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasTag ;
+                                     owl:someValuesFrom :QuantitativeMetric
+                                   ] ;
+                   rdfs:comment "Metric to quantify the energy flexibility. Usually a mathematical formula that expresses the relation between variables."^^xsd:string .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#FlexibilityMode
@@ -436,6 +444,10 @@ https://en.wikipedia.org/wiki/Flywheel_energy_storage""" .
                  rdfs:subClassOf :BuildingService .
 
 
+###  http://energy_flexibility/ontologies/EF_ontology#Metric
+:Metric rdf:type owl:Class .
+
+
 ###  http://energy_flexibility/ontologies/EF_ontology#Microgrid
 :Microgrid rdf:type owl:Class ;
            rdfs:subClassOf :DistributedEnergyResource ;
@@ -476,6 +488,11 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
         rdfs:subClassOf :EnergyFlow .
 
 
+###  http://energy_flexibility/ontologies/EF_ontology#Parameter
+:Parameter rdf:type owl:Class ;
+           rdfs:subClassOf :Miscellaneous .
+
+
 ###  http://energy_flexibility/ontologies/EF_ontology#PerformanceAspect
 :PerformanceAspect rdf:type owl:Class ;
                    rdfs:subClassOf :Miscellaneous .
@@ -484,6 +501,16 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
 ###  http://energy_flexibility/ontologies/EF_ontology#PhysicalParameter
 :PhysicalParameter rdf:type owl:Class ;
                    rdfs:subClassOf :Miscellaneous .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#QualitativeMetric
+:QualitativeMetric rdf:type owl:Class ;
+                   rdfs:subClassOf :Metric .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#QuantitativeMetric
+:QuantitativeMetric rdf:type owl:Class ;
+                    rdfs:subClassOf :Metric .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#RenewableGeneration
@@ -557,6 +584,10 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
                             rdfs:subClassOf :ActiveEnergyStorageFacility ;
                             skos:definition """An uninterruptible power supply or uninterruptible power source (UPS) is an electrical apparatus that provides emergency power to a load when the input power source or mains power fails. The on-battery run-time of most uninterruptible power sources is relatively short (only a few minutes) but sufficient to start a standby power source or properly shut down the protected equipment. It is a type of continual power system.
 https://en.wikipedia.org/wiki/Uninterruptible_power_supply""" .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#Variable
+:Variable rdf:type owl:Class .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#Wall
@@ -1578,6 +1609,7 @@ It is deprecated in this edition of OWL-Time. """ ;
 
 ###  http://energy_flexibility/ontologies/EF_ontology#DER
 :DER rdf:type owl:NamedIndividual ,
+              :Fuel ,
               [ rdf:type owl:Restriction ;
                 owl:onProperty :isAcronymOf ;
                 owl:allValuesFrom :DistributedEnergyResource
@@ -1585,9 +1617,19 @@ It is deprecated in this edition of OWL-Time. """ ;
      skos:definition "Acronym of distributed energy resource." .
 
 
+###  http://energy_flexibility/ontologies/EF_ontology#Diesel
+:Diesel rdf:type owl:NamedIndividual ,
+                 :Fuel .
+
+
 ###  http://energy_flexibility/ontologies/EF_ontology#DieselEngine
 :DieselEngine rdf:type owl:NamedIndividual ,
                        :CombustionEngine .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#Electricity
+:Electricity rdf:type owl:NamedIndividual ,
+                      :Fuel .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#NaturalGasEngine
@@ -1598,6 +1640,20 @@ It is deprecated in this edition of OWL-Time. """ ;
 ###  http://energy_flexibility/ontologies/EF_ontology#NaturalGasTurbine
 :NaturalGasTurbine rdf:type owl:NamedIndividual ,
                             :CombustionTurbine .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#Natural_Gas
+:Natural_Gas rdf:type owl:NamedIndividual ,
+                      :Fuel .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#Oil
+:Oil rdf:type owl:NamedIndividual ,
+              :Fuel .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#Propane
+:Propane rdf:type owl:NamedIndividual .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#WindTurbine
