@@ -262,12 +262,12 @@ https://docs.oracle.com/en/industries/utilities/behaviorial-load-shaping/#:~:tex
 
 ###  http://energy_flexibility/ontologies/EF_ontology#CombustionEngine
 :CombustionEngine rdf:type owl:Class ;
-                  rdfs:subClassOf :ConventionalGeneration .
+                  rdfs:subClassOf :DispatchableEnergyGenerator .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#CombustionTurbine
 :CombustionTurbine rdf:type owl:Class ;
-                   rdfs:subClassOf :ConventionalGeneration .
+                   rdfs:subClassOf :DispatchableEnergyGenerator .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#Communication
@@ -282,11 +282,6 @@ https://docs.oracle.com/en/industries/utilities/behaviorial-load-shaping/#:~:tex
                                     owl:onProperty :hasTag ;
                                     owl:someValuesFrom :DistributedEnergyResource
                                   ] .
-
-
-###  http://energy_flexibility/ontologies/EF_ontology#ConventionalGeneration
-:ConventionalGeneration rdf:type owl:Class ;
-                        rdfs:subClassOf :DispatchableGeneration .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#Cost
@@ -306,10 +301,9 @@ https://www.lawinsider.com/dictionary/curtailable-load"""^^xsd:string .
         rdfs:subClassOf :PerformanceAspect .
 
 
-###  http://energy_flexibility/ontologies/EF_ontology#DispatchableGeneration
-:DispatchableGeneration rdf:type owl:Class ;
-                        rdfs:subClassOf :DistributedEnergyResource ;
-                        rdfs:comment "Behind the meter generation" .
+###  http://energy_flexibility/ontologies/EF_ontology#DispatchableEnergyGenerator
+:DispatchableEnergyGenerator rdf:type owl:Class ;
+                             rdfs:subClassOf :EnergyGenerator .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#DistributedEnergyResource
@@ -320,6 +314,11 @@ https://www.lawinsider.com/dictionary/curtailable-load"""^^xsd:string .
 https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Resources_Report.pdf""" ,
                                            """Distributed energy resources are small, modular, energy generation and storage technologies that provide electric capacity or energy where you need it. Typically producing less than 10 megawatts (MW) of power, DER systems can usually be sized to meet your particular needs and installed on site. 
 https://www.nrel.gov/docs/fy02osti/31570.pdf""" .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#DynamicParameter
+:DynamicParameter rdf:type owl:Class ;
+                  rdfs:subClassOf :Parameter .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#ElectricLoadType
@@ -352,6 +351,11 @@ https://www.nrel.gov/docs/fy02osti/31570.pdf""" .
 ###  http://energy_flexibility/ontologies/EF_ontology#EnergyFlow
 :EnergyFlow rdf:type owl:Class ;
             rdfs:subClassOf :Miscellaneous .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#EnergyGenerator
+:EnergyGenerator rdf:type owl:Class ;
+                 rdfs:subClassOf :DistributedEnergyResource .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#Envelope
@@ -415,12 +419,17 @@ https://en.wikipedia.org/wiki/Flywheel_energy_storage""" .
 
 ###  http://energy_flexibility/ontologies/EF_ontology#FuelCell
 :FuelCell rdf:type owl:Class ;
-          rdfs:subClassOf :ConventionalGeneration .
+          rdfs:subClassOf :DispatchableEnergyGenerator .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#GeothermalHeatPump
+:GeothermalHeatPump rdf:type owl:Class ;
+                    rdfs:subClassOf :DispatchableEnergyGenerator .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#HydroPower
 :HydroPower rdf:type owl:Class ;
-            rdfs:subClassOf :RenewableGeneration .
+            rdfs:subClassOf :DispatchableEnergyGenerator .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#IndoorEnvironmentalQuality
@@ -479,6 +488,11 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
               rdfs:subClassOf :Miscellaneous .
 
 
+###  http://energy_flexibility/ontologies/EF_ontology#NondispatchableEnergyGenerator
+:NondispatchableEnergyGenerator rdf:type owl:Class ;
+                                rdfs:subClassOf :EnergyGenerator .
+
+
 ###  http://energy_flexibility/ontologies/EF_ontology#Occupant
 :Occupant rdf:type owl:Class .
 
@@ -498,11 +512,6 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
                    rdfs:subClassOf :Miscellaneous .
 
 
-###  http://energy_flexibility/ontologies/EF_ontology#PhysicalParameter
-:PhysicalParameter rdf:type owl:Class ;
-                   rdfs:subClassOf :Miscellaneous .
-
-
 ###  http://energy_flexibility/ontologies/EF_ontology#QualitativeMetric
 :QualitativeMetric rdf:type owl:Class ;
                    rdfs:subClassOf :Metric .
@@ -511,11 +520,6 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
 ###  http://energy_flexibility/ontologies/EF_ontology#QuantitativeMetric
 :QuantitativeMetric rdf:type owl:Class ;
                     rdfs:subClassOf :Metric .
-
-
-###  http://energy_flexibility/ontologies/EF_ontology#RenewableGeneration
-:RenewableGeneration rdf:type owl:Class ;
-                     rdfs:subClassOf :DispatchableGeneration .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#SchedulableAppliance
@@ -546,7 +550,17 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
 
 ###  http://energy_flexibility/ontologies/EF_ontology#SolarPhotovoltaic
 :SolarPhotovoltaic rdf:type owl:Class ;
-                   rdfs:subClassOf :RenewableGeneration .
+                   rdfs:subClassOf :NondispatchableEnergyGenerator .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#SolarThermalPlant
+:SolarThermalPlant rdf:type owl:Class ;
+                   rdfs:subClassOf :NondispatchableEnergyGenerator .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#StaticParameter
+:StaticParameter rdf:type owl:Class ;
+                 rdfs:subClassOf :Parameter .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#Structure
@@ -597,7 +611,7 @@ https://en.wikipedia.org/wiki/Uninterruptible_power_supply""" .
 
 ###  http://energy_flexibility/ontologies/EF_ontology#WindPower
 :WindPower rdf:type owl:Class ;
-           rdfs:subClassOf :RenewableGeneration .
+           rdfs:subClassOf :NondispatchableEnergyGenerator .
 
 
 ###  http://www.w3.org/2002/07/owl#Thing
