@@ -71,10 +71,32 @@ xsd:gYear rdf:type rdfs:Datatype .
 #    Object Properties
 #################################################################
 
+###  http://energy_flexibility/ontologies/EF_ontology#enabledBy
+:enabledBy rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           owl:inverseOf :enables .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#enables
+:enables rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf owl:topObjectProperty .
+
+
 ###  http://energy_flexibility/ontologies/EF_ontology#hasAcronym
 :hasAcronym rdf:type owl:ObjectProperty ;
             rdfs:subPropertyOf owl:topObjectProperty ;
             owl:inverseOf :isAcronymOf .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#hasCharacteristic
+:hasCharacteristic rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf owl:topObjectProperty ;
+                   owl:inverseOf :isCharacteristicOf .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#hasDefinition
+:hasDefinition rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#hasDimension
@@ -97,15 +119,20 @@ xsd:gYear rdf:type rdfs:Datatype .
             rdfs:subPropertyOf owl:topObjectProperty .
 
 
+###  http://energy_flexibility/ontologies/EF_ontology#hasInfluenceOn
+:hasInfluenceOn rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                owl:inverseOf :isInfluencedBy .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#hasMetric
+:hasMetric rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty .
+
+
 ###  http://energy_flexibility/ontologies/EF_ontology#hasOperator
 :hasOperator rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf owl:topObjectProperty .
-
-
-###  http://energy_flexibility/ontologies/EF_ontology#hasSomething
-:hasSomething rdf:type owl:ObjectProperty ;
-              rdfs:subPropertyOf owl:topObjectProperty ;
-              rdfs:comment "To indicate A has certain property" .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#hasTag
@@ -114,12 +141,23 @@ xsd:gYear rdf:type rdfs:Datatype .
 
 ###  http://energy_flexibility/ontologies/EF_ontology#hasUnitOfMeasure
 :hasUnitOfMeasure rdf:type owl:ObjectProperty ;
-                  rdfs:subPropertyOf owl:topObjectProperty .
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  rdfs:comment "Has a certain unit of measure" .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#isAcronymOf
 :isAcronymOf rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#isCharacteristicOf
+:isCharacteristicOf rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#isInfluencedBy
+:isInfluencedBy rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#isPartOf
@@ -246,6 +284,11 @@ xsd:gYear rdf:type rdfs:Datatype .
           rdfs:subClassOf :Attributes .
 
 
+###  http://energy_flexibility/ontologies/EF_ontology#AggregationOperator
+:AggregationOperator rdf:type owl:Class ;
+                     rdfs:subClassOf :Operator .
+
+
 ###  http://energy_flexibility/ontologies/EF_ontology#AirQuality
 :AirQuality rdf:type owl:Class ;
             rdfs:subClassOf :BuildingService .
@@ -261,6 +304,21 @@ xsd:gYear rdf:type rdfs:Datatype .
             rdfs:subClassOf :Occupant .
 
 
+###  http://energy_flexibility/ontologies/EF_ontology#AvoidedPeakPeriodCost
+:AvoidedPeakPeriodCost rdf:type owl:Class ;
+                       rdfs:subClassOf :FlexibilityCharacterization .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#AvoidedPeakPeriodEnergy
+:AvoidedPeakPeriodEnergy rdf:type owl:Class ;
+                         rdfs:subClassOf :FlexibilityCharacterization .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#AvoidedPeakPeriodGHG
+:AvoidedPeakPeriodGHG rdf:type owl:Class ;
+                      rdfs:subClassOf :FlexibilityCharacterization .
+
+
 ###  http://energy_flexibility/ontologies/EF_ontology#BatteryStorage
 :BatteryStorage rdf:type owl:Class ;
                 rdfs:subClassOf :ActiveEnergyStorageFacility .
@@ -274,6 +332,11 @@ https://www.copperlabs.com/behavioral-load-shaping-and-flexible-energy/""" ;
                        skos:definition """Behavioral Load Shaping offers utilities a comprehensive, cloud-based solution for engaging with modern utility customers. This service enables utilities to deliver superior service and engagement with customers on time of use rate plans by providing features that facilitate peak demand reduction.
 https://docs.oracle.com/en/industries/utilities/behaviorial-load-shaping/#:~:text=Behavioral%20Load%20Shaping%20offers%20utilities,that%20facilitate%20peak%20demand%20reduction.""" ;
                        skos:note "Typical comfort limits can be (temporarily) relaxed or bypassed in some ways without compromising the thermal comfort of occupants."^^xsd:string .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#BinaryOperator
+:BinaryOperator rdf:type owl:Class ;
+                rdfs:subClassOf :Operator .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#BuildingComponent
@@ -299,15 +362,6 @@ https://docs.oracle.com/en/industries/utilities/behaviorial-load-shaping/#:~:tex
 ###  http://energy_flexibility/ontologies/EF_ontology#Ceiling
 :Ceiling rdf:type owl:Class ;
          rdfs:subClassOf :Structure .
-
-
-###  http://energy_flexibility/ontologies/EF_ontology#CharacterizationVariable
-:CharacterizationVariable rdf:type owl:Class ;
-                          rdfs:subClassOf :FlexibilityCharacterization ,
-                                          [ rdf:type owl:Restriction ;
-                                            owl:onProperty :hasTag ;
-                                            owl:someValuesFrom :Parameter
-                                          ] .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#CombustionEngine
@@ -431,7 +485,10 @@ https://www.nrel.gov/docs/fy02osti/31570.pdf""" .
 
 ###  http://energy_flexibility/ontologies/EF_ontology#FlexibilityCharacterization
 :FlexibilityCharacterization rdf:type owl:Class ;
-                             rdfs:subClassOf :EnergyFlexibility .
+                             rdfs:subClassOf :EnergyFlexibility ;
+                             owl:disjointWith :FlexibilityMode ,
+                                              :FlexibilityQuantification ,
+                                              :FlexibilityResources .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#FlexibilityMetric
@@ -446,13 +503,16 @@ https://www.nrel.gov/docs/fy02osti/31570.pdf""" .
 
 ###  http://energy_flexibility/ontologies/EF_ontology#FlexibilityMode
 :FlexibilityMode rdf:type owl:Class ;
-                 rdfs:subClassOf :FlexibilityCharacterization ;
+                 rdfs:subClassOf :EnergyFlexibility ;
+                 owl:disjointWith :FlexibilityQuantification ,
+                                  :FlexibilityResources ;
                  rdfs:comment "The flexibility mode of an electric load."^^xsd:string .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#FlexibilityQuantification
 :FlexibilityQuantification rdf:type owl:Class ;
-                           rdfs:subClassOf :EnergyFlexibility .
+                           rdfs:subClassOf :EnergyFlexibility ;
+                           owl:disjointWith :FlexibilityResources .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#FlexibilityResources
@@ -582,9 +642,23 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
         rdfs:subClassOf :EnergyFlow .
 
 
+###  http://energy_flexibility/ontologies/EF_ontology#Operator
+:Operator rdf:type owl:Class ;
+          rdfs:subClassOf :Miscellaneous .
+
+
 ###  http://energy_flexibility/ontologies/EF_ontology#Parameter
 :Parameter rdf:type owl:Class ;
            rdfs:subClassOf :Miscellaneous .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#PeakDemandReduction
+:PeakDemandReduction rdf:type owl:Class ;
+                     rdfs:subClassOf :FlexibilityCharacterization ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasTag ;
+                                       owl:someValuesFrom :Parameter
+                                     ] .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#PerformanceAspect
@@ -671,6 +745,11 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
 ###  http://energy_flexibility/ontologies/EF_ontology#TwoWay
 :TwoWay rdf:type owl:Class ;
         rdfs:subClassOf :EnergyFlow .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#UnaryOperator
+:UnaryOperator rdf:type owl:Class ;
+               rdfs:subClassOf :Operator .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#UncontrollableLoad
@@ -1823,6 +1902,71 @@ It is deprecated in this edition of OWL-Time. """ ;
 
 ###  http://energy_flexibility/ontologies/EF_ontology#WindTurbine
 :WindTurbine rdf:type owl:NamedIndividual .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#absoluteValue
+:absoluteValue rdf:type owl:NamedIndividual ,
+                        :UnaryOperator .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#add
+:add rdf:type owl:NamedIndividual ,
+              :BinaryOperator .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#divide
+:divide rdf:type owl:NamedIndividual ,
+                 :BinaryOperator .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#max
+:max rdf:type owl:NamedIndividual ,
+              :AggregationOperator .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#mean
+:mean rdf:type owl:NamedIndividual ,
+               :AggregationOperator .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#median
+:median rdf:type owl:NamedIndividual ,
+                 :AggregationOperator .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#min
+:min rdf:type owl:NamedIndividual ,
+              :AggregationOperator .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#multiply
+:multiply rdf:type owl:NamedIndividual ,
+                   :BinaryOperator .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#negative
+:negative rdf:type owl:NamedIndividual ,
+                   :UnaryOperator .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#range
+:range rdf:type owl:NamedIndividual ,
+                :AggregationOperator .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#sqrt
+:sqrt rdf:type owl:NamedIndividual ,
+               :UnaryOperator .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#substract
+:substract rdf:type owl:NamedIndividual ,
+                    :BinaryOperator .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#sum
+:sum rdf:type owl:NamedIndividual ,
+              :AggregationOperator .
 
 
 ###  http://www.opengis.net/def/uom/ISO-8601/0/Gregorian
