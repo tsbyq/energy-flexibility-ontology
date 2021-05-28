@@ -77,9 +77,29 @@ xsd:gYear rdf:type rdfs:Datatype .
             owl:inverseOf :isAcronymOf .
 
 
+###  http://energy_flexibility/ontologies/EF_ontology#hasDimension
+:hasDimension rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#hasDuration
+:hasDuration rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty .
+
+
 ###  http://energy_flexibility/ontologies/EF_ontology#hasEffect
 :hasEffect rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#hasFormula
+:hasFormula rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#hasOperator
+:hasOperator rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#hasSomething
@@ -92,9 +112,19 @@ xsd:gYear rdf:type rdfs:Datatype .
 :hasTag rdf:type owl:ObjectProperty .
 
 
+###  http://energy_flexibility/ontologies/EF_ontology#hasUnitOfMeasure
+:hasUnitOfMeasure rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty .
+
+
 ###  http://energy_flexibility/ontologies/EF_ontology#isAcronymOf
 :isAcronymOf rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#isPartOf
+:isPartOf rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty .
 
 
 ###  http://www.w3.org/2006/time#dayOfWeek
@@ -114,11 +144,16 @@ xsd:gYear rdf:type rdfs:Datatype .
 
 
 ###  http://www.w3.org/2006/time#unitType
-<http://www.w3.org/2006/time#unitType> rdf:type owl:ObjectProperty .
+<http://www.w3.org/2006/time#unitType> rdf:type owl:ObjectProperty ;
+                                       rdfs:range <http://www.w3.org/2006/time#TemporalUnit> .
 
 
 ###  https://brickschema.org/schema/Brick#hasTag
 <https://brickschema.org/schema/Brick#hasTag> rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/saref#isMeasuredIn
+<https://w3id.org/saref#isMeasuredIn> rdf:type owl:ObjectProperty .
 
 
 #################################################################
@@ -206,9 +241,24 @@ xsd:gYear rdf:type rdfs:Datatype .
                              rdfs:subClassOf :DistributedEnergyResource .
 
 
+###  http://energy_flexibility/ontologies/EF_ontology#AgeRange
+:AgeRange rdf:type owl:Class ;
+          rdfs:subClassOf :Attributes .
+
+
 ###  http://energy_flexibility/ontologies/EF_ontology#AirQuality
 :AirQuality rdf:type owl:Class ;
             rdfs:subClassOf :BuildingService .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#Attitudes
+:Attitudes rdf:type owl:Class ;
+           rdfs:subClassOf :Occupant .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#Attributes
+:Attributes rdf:type owl:Class ;
+            rdfs:subClassOf :Occupant .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#BatteryStorage
@@ -289,6 +339,11 @@ https://docs.oracle.com/en/industries/utilities/behaviorial-load-shaping/#:~:tex
       rdfs:subClassOf :PerformanceAspect .
 
 
+###  http://energy_flexibility/ontologies/EF_ontology#Country
+:Country rdf:type owl:Class ;
+         rdfs:subClassOf :Attributes .
+
+
 ###  http://energy_flexibility/ontologies/EF_ontology#CurtailableLoad
 :CurtailableLoad rdf:type owl:Class ;
                  rdfs:subClassOf :ByLoadShape ;
@@ -358,6 +413,11 @@ https://www.nrel.gov/docs/fy02osti/31570.pdf""" .
                  rdfs:subClassOf :DistributedEnergyResource .
 
 
+###  http://energy_flexibility/ontologies/EF_ontology#EnergyUseStyle
+:EnergyUseStyle rdf:type owl:Class ;
+                rdfs:subClassOf :Attitudes .
+
+
 ###  http://energy_flexibility/ontologies/EF_ontology#Envelope
 :Envelope rdf:type owl:Class ;
           rdfs:subClassOf :Structure .
@@ -422,6 +482,11 @@ https://en.wikipedia.org/wiki/Flywheel_energy_storage""" .
           rdfs:subClassOf :DispatchableEnergyGenerator .
 
 
+###  http://energy_flexibility/ontologies/EF_ontology#Gender
+:Gender rdf:type owl:Class ;
+        rdfs:subClassOf :Attributes .
+
+
 ###  http://energy_flexibility/ontologies/EF_ontology#GeothermalHeatPump
 :GeothermalHeatPump rdf:type owl:Class ;
                     rdfs:subClassOf :DispatchableEnergyGenerator .
@@ -453,6 +518,11 @@ https://en.wikipedia.org/wiki/Flywheel_energy_storage""" .
                  rdfs:subClassOf :BuildingService .
 
 
+###  http://energy_flexibility/ontologies/EF_ontology#MaximumTolerance
+:MaximumTolerance rdf:type owl:Class ;
+                  rdfs:subClassOf :ThermalPreference .
+
+
 ###  http://energy_flexibility/ontologies/EF_ontology#Metric
 :Metric rdf:type owl:Class .
 
@@ -462,6 +532,11 @@ https://en.wikipedia.org/wiki/Flywheel_energy_storage""" .
            rdfs:subClassOf :DistributedEnergyResource ;
            skos:definition """An aggregation of multiple DER types behind the customer meter at a single point of interconnection that has the capability to island. May range in size and complexity from a single “smart” building to a larger system such as a university campus or industrial/commercial park.
 https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Resources_Report.pdf""" .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#MinimumTolerance
+:MinimumTolerance rdf:type owl:Class ;
+                  rdfs:subClassOf :ThermalPreference .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#Miscellaneous
@@ -495,6 +570,11 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
 
 ###  http://energy_flexibility/ontologies/EF_ontology#Occupant
 :Occupant rdf:type owl:Class .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#OccupantType
+:OccupantType rdf:type owl:Class ;
+              rdfs:subClassOf :Occupant .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#OneWay
@@ -571,6 +651,11 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
 ###  http://energy_flexibility/ontologies/EF_ontology#ThermalComfort
 :ThermalComfort rdf:type owl:Class ;
                 rdfs:subClassOf :BuildingService .
+
+
+###  http://energy_flexibility/ontologies/EF_ontology#ThermalPreference
+:ThermalPreference rdf:type owl:Class ;
+                   rdfs:subClassOf :Attitudes .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#ThermallyActivatedBuildingSystem
@@ -1607,9 +1692,75 @@ It is deprecated in this edition of OWL-Time. """ ;
                                                     skos:definition "The equipment, devices and conduits that handle the production and distribution of water in a building"@en .
 
 
+###  https://w3id.org/saref#Commodity
+<https://w3id.org/saref#Commodity> rdf:type owl:Class ;
+                                   rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <https://w3id.org/saref#isMeasuredIn> ;
+                                                     owl:allValuesFrom <https://w3id.org/saref#UnitOfMeasure>
+                                                   ] .
+
+
+###  https://w3id.org/saref#Currency
+<https://w3id.org/saref#Currency> rdf:type owl:Class ;
+                                  rdfs:subClassOf <https://w3id.org/saref#UnitOfMeasure> ;
+                                  rdfs:comment "The unit of measure for price"^^xsd:string ;
+                                  rdfs:label "Currency"^^xsd:string .
+
+
+###  https://w3id.org/saref#EnergyUnit
+<https://w3id.org/saref#EnergyUnit> rdf:type owl:Class ;
+                                    rdfs:subClassOf <https://w3id.org/saref#UnitOfMeasure> ;
+                                    rdfs:comment "The unit of measure for energy"^^xsd:string ;
+                                    rdfs:label "Energy unit"^^xsd:string .
+
+
+###  https://w3id.org/saref#IlluminanceUnit
+<https://w3id.org/saref#IlluminanceUnit> rdf:type owl:Class ;
+                                         rdfs:subClassOf <https://w3id.org/saref#UnitOfMeasure> ;
+                                         rdfs:comment "The unit of measure for light"^^xsd:string ;
+                                         rdfs:label "Illuminance unit"^^xsd:string .
+
+
+###  https://w3id.org/saref#Measurement
+<https://w3id.org/saref#Measurement> rdf:type owl:Class ;
+                                     rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                       owl:onProperty <https://w3id.org/saref#isMeasuredIn> ;
+                                                       owl:allValuesFrom <https://w3id.org/saref#UnitOfMeasure>
+                                                     ] ,
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty <https://w3id.org/saref#isMeasuredIn> ;
+                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                       owl:onClass <https://w3id.org/saref#UnitOfMeasure>
+                                                     ] .
+
+
+###  https://w3id.org/saref#PowerUnit
+<https://w3id.org/saref#PowerUnit> rdf:type owl:Class ;
+                                   rdfs:subClassOf <https://w3id.org/saref#UnitOfMeasure> ;
+                                   rdfs:comment "The unit of measure for power"^^xsd:string ;
+                                   rdfs:label "Power unit"^^xsd:string .
+
+
+###  https://w3id.org/saref#PressureUnit
+<https://w3id.org/saref#PressureUnit> rdf:type owl:Class ;
+                                      rdfs:subClassOf <https://w3id.org/saref#UnitOfMeasure> ;
+                                      rdfs:comment "The unit of measure for pressure"^^xsd:string ;
+                                      rdfs:label "Pressure unit"^^xsd:string .
+
+
+###  https://w3id.org/saref#TemperatureUnit
+<https://w3id.org/saref#TemperatureUnit> rdf:type owl:Class ;
+                                         rdfs:subClassOf <https://w3id.org/saref#UnitOfMeasure> ;
+                                         rdfs:comment "The unit of measure for temperature"^^xsd:string ;
+                                         rdfs:label "Temperature unit"^^xsd:string .
+
+
 ###  https://w3id.org/saref#UnitOfMeasure
 <https://w3id.org/saref#UnitOfMeasure> rdf:type owl:Class ;
-                                       rdfs:subClassOf :Time .
+                                       rdfs:subClassOf :Miscellaneous ;
+                                       rdfs:comment "The unit of measure is a standard for measurement of a quantity, such as a Property. For example,  Power is a property and Watt is a unit of power that represents a definite predetermined power: when we say 10 Watt, we actually mean 10 times the definite predetermined power called \"watt\". Our definition is based on the definition of unit of measure in the Ontology of units of Measure (OM). We propose here a list of some units of measure that are relevant for the purpose of SAREF, but this list can be extended, also using some other ontologies rather than the Ontology of units of Measure (OM)."^^xsd:string ;
+                                       rdfs:isDefinedBy <http://www.wurvoc.org/vocabularies/om-1.6/Unit_of_measure> ;
+                                       rdfs:label "Unit of measure"^^xsd:string .
 
 
 #################################################################
@@ -1678,8 +1829,99 @@ It is deprecated in this edition of OWL-Time. """ ;
 <http://www.opengis.net/def/uom/ISO-8601/0/Gregorian> rdf:type owl:NamedIndividual .
 
 
+###  http://www.w3.org/2006/time#unitDay
+<http://www.w3.org/2006/time#unitDay> rdf:type owl:NamedIndividual ,
+                                               <http://www.w3.org/2006/time#TemporalUnit> .
+
+
+###  http://www.w3.org/2006/time#unitHour
+<http://www.w3.org/2006/time#unitHour> rdf:type owl:NamedIndividual ,
+                                                <http://www.w3.org/2006/time#TemporalUnit> .
+
+
+###  http://www.w3.org/2006/time#unitMinute
+<http://www.w3.org/2006/time#unitMinute> rdf:type owl:NamedIndividual ,
+                                                  <http://www.w3.org/2006/time#TemporalUnit> .
+
+
 ###  http://www.w3.org/2006/time#unitMonth
-<http://www.w3.org/2006/time#unitMonth> rdf:type owl:NamedIndividual .
+<http://www.w3.org/2006/time#unitMonth> rdf:type owl:NamedIndividual ,
+                                                 <http://www.w3.org/2006/time#TemporalUnit> .
+
+
+###  http://www.w3.org/2006/time#unitSecond
+<http://www.w3.org/2006/time#unitSecond> rdf:type owl:NamedIndividual ,
+                                                  <http://www.w3.org/2006/time#TemporalUnit> .
+
+
+###  http://www.w3.org/2006/time#unitWeek
+<http://www.w3.org/2006/time#unitWeek> rdf:type owl:NamedIndividual ,
+                                                <http://www.w3.org/2006/time#TemporalUnit> .
+
+
+###  http://www.w3.org/2006/time#unitYear
+<http://www.w3.org/2006/time#unitYear> rdf:type owl:NamedIndividual ,
+                                                <http://www.w3.org/2006/time#TemporalUnit> .
+
+
+###  http://www.wurvoc.org/vocabularies/om-1.8/United_States_dollar
+<http://www.wurvoc.org/vocabularies/om-1.8/United_States_dollar> rdf:type owl:NamedIndividual ,
+                                                                          <https://w3id.org/saref#Currency> .
+
+
+###  http://www.wurvoc.org/vocabularies/om-1.8/bar
+<http://www.wurvoc.org/vocabularies/om-1.8/bar> rdf:type owl:NamedIndividual ,
+                                                         <https://w3id.org/saref#PressureUnit> .
+
+
+###  http://www.wurvoc.org/vocabularies/om-1.8/degree_Celsius
+<http://www.wurvoc.org/vocabularies/om-1.8/degree_Celsius> rdf:type owl:NamedIndividual ,
+                                                                    <https://w3id.org/saref#TemperatureUnit> .
+
+
+###  http://www.wurvoc.org/vocabularies/om-1.8/degree_Fahrenheit
+<http://www.wurvoc.org/vocabularies/om-1.8/degree_Fahrenheit> rdf:type owl:NamedIndividual ,
+                                                                       <https://w3id.org/saref#TemperatureUnit> .
+
+
+###  http://www.wurvoc.org/vocabularies/om-1.8/euro
+<http://www.wurvoc.org/vocabularies/om-1.8/euro> rdf:type owl:NamedIndividual ,
+                                                          <https://w3id.org/saref#Currency> .
+
+
+###  http://www.wurvoc.org/vocabularies/om-1.8/kelvin
+<http://www.wurvoc.org/vocabularies/om-1.8/kelvin> rdf:type owl:NamedIndividual ,
+                                                            <https://w3id.org/saref#TemperatureUnit> .
+
+
+###  http://www.wurvoc.org/vocabularies/om-1.8/kilowatt
+<http://www.wurvoc.org/vocabularies/om-1.8/kilowatt> rdf:type owl:NamedIndividual ,
+                                                              <https://w3id.org/saref#PowerUnit> .
+
+
+###  http://www.wurvoc.org/vocabularies/om-1.8/kilowatt_hour
+<http://www.wurvoc.org/vocabularies/om-1.8/kilowatt_hour> rdf:type owl:NamedIndividual ,
+                                                                   <https://w3id.org/saref#EnergyUnit> .
+
+
+###  http://www.wurvoc.org/vocabularies/om-1.8/lux
+<http://www.wurvoc.org/vocabularies/om-1.8/lux> rdf:type owl:NamedIndividual ,
+                                                         <https://w3id.org/saref#IlluminanceUnit> .
+
+
+###  http://www.wurvoc.org/vocabularies/om-1.8/pascal
+<http://www.wurvoc.org/vocabularies/om-1.8/pascal> rdf:type owl:NamedIndividual ,
+                                                            <https://w3id.org/saref#PressureUnit> .
+
+
+###  http://www.wurvoc.org/vocabularies/om-1.8/pound_sterling
+<http://www.wurvoc.org/vocabularies/om-1.8/pound_sterling> rdf:type owl:NamedIndividual ,
+                                                                    <https://w3id.org/saref#Currency> .
+
+
+###  http://www.wurvoc.org/vocabularies/om-1.8/watt
+<http://www.wurvoc.org/vocabularies/om-1.8/watt> rdf:type owl:NamedIndividual ,
+                                                          <https://w3id.org/saref#PowerUnit> .
 
 
 ###  https://brickschema.org/schema/BrickTag#Air
@@ -1784,6 +2026,11 @@ It is deprecated in this edition of OWL-Time. """ ;
 
 ###  https://brickschema.org/schema/BrickTag#Water
 <https://brickschema.org/schema/BrickTag#Water> rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/saref#watt_hour
+<https://w3id.org/saref#watt_hour> rdf:type owl:NamedIndividual ,
+                                            <https://w3id.org/saref#EnergyUnit> .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
