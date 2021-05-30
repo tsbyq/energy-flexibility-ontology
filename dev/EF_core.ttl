@@ -12,8 +12,48 @@
 #    Classes
 #################################################################
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#AcousticQuality
+:AcousticQuality rdf:type owl:Class ;
+                 rdfs:subClassOf :IndoorEnvironmentQuality .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#AcousticQualityPerception
+:AcousticQualityPerception rdf:type owl:Class ;
+                           rdfs:subClassOf :Perception .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ActivityType
+:ActivityType rdf:type owl:Class ;
+              rdfs:subClassOf :OccupantCharacteristics .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#AgeRange
+:AgeRange rdf:type owl:Class ;
+          rdfs:subClassOf :Attributes .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#AirQuality
+:AirQuality rdf:type owl:Class ;
+            rdfs:subClassOf :IndoorEnvironmentQuality .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#AirQualityPerception
+:AirQualityPerception rdf:type owl:Class ;
+                      rdfs:subClassOf :Perception .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ApplicationScope
 :ApplicationScope rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Attitude
+:Attitude rdf:type owl:Class ;
+          rdfs:subClassOf :OccupantCharacteristics .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Attributes
+:Attributes rdf:type owl:Class ;
+            rdfs:subClassOf :OccupantCharacteristics .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#BuildingLevel
@@ -28,6 +68,11 @@
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#CommunityLevel
 :CommunityLevel rdf:type owl:Class ;
                 rdfs:subClassOf :ApplicationScope .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Country
+:Country rdf:type owl:Class ;
+         rdfs:subClassOf :Attributes .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#DeviceLevel
@@ -51,9 +96,97 @@
 :EnergyFlexibilityResources rdf:type owl:Class .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#EnergyUseStyle
+:EnergyUseStyle rdf:type owl:Class ;
+                rdfs:subClassOf :Attitude .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Gender
+:Gender rdf:type owl:Class ;
+        rdfs:subClassOf :Attributes .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#IndoorEnvironmentQuality
+:IndoorEnvironmentQuality rdf:type owl:Class ;
+                          rdfs:subClassOf :BuildingService .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#IntensiveLabor
+:IntensiveLabor rdf:type owl:Class ;
+                rdfs:subClassOf :ActivityType .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#KeyPerformanceIndicator
+:KeyPerformanceIndicator rdf:type owl:Class ;
+                         rdfs:comment "Key Performance Indicator (KPI)"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#LightingQuality
+:LightingQuality rdf:type owl:Class ;
+                 rdfs:subClassOf :IndoorEnvironmentQuality .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#LightingQualityPerception
+:LightingQualityPerception rdf:type owl:Class ;
+                           rdfs:subClassOf :Perception .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#MiscellaneousTask
+:MiscellaneousTask rdf:type owl:Class ;
+                   rdfs:subClassOf :BuildingService .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Mobility
+:Mobility rdf:type owl:Class ;
+          rdfs:subClassOf :BuildingService .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Occupant
+:Occupant rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#OccupantCharacteristics
+:OccupantCharacteristics rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Office
+:Office rdf:type owl:Class ;
+        rdfs:subClassOf :ActivityType .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Other
+:Other rdf:type owl:Class ;
+       rdfs:subClassOf :ActivityType .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Perception
+:Perception rdf:type owl:Class ;
+            rdfs:subClassOf :OccupantCharacteristics .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#PrivacyPerception
+:PrivacyPerception rdf:type owl:Class ;
+                   rdfs:subClassOf :Perception .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#QualitativeKPI
+:QualitativeKPI rdf:type owl:Class ;
+                rdfs:subClassOf :KeyPerformanceIndicator .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#QuantitativeKPI
+:QuantitativeKPI rdf:type owl:Class ;
+                 rdfs:subClassOf :KeyPerformanceIndicator .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#RegionLevel
 :RegionLevel rdf:type owl:Class ;
              rdfs:subClassOf :ApplicationScope .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Relax
+:Relax rdf:type owl:Class ;
+       rdfs:subClassOf :ActivityType .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#SectorLevel
@@ -61,9 +194,39 @@
              rdfs:subClassOf :ApplicationScope .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Space
+:Space rdf:type owl:Class ;
+       rdfs:subClassOf :BuildingService .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Sport
+:Sport rdf:type owl:Class ;
+       rdfs:subClassOf :ActivityType .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Study
+:Study rdf:type owl:Class ;
+       rdfs:subClassOf :ActivityType .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#SystemLevel
 :SystemLevel rdf:type owl:Class ;
              rdfs:subClassOf :ApplicationScope .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ThermalPreference
+:ThermalPreference rdf:type owl:Class ;
+                   rdfs:subClassOf :Attitude .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ThermalQuality
+:ThermalQuality rdf:type owl:Class ;
+                rdfs:subClassOf :IndoorEnvironmentQuality .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ThermalQualityPerception
+:ThermalQualityPerception rdf:type owl:Class ;
+                          rdfs:subClassOf :Perception .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
