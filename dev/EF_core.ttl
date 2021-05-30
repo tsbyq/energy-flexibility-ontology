@@ -14,7 +14,10 @@
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasCharacteristic
 :hasCharacteristic rdf:type owl:ObjectProperty ;
-                   owl:inverseOf :isCharacteristicOf .
+                   owl:inverseOf :isCharacteristicOf ;
+                   rdf:type owl:FunctionalProperty ;
+                   rdfs:domain :Occupant ;
+                   rdfs:range :OccupantCharacteristic .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasDescription
@@ -22,7 +25,13 @@
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#isCharacteristicOf
-:isCharacteristicOf rdf:type owl:ObjectProperty .
+:isCharacteristicOf rdf:type owl:ObjectProperty ;
+                    rdfs:domain :OccupantCharacteristic ;
+                    rdfs:range :Occupant .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#pursues
+:pursues rdf:type owl:ObjectProperty .
 
 
 #################################################################
@@ -187,9 +196,7 @@
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Occupant
-:Occupant rdf:type owl:Class ;
-          owl:hasKey ( :hasCharacteristic
-                     ) .
+:Occupant rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#OccupantCharacteristic
