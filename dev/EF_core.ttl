@@ -25,7 +25,11 @@
 #################################################################
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#enables
-:enables rdf:type owl:ObjectProperty .
+:enables rdf:type owl:ObjectProperty ;
+         owl:inverseOf :isEnabledBy ;
+         rdfs:domain :FlexibilityResources ,
+                     :FlexibleOperation ;
+         rdfs:range :EnergyFlexibility .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasCharacteristic
@@ -43,7 +47,7 @@
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasFlexibilityModeOf
 :hasFlexibilityModeOf rdf:type owl:ObjectProperty ;
                       owl:inverseOf :isFlexibilityModeOf ;
-                      rdfs:domain :FlexibleOperation ;
+                      rdfs:domain :EnergyFlexibility ;
                       rdfs:range :FlexibilityMode ;
                       rdfs:label "hasFlexibilityMode" .
 
@@ -61,6 +65,12 @@
                     rdfs:range :PerformanceGoal .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasScope
+:hasScope rdf:type owl:ObjectProperty ;
+          rdfs:domain :EnergyFlexibility ;
+          rdfs:range :ApplicationScope .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasUnitOfMeasure
 :hasUnitOfMeasure rdf:type owl:ObjectProperty .
 
@@ -71,10 +81,18 @@
                     rdfs:range :Occupant .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#isEnabledBy
+:isEnabledBy rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdfs:domain :EnergyFlexibility ;
+             rdfs:range :FlexibilityResources ,
+                        :FlexibleOperation .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#isFlexibilityModeOf
 :isFlexibilityModeOf rdf:type owl:ObjectProperty ;
                      rdfs:domain :FlexibilityMode ;
-                     rdfs:range :FlexibleOperation .
+                     rdfs:range :EnergyFlexibility .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#provideService
@@ -245,7 +263,8 @@ https://www.nrel.gov/docs/fy02osti/31570.pdf""" .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#EnergyFlexibility
-:EnergyFlexibility rdf:type owl:Class .
+:EnergyFlexibility rdf:type owl:Class ;
+                   <http://www.w3.org/2004/02/skos/core#definition> "An energy system's (e.g., device, system, building) capability to operate flexibly (i.e., by adjusting its energy demand and generation) to support the electric grid according to local ambient conditions (e.g., weather), without jeopardizing building occupants’ needs (e.g., thermal comfort, productivity)."^^xsd:string .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#EnergyGenerator
