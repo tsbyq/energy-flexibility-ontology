@@ -1,0 +1,417 @@
+@prefix : <http://w3id.org/kpionto/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix kpi: <http://w3id.org/kpionto/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://w3id.org/kpionto/> .
+
+<http://w3id.org/kpionto/> rdf:type owl:Ontology ;
+                            dc:created "2016/03/01 12:00:00" ;
+                            dc:creator [ ] ,
+[ ] ,
+[ ] ;
+dc:date "2016/03/01 13:00:00" ;
+dc:description "The KPIOnto provides main concepts and properties for describing (Key) Performance Indicators on the Semantic Web." ;
+dc:title "KPIOnto" ;
+owl:versionInfo "Revision: 2.0.0" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/created
+dc:created rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/creator
+dc:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/date
+dc:date rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/description
+dc:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+dc:title rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2002/07/owl#maxCardinality
+owl:maxCardinality rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2002/07/owl#minCardinality
+owl:minCardinality rdf:type owl:AnnotationProperty .
+
+
+###  http://xmlns.com/foaf/0.1/homepage
+foaf:homepage rdf:type owl:AnnotationProperty .
+
+
+###  http://xmlns.com/foaf/0.1/name
+foaf:name rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://w3id.org/kpionto/aggrType
+kpi:aggrType rdf:type owl:ObjectProperty ;
+             rdfs:domain kpi:AggregationFunction ;
+             rdfs:range kpi:AggregationType ;
+             rdfs:comment "Indicates the type of an aggregation function." ;
+             rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+             rdfs:label "aggrType" .
+
+
+###  http://w3id.org/kpionto/hasAggregationFunction
+kpi:hasAggregationFunction rdf:type owl:ObjectProperty ;
+                           rdfs:domain kpi:Indicator ;
+                           rdfs:range kpi:AggregationFunction ;
+                           rdfs:comment "Indicates the aggregation function for an indicator." ;
+                           rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+                           rdfs:label "hasAggregationFunction" .
+
+
+###  http://w3id.org/kpionto/hasArgument
+kpi:hasArgument rdf:type owl:ObjectProperty ;
+                rdfs:domain kpi:Formula ;
+                rdfs:range kpi:FormulaArgument ;
+                rdfs:comment "Indicates an argument for a formula." ;
+                rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+                rdfs:label "hasArgument" .
+
+
+###  http://w3id.org/kpionto/hasArgumentValue
+kpi:hasArgumentValue rdf:type owl:ObjectProperty ;
+                     rdfs:domain kpi:FormulaArgument ;
+                     rdfs:range kpi:ArgumentValue ;
+                     rdfs:comment "Indicates the value for an argument." ;
+                     rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+                     rdfs:label "hasArgumentValue" .
+
+
+###  http://w3id.org/kpionto/hasBusObj
+kpi:hasBusObj rdf:type owl:ObjectProperty ;
+              rdfs:domain kpi:Indicator ;
+              rdfs:range kpi:BusinessObjectives ;
+              rdfs:comment "Indicates the business objective for an indicator." ;
+              rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+              rdfs:label "hasBusObj" ;
+              owl:maxCardinality "1.0" ;
+              owl:minCardinality "1.0" .
+
+
+###  http://w3id.org/kpionto/hasDimension
+kpi:hasDimension rdf:type owl:ObjectProperty ;
+                 rdfs:domain kpi:Indicator ;
+                 rdfs:range kpi:Dimension ;
+                 rdfs:comment "Indicates a dimension that is compatible for an indicator." ;
+                 rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+                 rdfs:label "hasDimension" .
+
+
+###  http://w3id.org/kpionto/hasFormula
+kpi:hasFormula rdf:type owl:ObjectProperty ;
+               owl:inverseOf kpi:isFormulaFor ;
+               rdfs:domain kpi:Indicator ;
+               rdfs:range kpi:Formula ;
+               rdfs:comment "Indicates the formula for an indicator." ;
+               rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+               rdfs:label "hasFormula" ;
+               owl:maxCardinality "1.0" ;
+               owl:minCardinality "1.0" .
+
+
+###  http://w3id.org/kpionto/inDimension
+kpi:inDimension rdf:type owl:ObjectProperty ;
+                rdfs:domain kpi:Level ;
+                rdfs:range kpi:Dimension ;
+                rdfs:comment "Indicates that a level belongs to a dimension." ;
+                rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+                rdfs:label "inDimension" .
+
+
+###  http://w3id.org/kpionto/inLevel
+kpi:inLevel rdf:type owl:ObjectProperty ;
+            rdfs:domain kpi:Member ;
+            rdfs:range kpi:Level ;
+            rdfs:comment "Indicates that a member belongs to a level." ;
+            rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+            rdfs:label "inLevel" .
+
+
+###  http://w3id.org/kpionto/isFormulaFor
+kpi:isFormulaFor rdf:type owl:ObjectProperty ;
+                 rdfs:domain kpi:Formula ;
+                 rdfs:range kpi:Indicator ;
+                 rdfs:comment "Indicates the indicator which the formula is defined for." ;
+                 rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+                 rdfs:label "isFormulaFor" .
+
+
+###  http://w3id.org/kpionto/rollup
+kpi:rollup rdf:type owl:ObjectProperty ;
+           rdfs:comment "Indicates the parthood relation between two levels or two members." ;
+           rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+           rdfs:label "Rollup" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://w3id.org/kpionto/KPIDescription
+kpi:KPIDescription rdf:type owl:DatatypeProperty ;
+                   rdfs:domain kpi:Indicator ;
+                   rdfs:range xsd:string ;
+                   rdfs:comment "Describes an indicator." ;
+                   rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+                   rdfs:label "KPIDescription" .
+
+
+###  http://w3id.org/kpionto/acronym
+kpi:acronym rdf:type owl:DatatypeProperty ;
+            rdfs:domain kpi:Indicator ;
+            rdfs:range xsd:string ;
+            rdfs:comment "Indicates the acronym for a formula." ;
+            rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+            rdfs:label "acronym" .
+
+
+###  http://w3id.org/kpionto/hasArgumentName
+kpi:hasArgumentName rdf:type owl:DatatypeProperty ;
+                    rdfs:domain kpi:FormulaArgument ;
+                    rdfs:range xsd:NCName ;
+                    rdfs:comment "Indicates the name for a formula argument." ;
+                    rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+                    rdfs:label "hasArgumentName" .
+
+
+###  http://w3id.org/kpionto/hasArgumentPosition
+kpi:hasArgumentPosition rdf:type owl:DatatypeProperty ;
+                        rdfs:domain kpi:FormulaArgument ;
+                        rdfs:range xsd:nonNegativeInteger ;
+                        rdfs:comment "Indicates the position for an argument in a formula." ;
+                        rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+                        rdfs:label "hasArgumentPosition" .
+
+
+###  http://w3id.org/kpionto/hasFunction
+kpi:hasFunction rdf:type owl:DatatypeProperty ;
+                rdfs:domain kpi:Formula ;
+                rdfs:range xsd:anyURI ;
+                rdfs:comment "Indicates the mathematical operator for a formula." ;
+                rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+                rdfs:label "hasFunction" .
+
+
+###  http://w3id.org/kpionto/isAdditive
+kpi:isAdditive rdf:type owl:DatatypeProperty ;
+               rdfs:domain kpi:Formula ;
+               rdfs:range xsd:boolean ;
+               rdfs:comment "Indicates whether a formula is additive or not." ;
+               rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+               rdfs:label "isAdditive" .
+
+
+###  http://w3id.org/kpionto/unitOfMeasure
+kpi:unitOfMeasure rdf:type owl:DatatypeProperty ;
+                  rdfs:domain kpi:Indicator ;
+                  rdfs:range xsd:string ;
+                  rdfs:comment "Indicates the unit of measurement for an indicator." ;
+                  rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+                  rdfs:label "unitOfMeasure" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://w3id.org/kpionto/AggregationFunction
+kpi:AggregationFunction rdf:type owl:Class ;
+                        rdfs:comment "An aggregation function." ;
+                        rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+                        rdfs:label "AggregationFunction" .
+
+
+###  http://w3id.org/kpionto/AggregationType
+kpi:AggregationType rdf:type owl:Class ;
+                    rdfs:comment "The type of an aggregator." ;
+                    rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+                    rdfs:label "AggregationType" .
+
+
+###  http://w3id.org/kpionto/ArgumentValue
+kpi:ArgumentValue rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Class ;
+                                        owl:unionOf ( kpi:Constant
+                                                      kpi:Formula
+                                                      kpi:Indicator
+                                                    )
+                                      ] ;
+                  rdfs:comment "The value for an argument, i.e. either a constant, an indicator or a formula." ;
+                  rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+                  rdfs:label "Formula" .
+
+
+###  http://w3id.org/kpionto/BusinessObjectives
+kpi:BusinessObjectives rdf:type owl:Class ;
+                       rdfs:comment "A business objective." ;
+                       rdfs:label "BusinessObjectives" .
+
+
+###  http://w3id.org/kpionto/Constant
+kpi:Constant rdf:type owl:Class ;
+             owl:equivalentClass [ rdf:type owl:Class ;
+                                   owl:unionOf ( xsd:float
+                                                 xsd:nonNegativeInteger
+                                               )
+                                 ] ;
+             rdfs:comment "A constant, either a non-negative integer or a float." ;
+             rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+             rdfs:label "Constant" .
+
+
+###  http://w3id.org/kpionto/Dimension
+kpi:Dimension rdf:type owl:Class ;
+              rdfs:comment "A dimension for the analysis of an indicator." ;
+              rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+              rdfs:label "Dimension" .
+
+
+###  http://w3id.org/kpionto/Formula
+kpi:Formula rdf:type owl:Class ;
+            rdfs:comment "A formula for an indicator." ;
+            rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+            rdfs:label "Formula" .
+
+
+###  http://w3id.org/kpionto/FormulaArgument
+kpi:FormulaArgument rdf:type owl:Class ;
+                    rdfs:comment "An argument for a formula." ;
+                    rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+                    rdfs:label "FormulaArgument" .
+
+
+###  http://w3id.org/kpionto/Indicator
+kpi:Indicator rdf:type owl:Class ;
+              rdfs:comment "A metric to quantitatively measure a phenomenon." ;
+              rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+              rdfs:label "Indicator" .
+
+
+###  http://w3id.org/kpionto/Level
+kpi:Level rdf:type owl:Class ;
+          rdfs:comment "A level belonging to the hierarchy for a dimension." ;
+          rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+          rdfs:label "Level" .
+
+
+###  http://w3id.org/kpionto/Member
+kpi:Member rdf:type owl:Class ;
+           rdfs:comment "A member belonging to a level." ;
+           rdfs:isDefinedBy <http://w3id.org/kpionto/> ;
+           rdfs:label "Member" .
+
+
+###  http://www.w3.org/2001/XMLSchema#float
+xsd:float rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://w3id.org/kpionto/algebraic
+kpi:algebraic rdf:type owl:NamedIndividual ,
+                       kpi:AggregationType ;
+              rdfs:label "algebraic" .
+
+
+###  http://w3id.org/kpionto/avg
+kpi:avg rdf:type owl:NamedIndividual ,
+                 kpi:AggregationFunction ;
+        kpi:aggrType kpi:algebraic ;
+        rdfs:label "avg" .
+
+
+###  http://w3id.org/kpionto/count
+kpi:count rdf:type owl:NamedIndividual ,
+                   kpi:AggregationFunction ;
+          kpi:aggrType kpi:distributive ;
+          rdfs:label "count" .
+
+
+###  http://w3id.org/kpionto/distributive
+kpi:distributive rdf:type owl:NamedIndividual ,
+                          kpi:AggregationType ;
+                 rdfs:label "distributive" .
+
+
+###  http://w3id.org/kpionto/holistic
+kpi:holistic rdf:type owl:NamedIndividual ,
+                      kpi:AggregationType ;
+             rdfs:label "holistic" .
+
+
+###  http://w3id.org/kpionto/max
+kpi:max rdf:type owl:NamedIndividual ,
+                 kpi:AggregationFunction ;
+        kpi:aggrType kpi:distributive ;
+        rdfs:label "max" .
+
+
+###  http://w3id.org/kpionto/median
+kpi:median rdf:type owl:NamedIndividual ,
+                    kpi:AggregationFunction ;
+           kpi:aggrType kpi:holistic ;
+           rdfs:label "median" .
+
+
+###  http://w3id.org/kpionto/min
+kpi:min rdf:type owl:NamedIndividual ,
+                 kpi:AggregationFunction ;
+        kpi:aggrType kpi:distributive ;
+        rdfs:label "min" .
+
+
+###  http://w3id.org/kpionto/mode
+kpi:mode rdf:type owl:NamedIndividual ,
+                  kpi:AggregationFunction ;
+         kpi:aggrType kpi:holistic ;
+         rdfs:label "mode" .
+
+
+###  http://w3id.org/kpionto/none
+kpi:none rdf:type owl:NamedIndividual ,
+                  kpi:AggregationType ;
+         rdfs:label "none" .
+
+
+###  http://w3id.org/kpionto/sum
+kpi:sum rdf:type owl:NamedIndividual ,
+                 kpi:AggregationFunction ;
+        kpi:aggrType kpi:distributive ;
+        rdfs:label "sum" .
+
+
+[ foaf:name "Claudia Diamantini"
+] .
+
+[ foaf:homepage <http://www.dii.univpm.it/emanuele.storti> ;
+   foaf:name "Emanuele Storti"
+ ] .
+
+[ foaf:name "Domenico Potena"
+ ] .
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

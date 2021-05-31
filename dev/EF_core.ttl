@@ -40,6 +40,14 @@
 :hasDescription rdf:type owl:ObjectProperty .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasFlexibilityModeOf
+:hasFlexibilityModeOf rdf:type owl:ObjectProperty ;
+                      owl:inverseOf :isFlexibilityModeOf ;
+                      rdfs:domain :FlexibleOperation ;
+                      rdfs:range :FlexibilityMode ;
+                      rdfs:label "hasFlexibilityMode" .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasInfluenceOn
 :hasInfluenceOn rdf:type owl:ObjectProperty ;
                 rdfs:domain :FlexibleOperation ;
@@ -48,7 +56,13 @@
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasPerformanceGoal
 :hasPerformanceGoal rdf:type owl:ObjectProperty ;
-                    rdfs:subPropertyOf owl:topObjectProperty .
+                    rdfs:subPropertyOf owl:topObjectProperty ;
+                    rdfs:domain :FlexibleOperation ;
+                    rdfs:range :PerformanceGoal .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasUnitOfMeasure
+:hasUnitOfMeasure rdf:type owl:ObjectProperty .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#isCharacteristicOf
@@ -57,8 +71,35 @@
                     rdfs:range :Occupant .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#isFlexibilityModeOf
+:isFlexibilityModeOf rdf:type owl:ObjectProperty ;
+                     rdfs:domain :FlexibilityMode ;
+                     rdfs:range :FlexibleOperation .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#provideService
+:provideService rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                owl:inverseOf :receiveService ;
+                rdfs:domain :BuildingService ;
+                rdfs:range :Occupant .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#pursues
 :pursues rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#quantifyFlexibility
+:quantifyFlexibility rdf:type owl:ObjectProperty ;
+                     rdfs:domain :KeyPerformanceIndicator ;
+                     rdfs:range :EnergyFlexibility .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#receiveService
+:receiveService rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                rdfs:domain :Occupant ;
+                rdfs:range :BuildingService .
 
 
 ###  http://www.w3.org/2002/07/owl#topObjectProperty
@@ -203,6 +244,10 @@ https://www.nrel.gov/docs/fy02osti/31570.pdf""" .
                rdfs:subClassOf :PerformanceGoal .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#EnergyFlexibility
+:EnergyFlexibility rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#EnergyGenerator
 :EnergyGenerator rdf:type owl:Class ;
                  rdfs:subClassOf :DistributedEnergyResource .
@@ -245,10 +290,6 @@ https://www.nrel.gov/docs/fy02osti/31570.pdf""" .
 https://en.wikipedia.org/wiki/Flywheel_energy_storage""" .
 
 
-###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Formula
-:Formula rdf:type owl:Class .
-
-
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#FuelCell
 :FuelCell rdf:type owl:Class ;
           rdfs:subClassOf :DispatchableEnergyGenerator .
@@ -274,6 +315,11 @@ https://en.wikipedia.org/wiki/Flywheel_energy_storage""" .
                 rdfs:subClassOf :FlexibleOperation .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#IncreasedDemand
+:IncreasedDemand rdf:type owl:Class ;
+                 rdfs:subClassOf :FlexibilityCharacterization .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#IndoorEnvironmentQuality
 :IndoorEnvironmentQuality rdf:type owl:Class ;
                           rdfs:subClassOf :BuildingService .
@@ -297,6 +343,11 @@ https://en.wikipedia.org/wiki/Flywheel_energy_storage""" .
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#LightingQualityPerception
 :LightingQualityPerception rdf:type owl:Class ;
                            rdfs:subClassOf :Perception .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#MaximumReducedDemand
+:MaximumReducedDemand rdf:type owl:Class ;
+                      rdfs:subClassOf :FlexibilityCharacterization .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Microgrid
@@ -353,6 +404,11 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
 :PerformanceGoal rdf:type owl:Class .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#PowerReductionDuration
+:PowerReductionDuration rdf:type owl:Class ;
+                        rdfs:subClassOf :FlexibilityCharacterization .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#PrivacyPerception
 :PrivacyPerception rdf:type owl:Class ;
                    rdfs:subClassOf :Perception .
@@ -371,6 +427,11 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ReduceDemand
 :ReduceDemand rdf:type owl:Class ;
               rdfs:subClassOf :FlexibleOperation .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ReducedEnergy
+:ReducedEnergy rdf:type owl:Class ;
+               rdfs:subClassOf :FlexibilityCharacterization .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#RegionLevel
