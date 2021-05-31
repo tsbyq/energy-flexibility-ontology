@@ -24,6 +24,10 @@
 #    Object Properties
 #################################################################
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#enables
+:enables rdf:type owl:ObjectProperty .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasCharacteristic
 :hasCharacteristic rdf:type owl:ObjectProperty ;
                    owl:inverseOf :isCharacteristicOf ;
@@ -36,6 +40,17 @@
 :hasDescription rdf:type owl:ObjectProperty .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasInfluenceOn
+:hasInfluenceOn rdf:type owl:ObjectProperty ;
+                rdfs:domain :FlexibleOperation ;
+                rdfs:range :BuildingService .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasPerformanceGoal
+:hasPerformanceGoal rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf owl:topObjectProperty .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#isCharacteristicOf
 :isCharacteristicOf rdf:type owl:ObjectProperty ;
                     rdfs:domain :OccupantCharacteristic ;
@@ -44,6 +59,11 @@
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#pursues
 :pursues rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2002/07/owl#topObjectProperty
+owl:topObjectProperty rdfs:domain :FlexibleOperation ;
+                      rdfs:range :PerformanceGoal .
 
 
 #################################################################
@@ -106,7 +126,7 @@
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#BehavioralLoadShaping
 :BehavioralLoadShaping rdf:type owl:Class ;
-                       rdfs:subClassOf :EnergyFlexibilityResources ;
+                       rdfs:subClassOf :FlexibilityResources ;
                        rdfs:comment """BLS displays live load data with the ability to target messages to consumers based on energy demand, connected distributed energy resources (DERs) and more, empowering utilities and consumers to quickly understand demand reduction results and gain further savings from social norming and behavioral science.
 https://www.copperlabs.com/behavioral-load-shaping-and-flexible-energy/""" ;
                        <http://www.w3.org/2004/02/skos/core#definition> """Behavioral Load Shaping offers utilities a comprehensive, cloud-based solution for engaging with modern utility customers. This service enables utilities to deliver superior service and engagement with customers on time of use rate plans by providing features that facilitate peak demand reduction.
@@ -160,7 +180,7 @@ https://docs.oracle.com/en/industries/utilities/behaviorial-load-shaping/#:~:tex
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#DistributedEnergyResource
 :DistributedEnergyResource rdf:type owl:Class ;
-                           rdfs:subClassOf :EnergyFlexibilityResources ;
+                           rdfs:subClassOf :FlexibilityResources ;
                            rdfs:comment "DER include any non-BES resource (e.g. generating unit, multiple generating units at a single location, energy storage facility, micro-grid, etc.) located solely within the boundary of any distribution utility, Distribution Provider, or Distribution Provider-UFLS Only." ;
                            <http://www.w3.org/2004/02/skos/core#definition> """A Distributed Energy Resource (DER) is any resource on the distribution system that produces electricity and is not otherwise included in the formal NERC definition of the Bulk Electric System (BES).
 https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Resources_Report.pdf""" ,
@@ -183,22 +203,6 @@ https://www.nrel.gov/docs/fy02osti/31570.pdf""" .
                rdfs:subClassOf :PerformanceGoal .
 
 
-###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#EnergyFlexibilityCharacterization
-:EnergyFlexibilityCharacterization rdf:type owl:Class .
-
-
-###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#EnergyFlexibilityMode
-:EnergyFlexibilityMode rdf:type owl:Class .
-
-
-###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#EnergyFlexibilityQuantification
-:EnergyFlexibilityQuantification rdf:type owl:Class .
-
-
-###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#EnergyFlexibilityResources
-:EnergyFlexibilityResources rdf:type owl:Class .
-
-
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#EnergyGenerator
 :EnergyGenerator rdf:type owl:Class ;
                  rdfs:subClassOf :DistributedEnergyResource .
@@ -212,6 +216,22 @@ https://www.nrel.gov/docs/fy02osti/31570.pdf""" .
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#EnergyUseStyle
 :EnergyUseStyle rdf:type owl:Class ;
                 rdfs:subClassOf :Attitude .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#FlexibilityCharacterization
+:FlexibilityCharacterization rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#FlexibilityMode
+:FlexibilityMode rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#FlexibilityQuantification
+:FlexibilityQuantification rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#FlexibilityResources
+:FlexibilityResources rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#FlexibleOperation
@@ -247,6 +267,11 @@ https://en.wikipedia.org/wiki/Flywheel_energy_storage""" .
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#HydroPower
 :HydroPower rdf:type owl:Class ;
             rdfs:subClassOf :DispatchableEnergyGenerator .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#IncreaseDemand
+:IncreaseDemand rdf:type owl:Class ;
+                rdfs:subClassOf :FlexibleOperation .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#IndoorEnvironmentQuality
@@ -293,7 +318,7 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Modulating
 :Modulating rdf:type owl:Class ;
-            rdfs:subClassOf :EnergyFlexibilityMode .
+            rdfs:subClassOf :FlexibilityMode .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#NondispatchableEnergyGenerator
@@ -343,6 +368,11 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
                  rdfs:subClassOf :KeyPerformanceIndicator .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ReduceDemand
+:ReduceDemand rdf:type owl:Class ;
+              rdfs:subClassOf :FlexibleOperation .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#RegionLevel
 :RegionLevel rdf:type owl:Class ;
              rdfs:subClassOf :ApplicationScope .
@@ -355,7 +385,7 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#SchedulableAppliance
 :SchedulableAppliance rdf:type owl:Class ;
-                      rdfs:subClassOf :EnergyFlexibilityResources ;
+                      rdfs:subClassOf :FlexibilityResources ;
                       rdfs:comment "Think about what are the characterisitcs of schedulable appliances" .
 
 
@@ -366,12 +396,17 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Shedding
 :Shedding rdf:type owl:Class ;
-          rdfs:subClassOf :EnergyFlexibilityMode .
+          rdfs:subClassOf :FlexibilityMode .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ShiftUsage
+:ShiftUsage rdf:type owl:Class ;
+            rdfs:subClassOf :FlexibleOperation .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Shifting
 :Shifting rdf:type owl:Class ;
-          rdfs:subClassOf :EnergyFlexibilityMode .
+          rdfs:subClassOf :FlexibilityMode .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#SolarPhotovoltaic
@@ -421,7 +456,7 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ThermallyActivatedBuildingSystem
 :ThermallyActivatedBuildingSystem rdf:type owl:Class ;
-                                  rdfs:subClassOf :EnergyFlexibilityResources .
+                                  rdfs:subClassOf :FlexibilityResources .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#UninterruptiblePowerSupply

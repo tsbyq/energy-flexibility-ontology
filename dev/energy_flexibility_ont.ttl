@@ -506,6 +506,8 @@ https://www.nrel.gov/docs/fy02osti/31570.pdf""" .
                  rdfs:subClassOf :EnergyFlexibility ;
                  owl:disjointWith :FlexibilityQuantification ,
                                   :FlexibilityResources ;
+                 owl:hasKey ( :hasCharacteristic
+                            ) ;
                  rdfs:comment "The flexibility mode of an electric load."^^xsd:string .
 
 
@@ -517,7 +519,8 @@ https://www.nrel.gov/docs/fy02osti/31570.pdf""" .
 
 ###  http://energy_flexibility/ontologies/EF_ontology#FlexibilityResources
 :FlexibilityResources rdf:type owl:Class ;
-                      rdfs:subClassOf :EnergyFlexibility .
+                      rdfs:subClassOf :EnergyFlexibility ;
+                      rdfs:comment "A good reference about residential building energy ontology: https://www.mdpi.com/1996-1073/12/19/3712/htm" .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#Floor
@@ -678,7 +681,8 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
 
 ###  http://energy_flexibility/ontologies/EF_ontology#SchedulableAppliance
 :SchedulableAppliance rdf:type owl:Class ;
-                      rdfs:subClassOf :FlexibilityResources .
+                      rdfs:subClassOf :FlexibilityResources ;
+                      rdfs:comment "Think about what are the characterisitcs of schedulable appliances" .
 
 
 ###  http://energy_flexibility/ontologies/EF_ontology#SchedulableLoad
