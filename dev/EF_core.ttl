@@ -27,8 +27,8 @@
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Characterizes
 :Characterizes rdf:type owl:ObjectProperty ;
                rdfs:domain :FlexibilityCharacteristic ;
-               rdfs:range :EnergyFlexibility ;
-               rdfs:label "characterize" .
+               rdfs:range :FlexibleOperation ;
+               rdfs:label "characterizes" .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Quantifies
@@ -38,18 +38,22 @@
             rdfs:label "quantifies" .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#allows
+:allows rdf:type owl:ObjectProperty ;
+        rdfs:domain :FlexibilityResources ;
+        rdfs:range :FlexibleOperation .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#enables
 :enables rdf:type owl:ObjectProperty ;
          owl:inverseOf :isEnabledBy ;
-         rdfs:domain :FlexibilityResources ,
-                     :FlexibleOperation ;
+         rdfs:domain :FlexibleOperation ;
          rdfs:range :EnergyFlexibility .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasCharacteristic
 :hasCharacteristic rdf:type owl:ObjectProperty ;
                    owl:inverseOf :isCharacteristicOf ;
-                   rdf:type owl:FunctionalProperty ;
                    rdfs:domain :Occupant ;
                    rdfs:range :OccupantCharacteristic .
 
@@ -69,7 +73,8 @@
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasInfluenceOn
 :hasInfluenceOn rdf:type owl:ObjectProperty ;
                 rdfs:domain :FlexibleOperation ;
-                rdfs:range :BuildingService .
+                rdfs:range :BuildingService ;
+                rdfs:label "influences" .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasPerformanceGoal
@@ -88,6 +93,12 @@
 :hasUnitOfMeasure rdf:type owl:ObjectProperty .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#helps
+:helps rdf:type owl:ObjectProperty ;
+       rdfs:domain :KeyPerformanceIndicator ;
+       rdfs:range :FlexibilityQuantification .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#isCharacteristicOf
 :isCharacteristicOf rdf:type owl:ObjectProperty ;
                     rdfs:domain :OccupantCharacteristic ;
@@ -96,7 +107,6 @@
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#isEnabledBy
 :isEnabledBy rdf:type owl:ObjectProperty ;
-             rdfs:subPropertyOf owl:topObjectProperty ;
              rdfs:domain :EnergyFlexibility ;
              rdfs:range :FlexibilityResources ,
                         :FlexibleOperation .
@@ -110,7 +120,6 @@
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#provideService
 :provideService rdf:type owl:ObjectProperty ;
-                rdfs:subPropertyOf owl:topObjectProperty ;
                 owl:inverseOf :receiveService ;
                 rdfs:domain :BuildingService ;
                 rdfs:range :Occupant .
@@ -120,17 +129,11 @@
 :pursues rdf:type owl:ObjectProperty .
 
 
-###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#quantifyFlexibility
-:quantifyFlexibility rdf:type owl:ObjectProperty ;
-                     rdfs:domain :KeyPerformanceIndicator ;
-                     rdfs:range :EnergyFlexibility .
-
-
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#receiveService
 :receiveService rdf:type owl:ObjectProperty ;
-                rdfs:subPropertyOf owl:topObjectProperty ;
                 rdfs:domain :Occupant ;
-                rdfs:range :BuildingService .
+                rdfs:range :BuildingService ;
+                rdfs:label "receivesService" .
 
 
 ###  http://www.w3.org/2002/07/owl#topObjectProperty
