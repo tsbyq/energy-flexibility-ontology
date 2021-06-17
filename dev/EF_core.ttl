@@ -51,6 +51,13 @@
          rdfs:range :EnergyFlexibility .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasArgument
+:hasArgument rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdfs:domain :Formula ;
+             rdfs:range :Argument .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasCharacteristic
 :hasCharacteristic rdf:type owl:ObjectProperty ;
                    owl:inverseOf :isCharacteristicOf ;
@@ -70,6 +77,13 @@
                       rdfs:label "hasFlexibilityMode" .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasFormula
+:hasFormula rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdfs:domain :QuantitativeKPI ;
+            rdfs:range :Formula .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasInfluenceOn
 :hasInfluenceOn rdf:type owl:ObjectProperty ;
                 rdfs:domain :FlexibleOperation ;
@@ -81,6 +95,12 @@
 :hasModelCharacteristic rdf:type owl:ObjectProperty ;
                         rdfs:domain :Model ;
                         rdfs:range :ModelCharacteristic .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasOperation
+:hasOperation rdf:type owl:ObjectProperty ;
+              rdfs:domain :Formula ;
+              rdfs:range :MathOpertion .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasPerformanceGoal
@@ -195,6 +215,10 @@ owl:topObjectProperty rdfs:domain :FlexibleOperation ;
 :ApplicationScope rdf:type owl:Class .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Argument
+:Argument rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Attitude
 :Attitude rdf:type owl:Class ;
           rdfs:subClassOf :OccupantCharacteristic .
@@ -218,6 +242,11 @@ https://www.copperlabs.com/behavioral-load-shaping-and-flexible-energy/""" ;
                        <http://www.w3.org/2004/02/skos/core#definition> """Behavioral Load Shaping offers utilities a comprehensive, cloud-based solution for engaging with modern utility customers. This service enables utilities to deliver superior service and engagement with customers on time of use rate plans by providing features that facilitate peak demand reduction.
 https://docs.oracle.com/en/industries/utilities/behaviorial-load-shaping/#:~:text=Behavioral%20Load%20Shaping%20offers%20utilities,that%20facilitate%20peak%20demand%20reduction.""" ;
                        <http://www.w3.org/2004/02/skos/core#note> "Typical comfort limits can be (temporarily) relaxed or bypassed in some ways without compromising the thermal comfort of occupants."^^xsd:string .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#BinaryOperation
+:BinaryOperation rdf:type owl:Class ;
+                 rdfs:subClassOf :MathOpertion .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#BuildingLevel
@@ -377,6 +406,10 @@ https://www.nrel.gov/docs/fy02osti/31570.pdf""" .
 https://en.wikipedia.org/wiki/Flywheel_energy_storage""" .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Formula
+:Formula rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#FuelCell
 :FuelCell rdf:type owl:Class ;
           rdfs:subClassOf :DispatchableEnergyGenerator .
@@ -436,6 +469,10 @@ https://en.wikipedia.org/wiki/Flywheel_energy_storage""" .
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#LightingQualityPerception
 :LightingQualityPerception rdf:type owl:Class ;
                            rdfs:subClassOf :Perception .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#MathOpertion
+:MathOpertion rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#MaximumIncreasedDemand
@@ -670,6 +707,11 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
                                   rdfs:subClassOf :FlexibilityResources .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#UnaryOperation
+:UnaryOperation rdf:type owl:Class ;
+                rdfs:subClassOf :MathOpertion .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#UninterruptiblePowerSupply
 :UninterruptiblePowerSupply rdf:type owl:Class ;
                             rdfs:subClassOf :ActiveEnergyStorageFacility ;
@@ -681,9 +723,91 @@ https://en.wikipedia.org/wiki/Uninterruptible_power_supply""" .
 :UnitOfMeasure rdf:type owl:Class .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#VectorOperation
+:VectorOperation rdf:type owl:Class ;
+                 rdfs:subClassOf :MathOpertion .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#WindPower
 :WindPower rdf:type owl:Class ;
            rdfs:subClassOf :NondispatchableEnergyGenerator .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#AbsoluteValue
+:AbsoluteValue rdf:type owl:NamedIndividual ,
+                        :UnaryOperation ;
+               rdfs:label "absoluteValue" .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Negation
+:Negation rdf:type owl:NamedIndividual ,
+                   :UnaryOperation ;
+          rdfs:label "negation" .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Sum
+:Sum rdf:type owl:NamedIndividual ,
+              :VectorOperation ;
+     rdfs:label "sum" .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#max
+:max rdf:type owl:NamedIndividual ,
+              :VectorOperation .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#mean
+:mean rdf:type owl:NamedIndividual ,
+               :VectorOperation .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#median
+:median rdf:type owl:NamedIndividual ,
+                 :VectorOperation .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#min
+:min rdf:type owl:NamedIndividual ,
+              :VectorOperation .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#scalarAddition
+:scalarAddition rdf:type owl:NamedIndividual ,
+                         :BinaryOperation .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#scalarDeduction
+:scalarDeduction rdf:type owl:NamedIndividual ,
+                          :BinaryOperation .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#scalarDivision
+:scalarDivision rdf:type owl:NamedIndividual ,
+                         :BinaryOperation .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#scalarMultiplication
+:scalarMultiplication rdf:type owl:NamedIndividual ,
+                               :BinaryOperation .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#standardDeviation
+:standardDeviation rdf:type owl:NamedIndividual ,
+                            :VectorOperation .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#vectorAddition
+:vectorAddition rdf:type owl:NamedIndividual ,
+                         :VectorOperation .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#vectorMultiplication
+:vectorMultiplication rdf:type owl:NamedIndividual ,
+                               :VectorOperation .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
