@@ -174,6 +174,17 @@ owl:topObjectProperty rdfs:domain :FlexibleOperation ;
 
 
 #################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasActivationMethod
+:hasActivationMethod rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf owl:topDataProperty ;
+                     rdfs:domain :ThermallyActivatedBuildingSystem ;
+                     rdfs:range xsd:NCName .
+
+
+#################################################################
 #    Classes
 #################################################################
 
@@ -190,6 +201,11 @@ owl:topObjectProperty rdfs:domain :FlexibleOperation ;
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ActiveEnergyStorageFacility
 :ActiveEnergyStorageFacility rdf:type owl:Class ;
                              rdfs:subClassOf :DistributedEnergyResource .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ActiveThermalEnergyStorage
+:ActiveThermalEnergyStorage rdf:type owl:Class ;
+                            rdfs:subClassOf :ActiveEnergyStorageFacility .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ActivityType
@@ -232,7 +248,7 @@ owl:topObjectProperty rdfs:domain :FlexibleOperation ;
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#BatteryStorage
 :BatteryStorage rdf:type owl:Class ;
-                rdfs:subClassOf :ActiveEnergyStorageFacility .
+                rdfs:subClassOf :ElectricityStorage .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#BehavioralLoadShaping
@@ -257,6 +273,11 @@ https://docs.oracle.com/en/industries/utilities/behaviorial-load-shaping/#:~:tex
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#BuildingService
 :BuildingService rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ChilledWaterStorage
+:ChilledWaterStorage rdf:type owl:Class ;
+                     rdfs:subClassOf :ActiveThermalEnergyStorage .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#CombustionEngine
@@ -342,7 +363,12 @@ https://www.nrel.gov/docs/fy02osti/31570.pdf""" .
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ElectricVehicle
 :ElectricVehicle rdf:type owl:Class ;
-                 rdfs:subClassOf :ActiveEnergyStorageFacility .
+                 rdfs:subClassOf :ElectricityStorage .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ElectricityStorage
+:ElectricityStorage rdf:type owl:Class ;
+                    rdfs:subClassOf :ActiveEnergyStorageFacility .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#EmissionsGoal
@@ -402,7 +428,7 @@ https://www.nrel.gov/docs/fy02osti/31570.pdf""" .
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Flywheel
 :Flywheel rdf:type owl:Class ;
-          rdfs:subClassOf :ActiveEnergyStorageFacility ;
+          rdfs:subClassOf :ElectricityStorage ;
           <http://www.w3.org/2004/02/skos/core#definition> """Flywheel energy storage (FES) works by accelerating a rotor (flywheel) to a very high speed and maintaining the energy in the system as rotational energy. When energy is extracted from the system, the flywheel's rotational speed is reduced as a consequence of the principle of conservation of energy; adding energy to the system correspondingly results in an increase in the speed of the flywheel.
 https://en.wikipedia.org/wiki/Flywheel_energy_storage""" .
 
@@ -426,6 +452,11 @@ https://en.wikipedia.org/wiki/Flywheel_energy_storage""" .
                     rdfs:subClassOf :DispatchableEnergyGenerator .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#HotWaterStorage
+:HotWaterStorage rdf:type owl:Class ;
+                 rdfs:subClassOf :ActiveThermalEnergyStorage .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#HybridModel
 :HybridModel rdf:type owl:Class ;
              rdfs:subClassOf :Model .
@@ -434,6 +465,11 @@ https://en.wikipedia.org/wiki/Flywheel_energy_storage""" .
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#HydroPower
 :HydroPower rdf:type owl:Class ;
             rdfs:subClassOf :DispatchableEnergyGenerator .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#IceStorage
+:IceStorage rdf:type owl:Class ;
+            rdfs:subClassOf :ActiveThermalEnergyStorage .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#IncreaseDemand
@@ -730,7 +766,7 @@ Ref: https://www.researchgate.net/publication/281968993_Thermally_Activated_Buil
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#UninterruptiblePowerSupply
 :UninterruptiblePowerSupply rdf:type owl:Class ;
-                            rdfs:subClassOf :ActiveEnergyStorageFacility ;
+                            rdfs:subClassOf :ElectricityStorage ;
                             <http://www.w3.org/2004/02/skos/core#definition> """An uninterruptible power supply or uninterruptible power source (UPS) is an electrical apparatus that provides emergency power to a load when the input power source or mains power fails. The on-battery run-time of most uninterruptible power sources is relatively short (only a few minutes) but sufficient to start a standby power source or properly shut down the protected equipment. It is a type of continual power system.
 https://en.wikipedia.org/wiki/Uninterruptible_power_supply""" .
 
