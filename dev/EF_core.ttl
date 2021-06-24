@@ -65,6 +65,12 @@
                    rdfs:range :OccupantCharacteristic .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasDataSource
+:hasDataSource rdf:type owl:ObjectProperty ;
+               rdfs:domain :Argument ;
+               rdfs:range :DataSource .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasDescription
 :hasDescription rdf:type owl:ObjectProperty .
 
@@ -97,6 +103,12 @@
                         rdfs:range :ModelCharacteristic .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasModelType
+:hasModelType rdf:type owl:ObjectProperty ;
+              rdfs:domain :Simulation ;
+              rdfs:range :Model .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasOperation
 :hasOperation rdf:type owl:ObjectProperty ;
               rdfs:domain :Formula ;
@@ -107,13 +119,6 @@
 :hasPerformanceGoal rdf:type owl:ObjectProperty ;
                     rdfs:domain :FlexibleOperation ;
                     rdfs:range :PerformanceGoal .
-
-
-###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasQuantificationMethod
-:hasQuantificationMethod rdf:type owl:ObjectProperty ;
-                         rdfs:domain :FlexibilityQuantification ;
-                         rdfs:range :Measurement ,
-                                    :Model .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasScope
@@ -305,6 +310,10 @@ https://docs.oracle.com/en/industries/utilities/behaviorial-load-shaping/#:~:tex
                  rdfs:subClassOf :Model .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#DataSource
+:DataSource rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#DemandChangeDuration
 :DemandChangeDuration rdf:type owl:Class ;
                       rdfs:subClassOf :TemporalCharacteristics .
@@ -477,10 +486,10 @@ https://en.wikipedia.org/wiki/Flywheel_energy_storage""" .
                 rdfs:subClassOf :FlexibleOperation .
 
 
-###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#IncreasedEnergy
-:IncreasedEnergy rdf:type owl:Class ;
-                 rdfs:subClassOf :EnergyCharacteristics ;
-                 rdfs:comment "Increased energy consumption during flexible period"^^xsd:string .
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#IncreasedEnergyConsumption
+:IncreasedEnergyConsumption rdf:type owl:Class ;
+                            rdfs:subClassOf :EnergyCharacteristics ;
+                            rdfs:comment "Increased energy consumption during flexible period"^^xsd:string .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#IndoorEnvironmentQuality
@@ -528,7 +537,8 @@ https://en.wikipedia.org/wiki/Flywheel_energy_storage""" .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Measurement
-:Measurement rdf:type owl:Class .
+:Measurement rdf:type owl:Class ;
+             rdfs:subClassOf :DataSource .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Microgrid
@@ -628,9 +638,9 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
                  rdfs:subClassOf :KeyPerformanceIndicator .
 
 
-###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ReboundEnergy
-:ReboundEnergy rdf:type owl:Class ;
-               rdfs:subClassOf :EnergyCharacteristics .
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ReboundEnergyConsumption
+:ReboundEnergyConsumption rdf:type owl:Class ;
+                          rdfs:subClassOf :EnergyCharacteristics .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ReduceDemand
@@ -643,9 +653,9 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
                              rdfs:subClassOf :EnergyGoal .
 
 
-###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ReducedEnergy
-:ReducedEnergy rdf:type owl:Class ;
-               rdfs:subClassOf :EnergyCharacteristics .
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ReducedEnergyConsumption
+:ReducedEnergyConsumption rdf:type owl:Class ;
+                          rdfs:subClassOf :EnergyCharacteristics .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#RegionLevel
@@ -682,6 +692,11 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Shifting
 :Shifting rdf:type owl:Class ;
           rdfs:subClassOf :FlexibilityMode .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Simulation
+:Simulation rdf:type owl:Class ;
+            rdfs:subClassOf :DataSource .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#SimulationTool
