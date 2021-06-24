@@ -26,7 +26,7 @@
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Characterizes
 :Characterizes rdf:type owl:ObjectProperty ;
-               rdfs:domain :FlexibilityCharacteristic ;
+               rdfs:domain :FlexibleLoadCharacteristic ;
                rdfs:range :FlexibleOperation ;
                rdfs:label "characterizes" .
 
@@ -55,7 +55,8 @@
 :hasArgument rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf owl:topObjectProperty ;
              rdfs:domain :Formula ;
-             rdfs:range :Argument .
+             rdfs:range :Variable ;
+             rdfs:label "hasVariable" .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasCharacteristic
@@ -67,8 +68,14 @@
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasDataSource
 :hasDataSource rdf:type owl:ObjectProperty ;
-               rdfs:domain :Argument ;
+               rdfs:domain :Variable ;
                rdfs:range :DataSource .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasDataType
+:hasDataType rdf:type owl:ObjectProperty ;
+             rdfs:domain :Variable ;
+             rdfs:range :DataType .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasDescription
@@ -128,7 +135,9 @@
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasUnitOfMeasure
-:hasUnitOfMeasure rdf:type owl:ObjectProperty .
+:hasUnitOfMeasure rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Variable ;
+                  rdfs:range :UnitOfMeasure .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#helps
@@ -237,10 +246,6 @@ owl:topObjectProperty rdfs:domain :FlexibleOperation ;
 :ApplicationScope rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Argument
-:Argument rdf:type owl:Class .
-
-
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Attitude
 :Attitude rdf:type owl:Class ;
           rdfs:subClassOf :OccupantCharacteristic .
@@ -312,6 +317,10 @@ https://docs.oracle.com/en/industries/utilities/behaviorial-load-shaping/#:~:tex
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#DataSource
 :DataSource rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#DataType
+:DataType rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#DemandChangeDuration
@@ -387,7 +396,7 @@ https://www.nrel.gov/docs/fy02osti/31570.pdf""" .
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#EnergyCharacteristics
 :EnergyCharacteristics rdf:type owl:Class ;
-                       rdfs:subClassOf :FlexibilityCharacteristic .
+                       rdfs:subClassOf :FlexibleLoadCharacteristic .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#EnergyFlexibility
@@ -415,10 +424,6 @@ https://www.nrel.gov/docs/fy02osti/31570.pdf""" .
                  rdfs:subClassOf :PerformanceGoal .
 
 
-###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#FlexibilityCharacteristic
-:FlexibilityCharacteristic rdf:type owl:Class .
-
-
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#FlexibilityMode
 :FlexibilityMode rdf:type owl:Class .
 
@@ -429,6 +434,10 @@ https://www.nrel.gov/docs/fy02osti/31570.pdf""" .
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#FlexibilityResources
 :FlexibilityResources rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#FlexibleLoadCharacteristic
+:FlexibleLoadCharacteristic rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#FlexibleOperation
@@ -620,7 +629,7 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#PowerCharacteristics
 :PowerCharacteristics rdf:type owl:Class ;
-                      rdfs:subClassOf :FlexibilityCharacteristic .
+                      rdfs:subClassOf :FlexibleLoadCharacteristic .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#PrivacyPerception
@@ -740,7 +749,7 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#TemporalCharacteristics
 :TemporalCharacteristics rdf:type owl:Class ;
-                         rdfs:subClassOf :FlexibilityCharacteristic .
+                         rdfs:subClassOf :FlexibleLoadCharacteristic .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#TemporalResolution
@@ -788,6 +797,10 @@ https://en.wikipedia.org/wiki/Uninterruptible_power_supply""" .
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#UnitOfMeasure
 :UnitOfMeasure rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Variable
+:Variable rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#VectorOperation
