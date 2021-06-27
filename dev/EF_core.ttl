@@ -33,9 +33,9 @@
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Quantifies
 :Quantifies rdf:type owl:ObjectProperty ;
-            rdfs:domain :FlexibilityQuantification ;
+            rdfs:domain :EnergyFlexibilityKPI ;
             rdfs:range :EnergyFlexibility ;
-            rdfs:label "quantifies" .
+            rdfs:label "quantifiesEnergyFlexibility" .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#allows
@@ -93,7 +93,7 @@
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasFormula
 :hasFormula rdf:type owl:ObjectProperty ;
             rdfs:subPropertyOf owl:topObjectProperty ;
-            rdfs:domain :QuantitativeKPI ;
+            rdfs:domain :KeyPerformanceIndicator ;
             rdfs:range :Formula .
 
 
@@ -104,10 +104,10 @@
                 rdfs:label "influences" .
 
 
-###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasModelCharacteristic
-:hasModelCharacteristic rdf:type owl:ObjectProperty ;
-                        rdfs:domain :Model ;
-                        rdfs:range :ModelCharacteristic .
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasLevelOfDetails
+:hasLevelOfDetails rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Model ;
+                   rdfs:range :LevelOfDetails .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasModelType
@@ -140,12 +140,6 @@
                   rdfs:range :UnitOfMeasure .
 
 
-###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#helps
-:helps rdf:type owl:ObjectProperty ;
-       rdfs:domain :KeyPerformanceIndicator ;
-       rdfs:range :FlexibilityQuantification .
-
-
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#isCharacteristicOf
 :isCharacteristicOf rdf:type owl:ObjectProperty ;
                     rdfs:domain :OccupantCharacteristic ;
@@ -164,6 +158,19 @@
                      rdfs:range :EnergyFlexibility .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#needsSensor
+:needsSensor rdf:type owl:ObjectProperty ;
+             rdfs:domain :Measurement ;
+             rdfs:range :Sensor .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#needsSoftware
+:needsSoftware rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty ;
+               rdfs:domain :Simulation ;
+               rdfs:range :Software .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#provideService
 :provideService rdf:type owl:ObjectProperty ;
                 owl:inverseOf :receiveService ;
@@ -175,6 +182,12 @@
 :pursues rdf:type owl:ObjectProperty .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#quantifiesBuildingService
+:quantifiesBuildingService rdf:type owl:ObjectProperty ;
+                           rdfs:domain :BuildingServiceKPI ;
+                           rdfs:range :BuildingService .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#receiveService
 :receiveService rdf:type owl:ObjectProperty ;
                 rdfs:domain :Occupant ;
@@ -182,20 +195,36 @@
                 rdfs:label "receivesService" .
 
 
-###  http://www.w3.org/2002/07/owl#topObjectProperty
-owl:topObjectProperty rdfs:domain :FlexibleOperation ;
-                      rdfs:range :PerformanceGoal .
-
-
 #################################################################
 #    Data properties
 #################################################################
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasAcronym
+:hasAcronym rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdfs:domain :KeyPerformanceIndicator ;
+            rdfs:range xsd:string .
+
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasActivationMethod
 :hasActivationMethod rdf:type owl:DatatypeProperty ;
                      rdfs:subPropertyOf owl:topDataProperty ;
                      rdfs:domain :ThermallyActivatedBuildingSystem ;
                      rdfs:range xsd:NCName .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasArgumentName
+:hasArgumentName rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf owl:topDataProperty ;
+                 rdfs:domain :InputVariable ;
+                 rdfs:range xsd:NCName .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasArgumentPosition
+:hasArgumentPosition rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf owl:topDataProperty ;
+                     rdfs:domain :InputVariable ;
+                     rdfs:range xsd:nonNegativeInteger .
 
 
 #################################################################
@@ -283,6 +312,11 @@ https://docs.oracle.com/en/industries/utilities/behaviorial-load-shaping/#:~:tex
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#BuildingService
 :BuildingService rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#BuildingServiceKPI
+:BuildingServiceKPI rdf:type owl:Class ;
+                    rdfs:subClassOf :KeyPerformanceIndicator .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ChilledWaterStorage
@@ -404,6 +438,11 @@ https://www.nrel.gov/docs/fy02osti/31570.pdf""" .
                    <http://www.w3.org/2004/02/skos/core#definition> "An energy system's (e.g., device, system, building) capability to operate flexibly (i.e., by adjusting its energy demand and generation) to support the electric grid according to local ambient conditions (e.g., weather), without jeopardizing building occupants’ needs (e.g., thermal comfort, productivity)."^^xsd:string .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#EnergyFlexibilityKPI
+:EnergyFlexibilityKPI rdf:type owl:Class ;
+                      rdfs:subClassOf :KeyPerformanceIndicator .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#EnergyGenerator
 :EnergyGenerator rdf:type owl:Class ;
                  rdfs:subClassOf :DistributedEnergyResource .
@@ -428,10 +467,6 @@ https://www.nrel.gov/docs/fy02osti/31570.pdf""" .
 :FlexibilityMode rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#FlexibilityQuantification
-:FlexibilityQuantification rdf:type owl:Class .
-
-
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#FlexibilityResources
 :FlexibilityResources rdf:type owl:Class .
 
@@ -452,7 +487,8 @@ https://en.wikipedia.org/wiki/Flywheel_energy_storage""" .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Formula
-:Formula rdf:type owl:Class .
+:Formula rdf:type owl:Class ;
+         rdfs:comment "A mathematical function that defines the relationship between independent and dependent variables."^^xsd:string .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#FuelCell
@@ -468,6 +504,11 @@ https://en.wikipedia.org/wiki/Flywheel_energy_storage""" .
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#GeothermalHeatPump
 :GeothermalHeatPump rdf:type owl:Class ;
                     rdfs:subClassOf :DispatchableEnergyGenerator .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#GridSignal
+:GridSignal rdf:type owl:Class ;
+            rdfs:subClassOf :DataSource .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#HotWaterStorage
@@ -506,6 +547,11 @@ https://en.wikipedia.org/wiki/Flywheel_energy_storage""" .
                           rdfs:subClassOf :BuildingService .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#InputVariable
+:InputVariable rdf:type owl:Class ;
+               rdfs:subClassOf :Variable .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#IntensiveLabor
 :IntensiveLabor rdf:type owl:Class ;
                 rdfs:subClassOf :ActivityType .
@@ -514,6 +560,10 @@ https://en.wikipedia.org/wiki/Flywheel_energy_storage""" .
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#KeyPerformanceIndicator
 :KeyPerformanceIndicator rdf:type owl:Class ;
                          rdfs:comment "Key Performance Indicator (KPI)"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#LevelOfDetails
+:LevelOfDetails rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#LightingQuality
@@ -571,10 +621,6 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
 :Model rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ModelCharacteristic
-:ModelCharacteristic rdf:type owl:Class .
-
-
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Modulating
 :Modulating rdf:type owl:Class ;
             rdfs:subClassOf :FlexibilityMode .
@@ -598,14 +644,15 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
         rdfs:subClassOf :ActivityType .
 
 
-###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#OptimizationTool
-:OptimizationTool rdf:type owl:Class ;
-                  rdfs:subClassOf :SoftwareTool .
-
-
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Other
 :Other rdf:type owl:Class ;
        rdfs:subClassOf :ActivityType .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#OutputVariable
+:OutputVariable rdf:type owl:Class ;
+                rdfs:subClassOf :DataSource ,
+                                :Variable .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Perception
@@ -635,16 +682,6 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#PrivacyPerception
 :PrivacyPerception rdf:type owl:Class ;
                    rdfs:subClassOf :Perception .
-
-
-###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#QualitativeKPI
-:QualitativeKPI rdf:type owl:Class ;
-                rdfs:subClassOf :KeyPerformanceIndicator .
-
-
-###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#QuantitativeKPI
-:QuantitativeKPI rdf:type owl:Class ;
-                 rdfs:subClassOf :KeyPerformanceIndicator .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ReboundEnergyConsumption
@@ -688,6 +725,10 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
              rdfs:subClassOf :ApplicationScope .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Sensor
+:Sensor rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Shedding
 :Shedding rdf:type owl:Class ;
           rdfs:subClassOf :FlexibilityMode .
@@ -708,13 +749,8 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
             rdfs:subClassOf :DataSource .
 
 
-###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#SimulationTool
-:SimulationTool rdf:type owl:Class ;
-                rdfs:subClassOf :SoftwareTool .
-
-
-###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#SoftwareTool
-:SoftwareTool rdf:type owl:Class .
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Software
+:Software rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#SolarPhotovoltaic
@@ -750,11 +786,6 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#TemporalCharacteristics
 :TemporalCharacteristics rdf:type owl:Class ;
                          rdfs:subClassOf :FlexibleLoadCharacteristic .
-
-
-###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#TemporalResolution
-:TemporalResolution rdf:type owl:Class ;
-                    rdfs:subClassOf :ModelCharacteristic .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ThermalPreference
@@ -821,6 +852,21 @@ https://en.wikipedia.org/wiki/Uninterruptible_power_supply""" .
 :AbsoluteValue rdf:type owl:NamedIndividual ,
                         :UnaryOperation ;
                rdfs:label "absoluteValue" .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#HighLOD
+:HighLOD rdf:type owl:NamedIndividual ,
+                  :LevelOfDetails .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#LowLOD
+:LowLOD rdf:type owl:NamedIndividual ,
+                 :LevelOfDetails .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#MediumLOD
+:MediumLOD rdf:type owl:NamedIndividual ,
+                    :LevelOfDetails .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Negation
