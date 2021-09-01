@@ -58,6 +58,10 @@
                    rdfs:range :OccupantCharacteristic .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasDataRequirementOf
+:hasDataRequirementOf rdf:type owl:ObjectProperty .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasDataSource
 :hasDataSource rdf:type owl:ObjectProperty ;
                rdfs:domain :Variable ;
@@ -372,6 +376,11 @@ https://docs.oracle.com/en/industries/utilities/behaviorial-load-shaping/#:~:tex
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#DataDrivenModel
 :DataDrivenModel rdf:type owl:Class ;
                  rdfs:subClassOf :Model .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#DataRequirements
+:DataRequirements rdf:type owl:Class ;
+                  rdfs:label "DataRequirement" .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#DataSource
@@ -809,6 +818,11 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
        rdfs:subClassOf :BuildingService .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#SpatialRequirement
+:SpatialRequirement rdf:type owl:Class ;
+                    rdfs:subClassOf :DataRequirements .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Sport
 :Sport rdf:type owl:Class ;
        rdfs:subClassOf :ActivityType .
@@ -831,6 +845,12 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#TemporalCharacteristics
 :TemporalCharacteristics rdf:type owl:Class ;
                          rdfs:subClassOf :FlexibleLoadCharacteristic .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#TemporalRequirements
+:TemporalRequirements rdf:type owl:Class ;
+                      rdfs:subClassOf :DataRequirements ;
+                      rdfs:label "TemporalRequirement" .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ThermalPreference
@@ -899,14 +919,46 @@ https://en.wikipedia.org/wiki/Uninterruptible_power_supply""" .
                rdfs:label "absoluteValue" .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#AnnualResolution
+:AnnualResolution rdf:type owl:NamedIndividual ,
+                           :TemporalRequirements .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#AvailableStructureStorageCapacity
+:AvailableStructureStorageCapacity rdf:type owl:NamedIndividual ,
+                                            :EnergyFlexibilityKPI ;
+                                   owl:sameAs :CapacityOfActiveDemandResponse .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#BuildingDesigner
 :BuildingDesigner rdf:type owl:NamedIndividual ,
                            :Stakeholder .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#BuildingLevel
+:BuildingLevel rdf:type owl:NamedIndividual ,
+                        :SpatialRequirement .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#BuildingOperator
 :BuildingOperator rdf:type owl:NamedIndividual ,
-                           :Stakeholder .
+                           :Stakeholder ;
+                  :ofInterestTo :GridOperator .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#CapacityOfActiveDemandResponse
+:CapacityOfActiveDemandResponse rdf:type owl:NamedIndividual ,
+                                         :EnergyFlexibilityKPI ;
+                                :ofInterestTo :BuildingDesigner ,
+                                              :Researcher ;
+                                :needsBaseline "true"^^xsd:boolean ;
+                                <http://www.w3.org/2004/02/skos/core#definition> "Capacity of ADR - reduced energy consumption during an ADR event."^^xsd:string ,
+                                                                                 "Other definition: Amount of heat that can be added to or extracted from a building’s thermal mass during a predefined charging event, while constrained by thermal comfort."^^xsd:string .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#CommunityLevel
+:CommunityLevel rdf:type owl:NamedIndividual ,
+                         :SpatialRequirement .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ControlEngineer
@@ -914,12 +966,34 @@ https://en.wikipedia.org/wiki/Uninterruptible_power_supply""" .
                           :Stakeholder .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#DailyResolution
+:DailyResolution rdf:type owl:NamedIndividual ,
+                          :TemporalRequirements .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Day
+:Day rdf:type owl:NamedIndividual ,
+              :TemporalRequirements .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#DemandRecoveryRatio
 :DemandRecoveryRatio rdf:type owl:NamedIndividual ,
                               :EnergyFlexibilityKPI ;
                      :ofInterestTo :BuildingDesigner ,
                                    :Researcher ;
-                     :needsBaseline "true"^^xsd:boolean .
+                     :needsBaseline "true"^^xsd:boolean ;
+                     <http://www.w3.org/2004/02/skos/core#definition> "Demand recovery ratio: the ratio between the observed electric energy use by the flexible operation and the minimum electric energy use of the system in baseline operation (used to quantify the impact of load shifting on energy consumption)"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#EfficiencyOfActiveDemandResponse
+:EfficiencyOfActiveDemandResponse rdf:type owl:NamedIndividual ,
+                                           :EnergyFlexibilityKPI ;
+                                  owl:sameAs :StorageEfficiency ;
+                                  :ofInterestTo :BuildingDesigner ,
+                                                :Researcher ;
+                                  :needsBaseline "true"^^xsd:boolean ;
+                                  <http://www.w3.org/2004/02/skos/core#definition> "Efficiency of ADR - the energy storage efficiency during an ADR event."^^xsd:string ,
+                                                                                   "Fraction of heat that is stored during an ADR event, later used to reduce heating load power to maintain the thermal comfort."^^xsd:string .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#EnergyModeler
@@ -935,19 +1009,45 @@ https://en.wikipedia.org/wiki/Uninterruptible_power_supply""" .
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#FlexibilityFactor
 :FlexibilityFactor rdf:type owl:NamedIndividual ,
                             :EnergyFlexibilityKPI ;
+                   :hasDataRequirementOf :HourlyResolution ;
                    :ofInterestTo :BuildingOperator ,
                                  :Researcher ;
-                   :needsBaseline "false"^^xsd:boolean .
+                   :needsBaseline "false"^^xsd:boolean ;
+                   <http://www.w3.org/2004/02/skos/core#definition> "Indicator of a quantity (e.g., energy, cost, emissions) during high load hours versus during low load hours, which ranges between -1 (quantity was only during high load hours) and 1 (quantity was only during low load hours)."^^xsd:string .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#GridCarbonImpact
+:GridCarbonImpact rdf:type owl:NamedIndividual ,
+                           :EnergyFlexibilityKPI ;
+                  :ofInterestTo :GridOperator ;
+                  :needsBaseline "false"^^xsd:boolean ;
+                  <http://www.w3.org/2004/02/skos/core#definition> "GridOptimal - Grid Carbon Impact: measures the alignment between a building's net demand profile and the marginal carbon emissions."^^xsd:string .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#GridOperator
 :GridOperator rdf:type owl:NamedIndividual ,
-                       :Stakeholder .
+                       :Stakeholder ;
+              :ofInterestTo :EnergyModeler .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#GridPeakContribution
+:GridPeakContribution rdf:type owl:NamedIndividual ,
+                               :EnergyFlexibilityKPI ;
+                      :ofInterestTo :BuildingDesigner ,
+                                    :EnergyModeler ;
+                      :hasAcronym "GPC"^^xsd:string ;
+                      :needsBaseline "false"^^xsd:boolean ;
+                      <http://www.w3.org/2004/02/skos/core#definition> "GridOptimal - Grid Peak Contribution: how much the building's load contributes to peak loads on the grid during peak hours. Load factor during peak hours"^^xsd:string .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#HighLOD
 :HighLOD rdf:type owl:NamedIndividual ,
                   :LevelOfDetails .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#HourlyResolution
+:HourlyResolution rdf:type owl:NamedIndividual ,
+                           :TemporalRequirements .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#LowLOD
@@ -960,6 +1060,11 @@ https://en.wikipedia.org/wiki/Uninterruptible_power_supply""" .
                     :LevelOfDetails .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#MonthluResolution
+:MonthluResolution rdf:type owl:NamedIndividual ,
+                            :TemporalRequirements .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Negation
 :Negation rdf:type owl:NamedIndividual ,
                    :UnaryOperation ;
@@ -970,15 +1075,36 @@ https://en.wikipedia.org/wiki/Uninterruptible_power_supply""" .
 :OnsiteRenewableUtilizationEfficiency rdf:type owl:NamedIndividual ,
                                                :EnergyFlexibilityKPI ;
                                       owl:sameAs :SelfConsumption ;
+                                      :ofInterestTo :EnergyModeler ;
                                       :needsBaseline "false"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#PeakGenerationRatio
+:PeakGenerationRatio rdf:type owl:NamedIndividual ,
+                              :EnergyFlexibilityKPI ;
+                     :ofInterestTo :BuildingDesigner ,
+                                   :Researcher ;
+                     :needsBaseline "false"^^xsd:boolean ;
+                     <http://www.w3.org/2004/02/skos/core#definition> "Demand recovery ratio: the ratio between the observed electric energy use by the flexible operation and the minimum electric energy use of the system in baseline operation (used to quantify the impact of load shifting on energy consumption)"^^xsd:string .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#PeakPowerDemandDecrease
 :PeakPowerDemandDecrease rdf:type owl:NamedIndividual ,
                                   :EnergyFlexibilityKPI ;
+                         owl:sameAs :PeakPowerReduction ;
                          :ofInterestTo :Researcher ;
                          :needsBaseline "true"^^xsd:boolean ;
                          <http://www.w3.org/2004/02/skos/core#definition> "Reduced power demand during peak hour due to flexible operation."^^xsd:string .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#PeakPowerReduction
+:PeakPowerReduction rdf:type owl:NamedIndividual ,
+                             :EnergyFlexibilityKPI ;
+                    :hasDataRequirementOf :HourlyResolution ;
+                    :ofInterestTo :GridOperator ,
+                                  :Researcher ,
+                                  :UtilityCompany ;
+                    :needsBaseline "true"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Researcher
@@ -989,21 +1115,37 @@ https://en.wikipedia.org/wiki/Uninterruptible_power_supply""" .
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#SelfConsumption
 :SelfConsumption rdf:type owl:NamedIndividual ,
                           :EnergyFlexibilityKPI ;
+                 :hasDataRequirementOf :BuildingLevel ,
+                                       :HourlyResolution ;
                  :ofInterestTo :BuildingDesigner ;
-                 :needsBaseline "false"^^xsd:boolean .
+                 :needsBaseline "false"^^xsd:boolean ;
+                 <http://www.w3.org/2004/02/skos/core#definition> "Self-consumption (SC) - the degree to which the on-site generation is directly consumed by the building."^^xsd:string .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#SelfSufficiency
 :SelfSufficiency rdf:type owl:NamedIndividual ,
                           :EnergyFlexibilityKPI ;
+                 :hasDataRequirementOf :BuildingLevel ,
+                                       :HourlyResolution ;
                  :ofInterestTo :BuildingDesigner ;
-                 :needsBaseline "false"^^xsd:boolean .
+                 :needsBaseline "false"^^xsd:boolean ;
+                 <http://www.w3.org/2004/02/skos/core#definition> "Self-Sufficiency (SS) - the degree to which the on-site generation is sufficient to fill the energy needs of the building."^^xsd:string .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#StorageEfficiency
+:StorageEfficiency rdf:type owl:NamedIndividual ,
+                            :EnergyFlexibilityKPI .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Sum
 :Sum rdf:type owl:NamedIndividual ,
               :VectorOperation ;
      rdfs:label "sum" .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#SystemLevel
+:SystemLevel rdf:type owl:NamedIndividual ,
+                      :SpatialRequirement .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#TRNSYS
@@ -1013,6 +1155,11 @@ https://en.wikipedia.org/wiki/Uninterruptible_power_supply""" .
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#UtilityCompany
 :UtilityCompany rdf:type owl:NamedIndividual ,
                          :Stakeholder .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#WeeklyResolution
+:WeeklyResolution rdf:type owl:NamedIndividual ,
+                           :TemporalRequirements .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#artificial_lighting
