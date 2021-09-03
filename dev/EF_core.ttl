@@ -994,9 +994,18 @@ https://doi.org/10.1016/j.apenergy.2017.04.061
 https://lirias.kuleuven.be/1729317?limo=0
 https://doi.org/10.1016/j.enbuild.2020.110027
 https://doi.org/10.1016/j.scs.2019.101815
-https://doi.org/10.1016/j.enbuild.2019.02.016"""^^xsd:string ;
+https://doi.org/10.1016/j.enbuild.2019.02.016
+http://www.ibpsa.org/proceedings/eSimPapers/2018/1-3-A-2.pdf"""^^xsd:string ;
                                 <http://www.w3.org/2004/02/skos/core#definition> "Capacity of ADR - reduced energy consumption during an ADR event."^^xsd:string ,
                                                                                  "Other definition: Amount of heat that can be added to or extracted from a building’s thermal mass during a predefined charging event, while constrained by thermal comfort."^^xsd:string .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#CarbonEmissionProfile
+:CarbonEmissionProfile rdf:type owl:NamedIndividual ,
+                                :SerialValue ,
+                                :Variable ;
+                       :hasUnitOfMeasure :kg ;
+                       rdfs:comment "The carbon emission profile with indefinite temporal resolution."^^xsd:string .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#CommunityLevel
@@ -1053,7 +1062,8 @@ https://doi.org/10.1016/j.apenergy.2017.04.061
 https://lirias.kuleuven.be/1729317?limo=0
 https://doi.org/10.1016/j.enbuild.2020.110027
 https://doi.org/10.1016/j.scs.2019.101815
-https://doi.org/10.1016/j.enbuild.2019.02.016"""^^xsd:string ;
+https://doi.org/10.1016/j.enbuild.2019.02.016
+http://www.ibpsa.org/proceedings/eSimPapers/2018/1-3-A-2.pdf"""^^xsd:string ;
                                   <http://www.w3.org/2004/02/skos/core#definition> "Efficiency of ADR - the energy storage efficiency during an ADR event."^^xsd:string ,
                                                                                    "Fraction of heat that is stored during an ADR event, later used to reduce heating load power to maintain the thermal comfort."^^xsd:string .
 
@@ -1119,9 +1129,21 @@ https://doi.org/10.1016/j.enbuild.2019.02.016"""^^xsd:string ;
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#GridCarbonImpact
 :GridCarbonImpact rdf:type owl:NamedIndividual ,
                            :EnergyFlexibilityKPI ;
+                  :hasFormula :GridCarbonImpactFormula ;
                   :ofInterestTo :GridOperator ;
-                  :needsBaseline "false"^^xsd:boolean ;
+                  :hasAcronym "GCI"^^xsd:string ;
                   <http://www.w3.org/2004/02/skos/core#definition> "GridOptimal - Grid Carbon Impact: measures the alignment between a building's net demand profile and the marginal carbon emissions."^^xsd:string .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#GridCarbonImpactFormula
+:GridCarbonImpactFormula rdf:type owl:NamedIndividual ,
+                                  :Formula ;
+                         :hasInput :CarbonEmissionProfile ,
+                                   :NetLoadProfile ;
+                         :hasOperation :vectorAverage ,
+                                       :vectorMax ;
+                         :needsBaseline "false"^^xsd:boolean ;
+                         rdfs:comment "GCI = 1 - (P_avg/P_max)*(C_avg/C_max)"^^xsd:string .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#GridOperator
@@ -1133,11 +1155,25 @@ https://doi.org/10.1016/j.enbuild.2019.02.016"""^^xsd:string ;
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#GridPeakContribution
 :GridPeakContribution rdf:type owl:NamedIndividual ,
                                :EnergyFlexibilityKPI ;
+                      :hasFormula :GridPeakContributionFormula ;
                       :ofInterestTo :BuildingDesigner ,
                                     :EnergyModeler ;
                       :hasAcronym "GPC"^^xsd:string ;
                       :needsBaseline "false"^^xsd:boolean ;
-                      <http://www.w3.org/2004/02/skos/core#definition> "GridOptimal - Grid Peak Contribution: how much the building's load contributes to peak loads on the grid during peak hours. Load factor during peak hours"^^xsd:string .
+                      rdfs:comment """GridOptimal - Grid Peak Contribution: how much the building's load contributes to peak loads on the grid during peak hours. 
+
+It can be interpreted as the load factor during peak hours."""^^xsd:string ,
+                                   """References:
+https://newbuildings.org/gridoptimal-leed-pilot-credit-encourages-designers-to-help-solve-grid-issues/"""^^xsd:string .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#GridPeakContributionFormula
+:GridPeakContributionFormula rdf:type owl:NamedIndividual ,
+                                      :Formula ;
+                             :hasInput :NetLoadProfile ;
+                             :hasOperation :scalarDivision ,
+                                           :vectorAverage ;
+                             rdfs:comment "GPC = Avg(Top 5% Demand)/Avg(Top 10 hourly demand)"^^xsd:string .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#HighLOD
@@ -1156,7 +1192,8 @@ https://doi.org/10.1016/j.enbuild.2019.02.016"""^^xsd:string ;
 :HighLoadStartTimestamp rdf:type owl:NamedIndividual ,
                                  :SingleValue ,
                                  :Variable ;
-                        :hasUnitOfMeasure :Datetime .
+                        :hasUnitOfMeasure :Datetime ;
+                        :needsBaseline "false"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#HourlyBaselineLoadProfile
@@ -1342,9 +1379,9 @@ https://doi.org/10.3390/en14061591"""^^xsd:string ;
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#SelfSufficiency
 :SelfSufficiency rdf:type owl:NamedIndividual ,
                           :EnergyFlexibilityKPI ;
-                 :hasFormula :SelfSufficiencyFormula ,
-                             :reduceGridEnergyConsumption ;
-                 :hasPerformanceGoal :maximizeOnsiteGenerationUtilization ;
+                 :hasFormula :SelfSufficiencyFormula ;
+                 :hasPerformanceGoal :maximizeOnsiteGenerationUtilization ,
+                                     :reduceGridEnergyConsumption ;
                  :ofInterestTo :BuildingDesigner ;
                  :hasAcronym "SS"^^xsd:string ;
                  :needsBaseline "false"^^xsd:boolean ;
@@ -1435,9 +1472,16 @@ https://doi.org/10.3390/en14061591"""^^xsd:string ;
      <http://www.w3.org/2004/02/skos/core#definition> "Kilowatt Hour"^^xsd:string .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#kg
+:kg rdf:type owl:NamedIndividual ,
+             :UnitOfMeasure ;
+    rdfs:comment "killogram"^^xsd:string .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#max
 :max rdf:type owl:NamedIndividual ,
-              :VectorOperation .
+              :VectorOperation ;
+     owl:sameAs :vectorMax .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#maximizeOnsiteGenerationUtilization
@@ -1447,7 +1491,8 @@ https://doi.org/10.3390/en14061591"""^^xsd:string ;
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#mean
 :mean rdf:type owl:NamedIndividual ,
-               :VectorOperation .
+               :VectorOperation ;
+      owl:sameAs :vectorAverage .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#median
@@ -1518,6 +1563,16 @@ https://doi.org/10.3390/en14061591"""^^xsd:string ;
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#vectorAddition
 :vectorAddition rdf:type owl:NamedIndividual ,
                          :VectorOperation .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#vectorAverage
+:vectorAverage rdf:type owl:NamedIndividual ,
+                        :VectorOperation .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#vectorMax
+:vectorMax rdf:type owl:NamedIndividual ,
+                    :VectorOperation .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#vectorMultiplication
