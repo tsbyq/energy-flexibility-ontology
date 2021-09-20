@@ -146,7 +146,8 @@
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#hasUnitOfMeasure
 :hasUnitOfMeasure rdf:type owl:ObjectProperty ;
                   rdfs:domain :Variable ;
-                  rdfs:range :UnitOfMeasure .
+                  rdfs:range :UnitOfMeasure ;
+                  rdfs:comment "Describe the unit of a variable or a formula output."^^xsd:string .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#isCharacteristicOf
@@ -212,6 +213,10 @@
                 rdfs:domain :Occupant ;
                 rdfs:range :BuildingService ;
                 rdfs:label "receivesService" .
+
+
+###  http://www.w3.org/2002/07/owl#topObjectProperty
+owl:topObjectProperty rdfs:subPropertyOf :hasUnitOfMeasure .
 
 
 #################################################################
@@ -980,6 +985,7 @@ https://en.wikipedia.org/wiki/Uninterruptible_power_supply""" .
                                 :HighLoadStartTimestamp ,
                                 :HourlyBaselineLoadProfile ,
                                 :HourlyFlexibleLoadProfile ;
+                      :hasUnitOfMeasure :kWh ;
                       :needsBaseline "true"^^xsd:boolean .
 
 
@@ -1068,6 +1074,14 @@ http://www.ibpsa.org/proceedings/eSimPapers/2018/1-3-A-2.pdf"""^^xsd:string ;
                                                                                    "Fraction of heat that is stored during an ADR event, later used to reduce heating load power to maintain the thermal comfort."^^xsd:string .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#EnergyCostProfile
+:EnergyCostProfile rdf:type owl:NamedIndividual ,
+                            :SerialValue ;
+                   :hasUnitOfMeasure :dollar ;
+                   :hasMinimumTemporalResolution "525600"^^xsd:int ;
+                   rdfs:comment "Energy cost time series with indefinite temporal resolution."^^xsd:string .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#EnergyModeler
 :EnergyModeler rdf:type owl:NamedIndividual ,
                         :Stakeholder ;
@@ -1118,7 +1132,11 @@ http://www.ibpsa.org/proceedings/eSimPapers/2018/1-3-A-2.pdf"""^^xsd:string ;
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#FlexibilityIndicatorFormula
 :FlexibilityIndicatorFormula rdf:type owl:NamedIndividual ,
-                                      :Formula .
+                                      :Formula ;
+                             :hasInput :EnergyCostProfile ;
+                             :hasOperation :scalarDeduction ,
+                                           :scalarDivision ;
+                             :needsBaseline "false"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Flexible
@@ -1173,6 +1191,7 @@ https://newbuildings.org/gridoptimal-leed-pilot-credit-encourages-designers-to-h
                              :hasInput :NetLoadProfile ;
                              :hasOperation :scalarDivision ,
                                            :vectorAverage ;
+                             :needsBaseline "false"^^xsd:boolean ;
                              rdfs:comment "GPC = Avg(Top 5% Demand)/Avg(Top 10 hourly demand)"^^xsd:string .
 
 
@@ -1313,6 +1332,7 @@ https://newbuildings.org/gridoptimal-leed-pilot-credit-encourages-designers-to-h
                            :hasInput :HourlyBaselineLoadProfile ,
                                      :HourlyFlexibleLoadProfile ,
                                      :PeakTimestamp ;
+                           :hasOperation :scalarDeduction ;
                            :needsBaseline "true"^^xsd:boolean .
 
 
@@ -1334,7 +1354,7 @@ https://newbuildings.org/gridoptimal-leed-pilot-credit-encourages-designers-to-h
                                                :PeakTimestamp ;
                                      :hasOperation :scalarDeduction ,
                                                    :scalarDivision ;
-                                     :needsBaseline "false"^^xsd:boolean .
+                                     :needsBaseline "true"^^xsd:boolean .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#PeakTimestamp
@@ -1460,6 +1480,12 @@ https://doi.org/10.3390/en14061591"""^^xsd:string ;
                  :UnitOfMeasure .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#fraction
+:fraction rdf:type owl:NamedIndividual ,
+                   :UnitOfMeasure ;
+          rdfs:comment "unitless fraction"^^xsd:string .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#kW
 :kW rdf:type owl:NamedIndividual ,
              :UnitOfMeasure ;
@@ -1503,6 +1529,12 @@ https://doi.org/10.3390/en14061591"""^^xsd:string ;
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#min
 :min rdf:type owl:NamedIndividual ,
               :VectorOperation .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#percentage
+:percentage rdf:type owl:NamedIndividual ,
+                     :UnitOfMeasure ;
+            rdfs:comment "unitless percentage"^^xsd:string .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#reduceCost
