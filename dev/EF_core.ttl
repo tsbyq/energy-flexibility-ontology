@@ -960,7 +960,15 @@ https://en.wikipedia.org/wiki/Uninterruptible_power_supply""" .
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Baseline
 :Baseline rdf:type owl:NamedIndividual ,
-                   :OperationCondition .
+                   :OperationCondition ;
+          rdfs:label "BaselineCondition"^^xsd:string ;
+          <http://www.w3.org/2004/02/skos/core#definition> "Refers to the condition when building is operated normally without any energy-flexibile goal."^^xsd:string .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#BaselineLoadProfile
+:BaselineLoadProfile rdf:type owl:NamedIndividual ,
+                              :Variable ;
+                     :isUnderCondition :Baseline .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#BuildingDesigner
@@ -1012,6 +1020,7 @@ http://www.ibpsa.org/proceedings/eSimPapers/2018/1-3-A-2.pdf"""^^xsd:string ;
                                 :SerialValue ,
                                 :Variable ;
                        :hasUnitOfMeasure :kg ;
+                       :isUnderCondition :UnspecifiedCondition ;
                        rdfs:comment "The carbon emission profile with indefinite temporal resolution."^^xsd:string .
 
 
@@ -1022,6 +1031,14 @@ http://www.ibpsa.org/proceedings/eSimPapers/2018/1-3-A-2.pdf"""^^xsd:string ;
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#ControlEngineer
 :ControlEngineer rdf:type owl:NamedIndividual ,
                           :Stakeholder .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#DailyPeakPowerDemand
+:DailyPeakPowerDemand rdf:type owl:NamedIndividual ,
+                               :SingleValue ,
+                               :Variable ;
+                      :hasUnitOfMeasure :kW ;
+                      :isUnderCondition :UnspecifiedCondition .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#DailyResolution
@@ -1041,10 +1058,20 @@ http://www.ibpsa.org/proceedings/eSimPapers/2018/1-3-A-2.pdf"""^^xsd:string ;
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#DemandRecoveryRatio
 :DemandRecoveryRatio rdf:type owl:NamedIndividual ,
                               :EnergyFlexibilityKPI ;
+                     :hasFormula :DemandRecoveryRatioFormula ;
                      :ofInterestTo :BuildingDesigner ,
                                    :Researcher ;
                      :needsBaseline "true"^^xsd:boolean ;
                      <http://www.w3.org/2004/02/skos/core#definition> "Demand recovery ratio: the ratio between the observed electric energy use by the flexible operation and the minimum electric energy use of the system in baseline operation (used to quantify the impact of load shifting on energy consumption)"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#DemandRecoveryRatioFormula
+:DemandRecoveryRatioFormula rdf:type owl:NamedIndividual ,
+                                     :Formula ;
+                            :hasInput :HourlyBaselineLoadProfile ,
+                                      :HourlyFlexibleLoadProfile ;
+                            :hasOperation :scalarDivision ,
+                                          :vectorSum .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#EfficiencyOfADRFormula
@@ -1121,8 +1148,7 @@ http://www.ibpsa.org/proceedings/eSimPapers/2018/1-3-A-2.pdf"""^^xsd:string ;
 :FlexibilityIndicator rdf:type owl:NamedIndividual ,
                                :EnergyFlexibilityKPI ;
                       :hasInput :HourlyBaselineLoadProfile ,
-                                :HourlyFlexibleLoadProfile ,
-                                :TimeOfUsePriceProfile ;
+                                :HourlyFlexibleLoadProfile ;
                       :hasOperation :scalarDeduction ,
                                     :scalarDivision ,
                                     :vectorMultiplication ;
@@ -1141,13 +1167,22 @@ http://www.ibpsa.org/proceedings/eSimPapers/2018/1-3-A-2.pdf"""^^xsd:string ;
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Flexible
 :Flexible rdf:type owl:NamedIndividual ,
-                   :OperationCondition .
+                   :OperationCondition ;
+          rdfs:label "FlexibleCondition"^^xsd:string ;
+          <http://www.w3.org/2004/02/skos/core#definition> "Refers to the condition when building is operated with a energy-flexibile goal."^^xsd:string .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#FlexibleLoadProfile
+:FlexibleLoadProfile rdf:type owl:NamedIndividual ,
+                              :Variable ;
+                     :isUnderCondition :Flexible .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#GenericLoadProfile
 :GenericLoadProfile rdf:type owl:NamedIndividual ,
                              :SerialValue ,
                              :Variable ;
+                    :isUnderCondition :UnspecifiedCondition ;
                     <http://www.w3.org/2004/02/skos/core#definition> "A time series profile with arbitary type (e.g., energy consumption, peak demand, cost, and GHG emissions) and indefinite temporal resolution."^^xsd:string .
 
 
@@ -1216,7 +1251,10 @@ https://newbuildings.org/gridoptimal-leed-pilot-credit-encourages-designers-to-h
 :HighLoadEndTimestamp rdf:type owl:NamedIndividual ,
                                :SingleValue ,
                                :Variable ;
-                      :hasUnitOfMeasure :Datetime .
+                      :hasUnitOfMeasure :Datetime ;
+                      :isUnderCondition :UnspecifiedCondition ;
+                      rdfs:label "EventEndTimestamp"^^xsd:string ;
+                      <http://www.w3.org/2004/02/skos/core#definition> "The datetime when a demand response event ends."^^xsd:string .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#HighLoadStartTimestamp
@@ -1224,7 +1262,10 @@ https://newbuildings.org/gridoptimal-leed-pilot-credit-encourages-designers-to-h
                                  :SingleValue ,
                                  :Variable ;
                         :hasUnitOfMeasure :Datetime ;
-                        :needsBaseline "false"^^xsd:boolean .
+                        :isUnderCondition :UnspecifiedCondition ;
+                        :needsBaseline "false"^^xsd:boolean ;
+                        rdfs:label "EventStartTimestamp"^^xsd:string ;
+                        <http://www.w3.org/2004/02/skos/core#definition> "The datetime when a demand response event starts."^^xsd:string .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#HourlyBaselineLoadProfile
@@ -1232,6 +1273,7 @@ https://newbuildings.org/gridoptimal-leed-pilot-credit-encourages-designers-to-h
                                     :SerialValue ,
                                     :Variable ;
                            :hasUnitOfMeasure :kW ;
+                           :isUnderCondition :Baseline ;
                            :hasMinimumTemporalResolution "60"^^xsd:int ;
                            <http://www.w3.org/2004/02/skos/core#definition> "The energy consumption (could also be cost, emissions) timeseries data with hourly resolution under baseline condition."^^xsd:string .
 
@@ -1241,6 +1283,7 @@ https://newbuildings.org/gridoptimal-leed-pilot-credit-encourages-designers-to-h
                                     :SerialValue ,
                                     :Variable ;
                            :hasUnitOfMeasure :kW ;
+                           :isUnderCondition :Flexible ;
                            :hasMinimumTemporalResolution "60"^^xsd:int ;
                            <http://www.w3.org/2004/02/skos/core#definition> "The energy consumption (could also be cost, emissions) timeseries data with hourly resolution under flexible (a.k.a. demand response) condition."^^xsd:string .
 
@@ -1269,11 +1312,28 @@ https://newbuildings.org/gridoptimal-leed-pilot-credit-encourages-designers-to-h
                                         :vectorMultiplication .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#LoadShiftingEfficiency
+:LoadShiftingEfficiency rdf:type owl:NamedIndividual ,
+                                 :EnergyFlexibilityKPI ;
+                        :hasFormula :LoadShiftingEfficiencyFormula .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#LoadShiftingEfficiencyFormula
+:LoadShiftingEfficiencyFormula rdf:type owl:NamedIndividual ,
+                                        :Formula ;
+                               :hasInput :BaselineLoadProfile ,
+                                         :FlexibleLoadProfile ;
+                               :hasOperation :scalarDivision ,
+                                             :vectorMultiplication ,
+                                             :vectorSum .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#LocalGenerationConsumedProfile
 :LocalGenerationConsumedProfile rdf:type owl:NamedIndividual ,
                                          :SerialValue ,
                                          :Variable ;
                                 :hasUnitOfMeasure :kWh ;
+                                :isUnderCondition :UnspecifiedCondition ;
                                 :hasMinimumDuration "1440"^^xsd:int ;
                                 <http://www.w3.org/2004/02/skos/core#definition> "The on-site electricity generation profile that's actually consumed by the building with an indefinite temporal resolution."^^xsd:string .
 
@@ -1284,7 +1344,8 @@ https://newbuildings.org/gridoptimal-leed-pilot-credit-encourages-designers-to-h
                                       :Variable ;
                              :hasDataSource :Measurement ,
                                             :Simulation ;
-                             :hasUnitOfMeasure :kW .
+                             :hasUnitOfMeasure :kW ;
+                             :isUnderCondition :UnspecifiedCondition .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#LocalGenerationProfile
@@ -1292,6 +1353,7 @@ https://newbuildings.org/gridoptimal-leed-pilot-credit-encourages-designers-to-h
                                  :SerialValue ,
                                  :Variable ;
                         :hasUnitOfMeasure :kWh ;
+                        :isUnderCondition :UnspecifiedCondition ;
                         :hasMinimumDuration "1440"^^xsd:int ;
                         rdfs:label "LocalGenerationEnergyProfile"^^xsd:string ;
                         <http://www.w3.org/2004/02/skos/core#definition> "The on-site electricity generation profile with an indefinite temporal resolution."^^xsd:string .
@@ -1328,6 +1390,7 @@ https://newbuildings.org/gridoptimal-leed-pilot-credit-encourages-designers-to-h
                          :SerialValue ,
                          :Variable ;
                 :hasUnitOfMeasure :kWh ;
+                :isUnderCondition :UnspecifiedCondition ;
                 :hasMinimumDuration "1440"^^xsd:int ;
                 :hasMinimumTemporalResolution "525600"^^xsd:int ;
                 <http://www.w3.org/2004/02/skos/core#definition> "The net electricity load (consumption) profile with indefinite temporal resolution."^^xsd:string .
@@ -1405,7 +1468,8 @@ https://newbuildings.org/gridoptimal-leed-pilot-credit-encourages-designers-to-h
 :PeakTimestamp rdf:type owl:NamedIndividual ,
                         :SingleValue ,
                         :Variable ;
-               :hasUnitOfMeasure :Datetime .
+               :hasUnitOfMeasure :Datetime ;
+               :isUnderCondition :UnspecifiedCondition .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#PowerDemandProfile
@@ -1423,6 +1487,10 @@ https://newbuildings.org/gridoptimal-leed-pilot-credit-encourages-designers-to-h
 :PriceProfile rdf:type owl:NamedIndividual ,
                        :SerialValue ,
                        :Variable ;
+              :hasDataSource :GridSignal ;
+              :hasUnitOfMeasure <http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#$/kWh> ;
+              :isUnderCondition :UnspecifiedCondition ;
+              rdfs:label "EnergyPriceProfile"^^xsd:string ;
               <http://www.w3.org/2004/02/skos/core#definition> "A series of energy unit prices indexed in time order issued by utility providers."^^xsd:string .
 
 
@@ -1503,10 +1571,11 @@ https://doi.org/10.3390/en14061591"""^^xsd:string ;
 :TRNSYS rdf:type owl:NamedIndividual .
 
 
-###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#TimeOfUsePriceProfile
-:TimeOfUsePriceProfile rdf:type owl:NamedIndividual ,
-                                :SerialValue ,
-                                :Variable .
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#UnspecifiedCondition
+:UnspecifiedCondition rdf:type owl:NamedIndividual ,
+                               :OperationCondition ;
+                      <http://www.w3.org/2004/02/skos/core#definition> """Refers to any operation condition. 
+Applicable when the condition of the measurements (e.g., power demand profile) are not required by the energy flexibility quantification."""^^xsd:string .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#UtilityCompany
@@ -1683,6 +1752,11 @@ https://doi.org/10.3390/en14061591"""^^xsd:string ;
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#washing_machine
 :washing_machine rdf:type owl:NamedIndividual ,
                           :SchedulableAppliance .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#$/kWh
+<http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#$/kWh> rdf:type owl:NamedIndividual ,
+                                                                            :UnitOfMeasure .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
