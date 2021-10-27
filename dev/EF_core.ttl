@@ -864,6 +864,11 @@ https://www.nerc.com/comm/Other/essntlrlbltysrvcstskfrcDL/Distributed_Energy_Res
              rdfs:subClassOf :ApplicationScope .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#SystemLevelSimulation
+:SystemLevelSimulation rdf:type owl:Class ;
+                       rdfs:subClassOf :Simulation .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#TemporalCharacteristics
 :TemporalCharacteristics rdf:type owl:Class ;
                          rdfs:subClassOf :DataCharacteristics .
@@ -932,6 +937,11 @@ https://en.wikipedia.org/wiki/Uninterruptible_power_supply""" .
                  rdfs:subClassOf :MathOpertion .
 
 
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#WholeBuildingSimulation
+:WholeBuildingSimulation rdf:type owl:Class ;
+                         rdfs:subClassOf :Simulation .
+
+
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#WindPower
 :WindPower rdf:type owl:Class ;
            rdfs:subClassOf :NondispatchableEnergyGenerator .
@@ -955,7 +965,9 @@ https://en.wikipedia.org/wiki/Uninterruptible_power_supply""" .
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#AvailableStructureStorageCapacity
 :AvailableStructureStorageCapacity rdf:type owl:NamedIndividual ,
                                             :EnergyFlexibilityKPI ;
-                                   owl:sameAs :CapacityOfActiveDemandResponse .
+                                   owl:sameAs :CapacityOfActiveDemandResponse ;
+                                   :ofInterestTo :BuildingDesigner ,
+                                                 :EnergyModeler .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Baseline
@@ -1004,6 +1016,7 @@ https://en.wikipedia.org/wiki/Uninterruptible_power_supply""" .
                                 :hasFormula :CapacityOfADRFormula ;
                                 :ofInterestTo :BuildingDesigner ,
                                               :Researcher ;
+                                :hasAcronym "CADR"^^xsd:string ;
                                 rdfs:comment """References:
 https://doi.org/10.1016/j.apenergy.2017.04.061
 https://lirias.kuleuven.be/1729317?limo=0
@@ -1061,7 +1074,6 @@ http://www.ibpsa.org/proceedings/eSimPapers/2018/1-3-A-2.pdf"""^^xsd:string ;
                      :hasFormula :DemandRecoveryRatioFormula ;
                      :ofInterestTo :BuildingDesigner ,
                                    :Researcher ;
-                     :needsBaseline "true"^^xsd:boolean ;
                      <http://www.w3.org/2004/02/skos/core#definition> "Demand recovery ratio: the ratio between the observed electric energy use by the flexible operation and the minimum electric energy use of the system in baseline operation (used to quantify the impact of load shifting on energy consumption)"^^xsd:string .
 
 
@@ -1117,7 +1129,8 @@ http://www.ibpsa.org/proceedings/eSimPapers/2018/1-3-A-2.pdf"""^^xsd:string ;
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#EnergyPlus
-:EnergyPlus rdf:type owl:NamedIndividual .
+:EnergyPlus rdf:type owl:NamedIndividual ,
+                     :Software .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#FlexibilityFactor
@@ -1219,7 +1232,6 @@ http://www.ibpsa.org/proceedings/eSimPapers/2018/1-3-A-2.pdf"""^^xsd:string ;
                       :ofInterestTo :BuildingDesigner ,
                                     :EnergyModeler ;
                       :hasAcronym "GPC"^^xsd:string ;
-                      :needsBaseline "false"^^xsd:boolean ;
                       rdfs:comment """GridOptimal - Grid Peak Contribution: how much the building's load contributes to peak loads on the grid during peak hours. 
 
 It can be interpreted as the load factor during peak hours."""^^xsd:string ,
@@ -1315,17 +1327,26 @@ https://newbuildings.org/gridoptimal-leed-pilot-credit-encourages-designers-to-h
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#LoadShiftingEfficiency
 :LoadShiftingEfficiency rdf:type owl:NamedIndividual ,
                                  :EnergyFlexibilityKPI ;
-                        :hasFormula :LoadShiftingEfficiencyFormula .
+                        owl:sameAs :LoadShiftingRate ;
+                        :hasFormula :LoadShiftingEfficiencyFormula ;
+                        rdfs:comment "Ref: Pajot, C., Delinchant, B., Maréchal, Y., & Frésier, D. (2018). Impact of heat pump flexibility in a French residential eco-district. Buildings, 8(10), 145. https://doi.org/10.3390/buildings8100145" ;
+                        <http://www.w3.org/2004/02/skos/core#definition> "The ratio of the addition of anticipated energy and delayed energy, by the cut-off energy, due to load shifting operation. Specifically, the anticipated energy are the increased energy from pre-conditioning before the peak, and the delayed energy are the increased energy from rebound period. The cut-off energy is the reduced energy during the peak period."^^xsd:string .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#LoadShiftingEfficiencyFormula
 :LoadShiftingEfficiencyFormula rdf:type owl:NamedIndividual ,
                                         :Formula ;
                                :hasInput :BaselineLoadProfile ,
-                                         :FlexibleLoadProfile ;
+                                         :FlexibleLoadProfile ,
+                                         :HighLoadStartTimestamp ;
                                :hasOperation :scalarDivision ,
                                              :vectorMultiplication ,
                                              :vectorSum .
+
+
+###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#LoadShiftingRate
+:LoadShiftingRate rdf:type owl:NamedIndividual ,
+                           :EnergyFlexibilityKPI .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#LocalGenerationConsumedProfile
@@ -1361,7 +1382,8 @@ https://newbuildings.org/gridoptimal-leed-pilot-credit-encourages-designers-to-h
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#LowLOD
 :LowLOD rdf:type owl:NamedIndividual ,
-                 :LevelOfDetails .
+                 :LevelOfDetails ;
+        <http://www.w3.org/2004/02/skos/core#definition> "The level of details needed in modeling the energy system." .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#Measurement
@@ -1479,6 +1501,7 @@ https://newbuildings.org/gridoptimal-leed-pilot-credit-encourages-designers-to-h
                     :hasDataSource :Measurement ,
                                    :Simulation ;
                     :hasUnitOfMeasure :kW ;
+                    :isUnderCondition :UnspecifiedCondition ;
                     :hasMinimumTemporalResolution 60 ;
                     <http://www.w3.org/2004/02/skos/core#definition> "A time series of power demand with indefinite temporal resolution"^^xsd:string .
 
@@ -1568,7 +1591,8 @@ https://doi.org/10.3390/en14061591"""^^xsd:string ;
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#TRNSYS
-:TRNSYS rdf:type owl:NamedIndividual .
+:TRNSYS rdf:type owl:NamedIndividual ,
+                 :Software .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#UnspecifiedCondition
@@ -1741,7 +1765,8 @@ Applicable when the condition of the measurements (e.g., power demand profile) a
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#vectorMultiplication
 :vectorMultiplication rdf:type owl:NamedIndividual ,
-                               :VectorOperation .
+                               :VectorOperation ;
+                      :hasInput :HighLoadEndTimestamp .
 
 
 ###  http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#vectorSum
