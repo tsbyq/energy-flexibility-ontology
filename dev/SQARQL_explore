@@ -13,7 +13,7 @@ WHERE {
     ?KPI a ef:EnergyFlexibilityKPI.
 }
   
-
+  	?ResourceCategory rdfs:subClassOf* ef:FlexibilityResources .
 
 
 SELECT ?variable ?unit
@@ -21,7 +21,7 @@ WHERE {
 	?variable :hasUnitOfMeasure ?unit
 }
 
-
+?FlexibilityResources ?subclass 
 SELECT *
 WHERE {
     ?KPI ef:ofInterestTo ?Stakeholder .
@@ -34,4 +34,16 @@ PREFIX ef: <http://www.semanticweb.org/hlee9/ontologies/2021/4/EF-core#>
 SELECT ?KPI
 WHERE {
     ?KPI a ef:EnergyFlexibilityKPI.
+}
+
+
+
+
+
+SELECT ?directSub ?super
+ WHERE { ?directSub rdfs:subClassOf ?super .
+         FILTER NOT EXISTS {
+            ?directSub rdfs:subClassOf ?otherSub .
+            FILTER (?otherSub != ?directSub)
+         }
 }
